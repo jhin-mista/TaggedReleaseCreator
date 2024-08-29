@@ -1,7 +1,8 @@
 {
   "profiles": {
     "ReleaseCreator": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "commandLineArgs": "--type patch --pre-release alpha --token abc --branch main"
     },
     "Container (Dockerfile)": {
       "commandName": "Docker"
