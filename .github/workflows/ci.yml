@@ -1,0 +1,14 @@
+name: CI pipeline
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  ci:
+    uses: jhin-mista/ReusableWorkflows/.github/workflows/dotnet-ci.yml@ff0b7fcad11959189ac9ad1b822aaebdd78835db
+    with:
+      dotnet-version: 9.0.x
+      uses-lockfile: false
