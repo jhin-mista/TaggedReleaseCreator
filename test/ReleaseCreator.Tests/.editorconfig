@@ -4,5 +4,3 @@
 
 # CS8618: Non-nullable field must contain a non-null value when exiting constructor
 dotnet_diagnostic.CS8618.severity = none
-
-dotnet_naming_rule.private_fields_underscored.severity = none
