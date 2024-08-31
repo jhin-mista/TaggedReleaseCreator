@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C13AE043-ABD0-4538-9EA9-80E035146459}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		test\.editorconfig = test\.editorconfig
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator.VersionIncrementor", "src\ReleaseCreator.VersionIncrementer\ReleaseCreator.VersionIncrementor.csproj", "{2E822F79-6D30-4AEA-BDCC-F5CD72B6DFB8}"
