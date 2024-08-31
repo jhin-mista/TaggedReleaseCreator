@@ -1,4 +1,4 @@
-﻿namespace ReleaseCreator.Types;
+﻿namespace ReleaseCreator.CommandLine.Types;
 
 internal record ReleaseCreatorOptions(
     string BranchName,

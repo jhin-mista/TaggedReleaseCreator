@@ -42,7 +42,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ReleaseCreator.csproj" />
+    <ProjectReference Include="..\..\src\ReleaseCreator.CommandLine\ReleaseCreator.CommandLine.csproj" />
   </ItemGroup>
 
   <ItemGroup>
