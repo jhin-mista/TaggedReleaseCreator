@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "dependencies": {
     "net9.0": {
       "coverlet.collector": {
@@ -104,8 +104,12 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": "[1.21.0, )",
+          "ReleaseCreator.VersionIncrementor": "[1.0.0, )",
           "System.CommandLine": "[2.0.0-beta4.22272.1, )"
         }
+      },
+      "releasecreator.versionincrementor": {
+        "type": "Project"
       }
     }
   }
