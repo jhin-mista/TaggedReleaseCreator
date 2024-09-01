@@ -4,3 +4,6 @@
 
 # CS8618: Non-nullable field must contain a non-null value when exiting constructor
 dotnet_diagnostic.CS8618.severity = none
+
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
