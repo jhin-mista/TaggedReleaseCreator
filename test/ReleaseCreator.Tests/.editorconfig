@@ -1,6 +1,0 @@
-[*.cs]
-
-#### Custom Suppressions ####
-
-# CS8618: Non-nullable field must contain a non-null value when exiting constructor
-dotnet_diagnostic.CS8618.severity = none
