@@ -1,4 +1,5 @@
-﻿using System.CommandLine;
+﻿using ReleaseCreator.CommandLine.Enums;
+using System.CommandLine;
 using System.CommandLine.Binding;
 
 namespace ReleaseCreator.CommandLine.Types;
@@ -6,7 +7,7 @@ namespace ReleaseCreator.CommandLine.Types;
 internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
 {
     internal Option<string> BranchNameOption { get; }
-    internal Option<SemanticVersionPart> VersionIncreaseTypeOption { get; }
+    internal Option<ReleaseType> ReleaseTypeOption { get; }
     internal Option<string> PreReleaseOption { get; }
     internal Option<string> AccessTokenOption { get; }
 
@@ -17,7 +18,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
             IsRequired = true,
         };
 
-        VersionIncreaseTypeOption = new Option<SemanticVersionPart>("--type", "The release type to create")
+        ReleaseTypeOption = new Option<ReleaseType>("--type", "The release type to create")
         {
             IsRequired = true,
         };
@@ -36,7 +37,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
     internal void AddOptionsTo(Command command)
     {
         command.AddOption(BranchNameOption);
-        command.AddOption(VersionIncreaseTypeOption);
+        command.AddOption(ReleaseTypeOption);
         command.AddOption(PreReleaseOption);
         command.AddOption(AccessTokenOption);
     }
@@ -46,7 +47,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
     {
         return new(
             bindingContext.ParseResult.GetValueForOption(BranchNameOption)!,
-            bindingContext.ParseResult.GetValueForOption(VersionIncreaseTypeOption),
+            bindingContext.ParseResult.GetValueForOption(ReleaseTypeOption),
             bindingContext.ParseResult.GetValueForOption(PreReleaseOption),
             bindingContext.ParseResult.GetValueForOption(AccessTokenOption)!
             );

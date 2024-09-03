@@ -1,8 +1,10 @@
-﻿namespace ReleaseCreator.CommandLine.Types;
+﻿using ReleaseCreator.CommandLine.Enums;
+
+namespace ReleaseCreator.CommandLine.Types;
 
 internal record ReleaseCreatorOptions(
     string BranchName,
-    SemanticVersionPart VersionIncreasePart,
+    ReleaseType VersionIncreasePart,
     string? PreReleaseIdentifier,
     string AccessToken)
 {

@@ -20,7 +20,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="$(ProjectName).Tests"/>
+    <InternalsVisibleTo Include="$(ProjectName).Tests" />
+    <InternalsVisibleTo Include="DynamicProxyGenAssembly2" />
   </ItemGroup>
 
 </Project>
