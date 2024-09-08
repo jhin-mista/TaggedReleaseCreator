@@ -1,7 +1,7 @@
-﻿using ReleaseCreator.VersionIncrementor.Enums;
-using ReleaseCreator.VersionIncrementor.Types;
+﻿using ReleaseCreator.SemanticVersionUtil.Enums;
+using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor.Builder
+namespace ReleaseCreator.SemanticVersionUtil.Builder
 {
     internal class SemanticVersionDirector : ISemanticVersionDirector
     {

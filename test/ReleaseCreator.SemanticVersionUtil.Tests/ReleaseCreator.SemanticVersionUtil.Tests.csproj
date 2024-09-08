@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ReleaseCreator.VersionIncrementer\ReleaseCreator.VersionIncrementor.csproj" />
+    <ProjectReference Include="..\..\src\ReleaseCreator.SemanticVersionUtil\ReleaseCreator.SemanticVersionUtil.csproj" />
   </ItemGroup>
 
   <ItemGroup>

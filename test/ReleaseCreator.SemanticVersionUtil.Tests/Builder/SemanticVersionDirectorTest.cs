@@ -1,9 +1,9 @@
 ﻿using Moq;
-using ReleaseCreator.VersionIncrementor.Builder;
-using ReleaseCreator.VersionIncrementor.Enums;
-using ReleaseCreator.VersionIncrementor.Types;
+using ReleaseCreator.SemanticVersionUtil.Enums;
+using ReleaseCreator.SemanticVersionUtil.Builder;
+using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor.Tests.Builder
+namespace ReleaseCreator.SemanticVersionUtil.Tests.Builder
 {
     [TestFixture]
     public class SemanticVersionDirectorTest

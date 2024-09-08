@@ -1,4 +1,4 @@
-﻿namespace ReleaseCreator.VersionIncrementor.Enums
+﻿namespace ReleaseCreator.SemanticVersionUtil.Enums
 {
     /// <summary>
     /// Represents a semantic version part.

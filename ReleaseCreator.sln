@@ -15,9 +15,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator.VersionIncrementor", "src\ReleaseCreator.VersionIncrementer\ReleaseCreator.VersionIncrementor.csproj", "{2E822F79-6D30-4AEA-BDCC-F5CD72B6DFB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator.Git", "src\ReleaseCreator.Git\ReleaseCreator.Git.csproj", "{EDE46152-9748-4470-B35F-21539923B608}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator.VersionIncrementor.Tests", "test\ReleaseCreator.VersionIncrementor.Tests\ReleaseCreator.VersionIncrementor.Tests.csproj", "{878C6B0D-E045-43B4-89B8-05245D57FAC2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator.Git.Tests", "test\ReleaseCreator.Git.Tests\ReleaseCreator.Git.Tests.csproj", "{A6E2FC62-0438-4B30-B7FE-DA4537DBEEC6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator.SemanticVersionUtil", "src\ReleaseCreator.SemanticVersionUtil\ReleaseCreator.SemanticVersionUtil.csproj", "{0C1F49D9-188C-4EC0-B889-C18640502C7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReleaseCreator.SemanticVersionUtil.Tests", "test\ReleaseCreator.SemanticVersionUtil.Tests\ReleaseCreator.SemanticVersionUtil.Tests.csproj", "{8FA0402A-F0DA-4AA9-9915-B5FE265E02BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,14 +37,22 @@ Global
 		{DACF6DA9-A7E3-4529-87CC-77CC75925F30}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DACF6DA9-A7E3-4529-87CC-77CC75925F30}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DACF6DA9-A7E3-4529-87CC-77CC75925F30}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E822F79-6D30-4AEA-BDCC-F5CD72B6DFB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E822F79-6D30-4AEA-BDCC-F5CD72B6DFB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E822F79-6D30-4AEA-BDCC-F5CD72B6DFB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E822F79-6D30-4AEA-BDCC-F5CD72B6DFB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{878C6B0D-E045-43B4-89B8-05245D57FAC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{878C6B0D-E045-43B4-89B8-05245D57FAC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{878C6B0D-E045-43B4-89B8-05245D57FAC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{878C6B0D-E045-43B4-89B8-05245D57FAC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE46152-9748-4470-B35F-21539923B608}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE46152-9748-4470-B35F-21539923B608}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE46152-9748-4470-B35F-21539923B608}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE46152-9748-4470-B35F-21539923B608}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6E2FC62-0438-4B30-B7FE-DA4537DBEEC6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6E2FC62-0438-4B30-B7FE-DA4537DBEEC6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6E2FC62-0438-4B30-B7FE-DA4537DBEEC6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6E2FC62-0438-4B30-B7FE-DA4537DBEEC6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C1F49D9-188C-4EC0-B889-C18640502C7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1F49D9-188C-4EC0-B889-C18640502C7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1F49D9-188C-4EC0-B889-C18640502C7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C1F49D9-188C-4EC0-B889-C18640502C7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FA0402A-F0DA-4AA9-9915-B5FE265E02BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FA0402A-F0DA-4AA9-9915-B5FE265E02BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FA0402A-F0DA-4AA9-9915-B5FE265E02BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FA0402A-F0DA-4AA9-9915-B5FE265E02BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

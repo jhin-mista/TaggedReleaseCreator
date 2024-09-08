@@ -1,8 +1,9 @@
 ﻿using Moq;
-using ReleaseCreator.VersionIncrementor.Builder;
-using ReleaseCreator.VersionIncrementor.Types;
+using ReleaseCreator.SemanticVersionUtil.Builder;
+using ReleaseCreator.SemanticVersionUtil.Enums;
+using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor.Tests
+namespace ReleaseCreator.SemanticVersionUtil.Tests
 {
     [TestFixture]
     public class SemanticVersionIncrementorTest
@@ -22,7 +23,7 @@ namespace ReleaseCreator.VersionIncrementor.Tests
         {
             //arrange
             var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, null);
-            var incrementDto = new SemanticVersionIncrementDto(Enums.SemanticVersionCorePart.Major, null, true);
+            var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, null, true);
 
             _semanticVersionBuilderMock.Setup(x =>
                 x.IncrementPreReleaseToPreRelease(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
@@ -41,7 +42,7 @@ namespace ReleaseCreator.VersionIncrementor.Tests
         {
             //arrange
             var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, null);
-            var incrementDto = new SemanticVersionIncrementDto(Enums.SemanticVersionCorePart.Major, null, false);
+            var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, null, false);
 
             _semanticVersionBuilderMock.Setup(x =>
                 x.IncrementPreReleaseToStable(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
@@ -60,7 +61,7 @@ namespace ReleaseCreator.VersionIncrementor.Tests
         {
             //arrange
             var currentVersion = new SemanticVersion(1, 1, 1, null, null, null);
-            var incrementDto = new SemanticVersionIncrementDto(Enums.SemanticVersionCorePart.Major, "alpha", true);
+            var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, "alpha", true);
 
             _semanticVersionBuilderMock.Setup(x =>
                 x.IncrementStableToPreRelease(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
@@ -79,7 +80,7 @@ namespace ReleaseCreator.VersionIncrementor.Tests
         {
             //arrange
             var currentVersion = new SemanticVersion(1, 1, 1, null, null, null);
-            var incrementDto = new SemanticVersionIncrementDto(Enums.SemanticVersionCorePart.Major, null, false);
+            var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, null, false);
 
             _semanticVersionBuilderMock.Setup(x =>
                 x.IncrementStableToStable(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
