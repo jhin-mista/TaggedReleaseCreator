@@ -7,7 +7,7 @@ namespace ReleaseCreator.SemanticVersionUtil.Tests.Parser;
 public class SemanticVersionParserTest
 {
 
-    [TestCase(1u, 0u, 0u, null, null, null, "1.0.0", TestName = "Only core version")]
+    [TestCase(1u, 0u, 0u, null, null, null, "v1.0.0", TestName = "Only core version")]
     [TestCase(1u, 0u, 0u, new string[] { "alpha" }, null, null, "1.0.0-alpha", TestName = "Core + pre-release identifier")]
     [TestCase(1u, 0u, 0u, null, 1u, null, "1.0.0-1", TestName = "Core + pre-release number")]
     [TestCase(1u, 0u, 0u, new string[] { "alpha" }, 1u, null, "1.0.0-alpha.1", TestName = "Core + pre-release version")]
