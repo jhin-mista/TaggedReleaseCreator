@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using ReleaseCreator.VersionIncrementor.Builder;
+using ReleaseCreator.SemanticVersionUtil.Builder;
 
-namespace ReleaseCreator.VersionIncrementor.Tests.Builder;
+namespace ReleaseCreator.SemanticVersionUtil.Tests.Builder;
 
 [TestFixture]
 public class SemanticVersionBuilderTest

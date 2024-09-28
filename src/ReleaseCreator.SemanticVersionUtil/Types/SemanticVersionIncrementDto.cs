@@ -1,6 +1,6 @@
-﻿using ReleaseCreator.VersionIncrementor.Enums;
+﻿using ReleaseCreator.SemanticVersionUtil.Enums;
 
-namespace ReleaseCreator.VersionIncrementor.Types
+namespace ReleaseCreator.SemanticVersionUtil.Types
 {
     /// <summary>
     /// Holds metadata for a semantic version increment.

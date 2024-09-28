@@ -1,14 +1,15 @@
 ﻿using Moq;
-using ReleaseCreator.VersionIncrementor.Builder;
-using ReleaseCreator.VersionIncrementor.Enums;
-using ReleaseCreator.VersionIncrementor.Types;
+using ReleaseCreator.SemanticVersionUtil.Builder;
+using ReleaseCreator.SemanticVersionUtil.Enums;
+using ReleaseCreator.SemanticVersionUtil.Incrementor;
+using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor.Tests.Builder
+namespace ReleaseCreator.SemanticVersionUtil.Tests.Incrementor
 {
     [TestFixture]
-    public class SemanticVersionDirectorTest
+    public class SemanticVersionIncrementDirectorTest
     {
-        private SemanticVersionDirector _sut;
+        private SemanticVersionIncrementDirector _sut;
         private Mock<ISemanticVersionBuilder> _builderMock;
 
         [SetUp]
