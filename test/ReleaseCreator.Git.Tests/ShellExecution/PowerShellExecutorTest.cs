@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
+using ReleaseCreator.Git.ShellExecution;
 
-namespace ReleaseCreator.Git.Tests
+namespace ReleaseCreator.Git.Tests.ShellExecution
 {
     [TestFixture]
     class PowerShellExecutorTest

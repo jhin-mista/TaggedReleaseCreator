@@ -1,8 +1,10 @@
 ﻿using FluentAssertions;
 using Moq;
+using ReleaseCreator.Git.ShellExecution;
+using ReleaseCreator.Git.Tag;
 using System.Management.Automation;
 
-namespace ReleaseCreator.Git.Tests
+namespace ReleaseCreator.Git.Tests.Tag
 {
     [TestFixture]
     public class TagRetrieverTest
