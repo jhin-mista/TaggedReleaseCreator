@@ -6,7 +6,7 @@ using ReleaseCreator.SemanticVersionUtil.Incrementor;
 using ReleaseCreator.SemanticVersionUtil.Parser;
 using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.CommandLine
+namespace ReleaseCreator.CommandLine.VersionCalculation
 {
     internal class NextVersionCalculator : INextVersionCalculator
     {

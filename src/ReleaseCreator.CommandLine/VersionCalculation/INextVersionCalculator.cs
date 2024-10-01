@@ -1,7 +1,7 @@
 ﻿using ReleaseCreator.CommandLine.Types;
 using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.CommandLine;
+namespace ReleaseCreator.CommandLine.VersionCalculation;
 
 /// <summary>
 /// Represents a component for calculating the next semantic version in a git repository.
