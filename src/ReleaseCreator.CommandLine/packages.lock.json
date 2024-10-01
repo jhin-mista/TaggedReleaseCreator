@@ -38,6 +38,12 @@
         "resolved": "1.21.0",
         "contentHash": "8NudeHOE56YsY59HYY89akRMup8Ho+7Y3cADTGjajjWroXVU9RQai2nA6PfteB8AuzmRHZ5NZQB2BnWhQEul5g=="
       },
+      "Octokit": {
+        "type": "Direct",
+        "requested": "[13.0.1, )",
+        "resolved": "13.0.1",
+        "contentHash": "tjXTa2FXzbd3n17VWpi8UXe05EIJqHcWJW8C2kukftIve00duWiZL8x4i1vlZQ0zQ4RbRANbRc7J5K7Co/1spQ=="
+      },
       "System.CommandLine": {
         "type": "Direct",
         "requested": "[2.0.0-beta4.22272.1, )",
