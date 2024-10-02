@@ -14,7 +14,7 @@ namespace ReleaseCreator.CommandLine.VersionCalculation
         private readonly ITagRetriever _tagRetriever;
         private readonly ISemanticVersionParser _semanticVersionParser;
 
-        internal NextVersionCalculator(
+        public NextVersionCalculator(
             ITagRetriever tagRetriever,
             ISemanticVersionIncrementor semanticVersionIncrementor,
             ISemanticVersionParser semanticVersionParser)

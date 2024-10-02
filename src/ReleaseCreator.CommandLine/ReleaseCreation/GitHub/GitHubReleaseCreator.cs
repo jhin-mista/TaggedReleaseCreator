@@ -11,7 +11,7 @@ internal class GitHubReleaseCreator : IReleaseCreator
     private readonly INextVersionCalculator _nextVersionCalculator;
     private readonly IEnvironmentService _environmentService;
 
-    internal GitHubReleaseCreator(IReleasesClient releasesClient, INextVersionCalculator nextVersionCalculator, IEnvironmentService environmentService)
+    public GitHubReleaseCreator(IReleasesClient releasesClient, INextVersionCalculator nextVersionCalculator, IEnvironmentService environmentService)
     {
         _releasesClient = releasesClient;
         _nextVersionCalculator = nextVersionCalculator;

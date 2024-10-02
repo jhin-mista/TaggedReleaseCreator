@@ -6,7 +6,7 @@ namespace ReleaseCreator.SemanticVersionUtil.Incrementor
     {
         private readonly ISemanticVersionIncrementDirector _director;
 
-        internal SemanticVersionIncrementor(ISemanticVersionIncrementDirector director)
+        public SemanticVersionIncrementor(ISemanticVersionIncrementDirector director)
         {
             _director = director;
         }
