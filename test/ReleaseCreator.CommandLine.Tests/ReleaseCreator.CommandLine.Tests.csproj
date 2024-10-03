@@ -50,4 +50,8 @@
     <Using Include="NUnit.Framework" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestRepository\" />
+  </ItemGroup>
+
 </Project>
