@@ -10,5 +10,6 @@ jobs:
   ci:
     uses: jhin-mista/ReusableWorkflows/.github/workflows/dotnet-ci.yml@ff0b7fcad11959189ac9ad1b822aaebdd78835db
     with:
-      dotnet-version: 9.0.x
+      dotnet-version: 9.0.100-preview.7.24407.12 
+      # the most recent preview silently skips tests. See https://github.com/dotnet/sdk/issues/43432 and https://github.com/dotnet/sdk/issues/43442
       uses-lockfile: true

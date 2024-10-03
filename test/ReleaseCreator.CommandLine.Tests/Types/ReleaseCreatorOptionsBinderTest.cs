@@ -3,7 +3,7 @@ using ReleaseCreator.CommandLine.Types;
 using System.CommandLine;
 using System.Reflection;
 
-namespace ReleaseCreator.CommandLine.Tests;
+namespace ReleaseCreator.CommandLine.Tests.Types;
 
 [TestFixture]
 public class ReleaseCreatorOptionsBinderTest

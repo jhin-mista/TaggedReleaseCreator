@@ -1,6 +1,7 @@
 ﻿using ReleaseCreator.CommandLine.Enums;
 using System.CommandLine;
 using System.CommandLine.Binding;
+using System.CommandLine.Parsing;
 
 namespace ReleaseCreator.CommandLine.Types;
 
@@ -23,7 +24,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
             IsRequired = true,
         };
 
-        PreReleaseOption = new Option<string>("--pre-release", "Indicates if this release is a pre-release. Optionally set a pre-release identifier")
+        PreReleaseOption = new Option<string>("--pre-release", parseArgument: ParsePreReleaseOption, description: "Indicates if this release is a pre-release. Optionally set a pre-release identifier")
         {
             Arity = ArgumentArity.ZeroOrOne,
         };
@@ -45,11 +46,24 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
     /// <inheritdoc/>
     protected override ReleaseCreatorOptions GetBoundValue(BindingContext bindingContext)
     {
+        var parsedPreReleaseIdentifier = bindingContext.ParseResult.GetValueForOption(PreReleaseOption);
+        var preReleaseIdentifier = parsedPreReleaseIdentifier == string.Empty ? null : parsedPreReleaseIdentifier;
+        var isPreRelease = parsedPreReleaseIdentifier != null;
         return new(
             bindingContext.ParseResult.GetValueForOption(BranchNameOption)!,
             bindingContext.ParseResult.GetValueForOption(ReleaseTypeOption),
-            bindingContext.ParseResult.GetValueForOption(PreReleaseOption),
+            preReleaseIdentifier,
+            isPreRelease,
             bindingContext.ParseResult.GetValueForOption(AccessTokenOption)!
             );
+    }
+
+    private string ParsePreReleaseOption(ArgumentResult argument)
+    {
+        return argument.Tokens.Count switch
+        {
+            0 => string.Empty,
+            _ => argument.Tokens[0].Value,
+        };
     }
 }

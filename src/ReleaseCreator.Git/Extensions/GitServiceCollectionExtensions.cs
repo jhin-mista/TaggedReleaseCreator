@@ -13,9 +13,9 @@ namespace ReleaseCreator.Git.Extensions
         /// Adds services required for using git.
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
-        public static IServiceCollection AddVersionIncrementorServicesSingleton(this IServiceCollection services)
+        public static IServiceCollection AddGitServicesSingleton(this IServiceCollection services)
         {
-            services.AddSingleton<TagRetriever>();
+            services.AddSingleton<ITagRetriever, TagRetriever>();
             services.AddSingleton<IPowerShellExecutor, PowerShellExecutor>();
 
             return services;
