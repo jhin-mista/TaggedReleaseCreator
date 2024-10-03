@@ -13,7 +13,6 @@ namespace ReleaseCreator.CommandLine.Tests
             var workingDirectory = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "TestRepository");
             Environment.CurrentDirectory = workingDirectory;
             Directory.Move(".igit", ".git");
-
         }
 
         [TearDown]
@@ -56,6 +55,22 @@ namespace ReleaseCreator.CommandLine.Tests
 
             calculatedNewRelease.Should().NotBeNull();
             calculatedNewRelease!.TagName.Should().Be("v2.0.0");
+        }
+
+        [Test]
+        public async Task Main_WhenArgumentParsingFails_ShouldNotCreateRelease()
+        {
+            // arrange
+            var clientMock = new Mock<IReleasesClient>(MockBehavior.Strict);
+            Program.ReleasesClientFactory = _ => clientMock.Object;
+
+            // act
+            var result = await Program.Main([]);
+
+            // assert
+            result.Should().NotBe(0);
+
+            clientMock.Verify(x => x.Create(It.IsAny<long>(), It.IsAny<NewRelease>()), Times.Never);
         }
     }
 }
