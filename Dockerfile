@@ -12,5 +12,5 @@ LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="gray-dark"
 
 FROM mcr.microsoft.com/dotnet/runtime:9.0-preview
-COPY --from=base /app/out .
-ENTRYPOINT [ "ReleaseCreator.CommandLine.exe" ]
+COPY --from=base /app/out /github/workspace/ReleaseCreator
+ENTRYPOINT [ "ReleaseCreator/ReleaseCreator.CommandLine.exe" ]
