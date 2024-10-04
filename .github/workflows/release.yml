@@ -1,0 +1,39 @@
+name: Create release
+
+on:
+    workflow_dispatch: 
+        inputs:
+            release-type:
+                description: The type of release
+                type: choice
+                required: true
+                options:
+                    - Major
+                    - Minor
+                    - Patch
+            is-pre-release:
+                description: Indicates if this is a pre-release
+                type: boolean
+                required: true
+                default: false
+            pre-release-identifier:
+                description: An optional pre-release identifier
+                type: string
+                required: false
+                default: null
+
+jobs:
+    create-release:
+        runs-on: ubuntu-latest
+        permissions:
+            contents: write
+        steps:
+            - name: Call release creator action
+              if: ${{ github.ref_type == 'branch' }}
+              uses: ./
+              with:
+                branch: ${{ github.ref_name }}
+                type: ${{ inputs.release-type }}
+                token: ${{ secrets.GITHUB_TOKEN }}
+                pre-release: ${{ github.event.inputs.is-pre-release }}
+                pre-release-identifier: ${{ inputs.pre-release-identifier }}
