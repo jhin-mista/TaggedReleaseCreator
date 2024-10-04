@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/runtime:9.0-preview AS base
+FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1 AS base
 WORKDIR /app
 COPY . ./
 RUN dotnet publish ./src/ReleaseCreator.CommandLine/ReleaseCreator.CommandLine.csproj -c Release -o out --no-self-contained
