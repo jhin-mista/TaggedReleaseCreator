@@ -13,8 +13,8 @@ LABEL com.github.actions.color="gray-dark"
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1
 # Copy binaries to the final layer
-COPY --from=base /app/out /github/workspace/ReleaseCreator
-# Make binaries executable
-RUN chmod -R +x /github/workspace/ReleaseCreator
+COPY --from=base /app/out /app
 # Set entrypoint for the container
-ENTRYPOINT [ "dotnet", "/github/workspace/ReleaseCreator/ReleaseCreator.CommandLine.dll" ]
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
