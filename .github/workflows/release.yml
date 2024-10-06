@@ -30,9 +30,6 @@ jobs:
         steps:
             - name: Checkout
               uses: actions/checkout@v4
-              with:
-                fetch-tags: true
-                fetch-depth: 0
 
             - name: Call release creator action
               if: ${{ github.ref_type == 'branch' }}
