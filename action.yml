@@ -26,7 +26,7 @@ inputs:
     required: false
   log-level:
     description:
-      'Configure the log level (default: information)'
+      'Configures the log level (default: information)'
     required: false
     default: 'Information'
 

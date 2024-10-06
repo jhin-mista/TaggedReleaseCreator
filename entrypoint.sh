@@ -7,6 +7,7 @@ chmod -R +x /github/workspace/ReleaseCreator
 
 git config --global --add safe.directory /github/workspace
 git fetch --tags --unshallow
+git config versionsort.suffix "-"
 
 # Only take non empty arguments
 for arg in "$@"
