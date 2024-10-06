@@ -17,6 +17,6 @@ do
 done
 set -- $arguments
 
-git tag
-echo "$@"
+pwsh -Command "git tag --sort=-v:refname --merged | Select-Object -First 1"
+echo "${@}-"
 # dotnet /github/workspace/ReleaseCreator/ReleaseCreator.CommandLine.dll $@
