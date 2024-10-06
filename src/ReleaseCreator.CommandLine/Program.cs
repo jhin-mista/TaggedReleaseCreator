@@ -26,16 +26,26 @@ public class Program
     /// <param name="args">The command line arguments.</param>
     public static async Task<int> Main(string[] args)
     {
-        if (TryGetReleaseCreatorOptions(args, out var releaseCreatorOptions))
+        if (!TryGetReleaseCreatorOptions(args, out var releaseCreatorOptions))
+        {
+            return -1;
+        }
+
+        try
         {
             var serviceProvider = SetupServices(releaseCreatorOptions.AccessToken);
             var releaseCreator = serviceProvider.GetRequiredService<IReleaseCreator>();
 
+            var passedArguments = string.Join(", ", args);
+            Console.WriteLine("Input arguments: " + passedArguments);
+
             var createdRelease = await releaseCreator.CreateReleaseAsync(releaseCreatorOptions);
             Console.WriteLine($"Created release under the following URL: {createdRelease.HtmlUrl}");
         }
-        else
+        catch (Exception ex)
         {
+            Console.Error.WriteLine(ex);
+
             return -1;
         }
 
