@@ -1,4 +1,6 @@
-﻿using FluentAssertions;
+﻿using Castle.Core.Logging;
+using FluentAssertions;
+using Microsoft.Extensions.Logging;
 using Moq;
 using Octokit;
 using ReleaseCreator.CommandLine.Enums;
@@ -17,6 +19,7 @@ namespace ReleaseCreator.CommandLine.Tests.ReleaseCreation.GitHub
         private Mock<IReleasesClient> _releasesClientMock;
         private Mock<INextVersionCalculator> _nextVersionCalculatorMock;
         private Mock<IEnvironmentService> _environmentServiceMock;
+        private Mock<ILogger<GitHubReleaseCreator>> _loggerMock;
 
         [SetUp]
         public void SetUp()
@@ -24,8 +27,13 @@ namespace ReleaseCreator.CommandLine.Tests.ReleaseCreation.GitHub
             _releasesClientMock = new(MockBehavior.Strict);
             _nextVersionCalculatorMock = new(MockBehavior.Strict);
             _environmentServiceMock = new(MockBehavior.Strict);
+            _loggerMock = new(MockBehavior.Loose);
 
-            _sut = new(_releasesClientMock.Object, _nextVersionCalculatorMock.Object, _environmentServiceMock.Object);
+            _sut = new(
+                _releasesClientMock.Object,
+                _nextVersionCalculatorMock.Object,
+                _environmentServiceMock.Object,
+                _loggerMock.Object);
         }
 
         [Test]
