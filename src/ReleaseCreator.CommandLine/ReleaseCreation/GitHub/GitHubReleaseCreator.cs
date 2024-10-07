@@ -1,22 +1,21 @@
-﻿using Octokit;
+﻿using Microsoft.Extensions.Logging;
+using Octokit;
 using ReleaseCreator.CommandLine.Types;
 using ReleaseCreator.CommandLine.Util;
 using ReleaseCreator.CommandLine.VersionCalculation;
 
 namespace ReleaseCreator.CommandLine.ReleaseCreation.GitHub;
 
-internal class GitHubReleaseCreator : IReleaseCreator
+internal class GitHubReleaseCreator(
+    IReleasesClient releasesClient,
+    INextVersionCalculator nextVersionCalculator,
+    IEnvironmentService environmentService,
+    ILogger<GitHubReleaseCreator> logger) : IReleaseCreator
 {
-    private readonly IReleasesClient _releasesClient;
-    private readonly INextVersionCalculator _nextVersionCalculator;
-    private readonly IEnvironmentService _environmentService;
-
-    public GitHubReleaseCreator(IReleasesClient releasesClient, INextVersionCalculator nextVersionCalculator, IEnvironmentService environmentService)
-    {
-        _releasesClient = releasesClient;
-        _nextVersionCalculator = nextVersionCalculator;
-        _environmentService = environmentService;
-    }
+    private readonly IReleasesClient _releasesClient = releasesClient;
+    private readonly INextVersionCalculator _nextVersionCalculator = nextVersionCalculator;
+    private readonly IEnvironmentService _environmentService = environmentService;
+    private readonly ILogger<GitHubReleaseCreator> _logger = logger;
 
     public async Task<Release> CreateReleaseAsync(ReleaseCreatorOptions releaseCreatorOptions)
     {
@@ -29,6 +28,8 @@ internal class GitHubReleaseCreator : IReleaseCreator
         };
 
         var repositoryId = GetRepositoryId();
+
+        _logger.LogDebug("New tag name: {tagName}", nextRelease.TagName);
 
         return await _releasesClient.Create(repositoryId, nextRelease);
     }

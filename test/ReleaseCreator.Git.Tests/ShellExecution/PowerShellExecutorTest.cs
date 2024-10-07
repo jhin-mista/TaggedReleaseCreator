@@ -1,4 +1,6 @@
 ﻿using FluentAssertions;
+using Microsoft.Extensions.Logging;
+using Moq;
 using ReleaseCreator.Git.ShellExecution;
 
 namespace ReleaseCreator.Git.Tests.ShellExecution
@@ -7,11 +9,13 @@ namespace ReleaseCreator.Git.Tests.ShellExecution
     class PowerShellExecutorTest
     {
         private PowerShellExecutor _sut;
+        private Mock<ILogger<PowerShellExecutor>> _loggerMock;
 
         [SetUp]
         public void SetUp()
         {
-            _sut = new();
+            _loggerMock = new(MockBehavior.Loose);
+            _sut = new(_loggerMock.Object);
         }
 
         [Test]

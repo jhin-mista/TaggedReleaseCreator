@@ -1,28 +1,20 @@
-# See https://aka.ms/customizecontainer to learn how to customize your debug container and how Visual Studio uses this Dockerfile to build your images for faster debugging.
-
-# This stage is used when running from VS in fast mode (Default for Debug configuration)
-FROM mcr.microsoft.com/dotnet/runtime:9.0-preview AS base
-USER app
+FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1 AS base
 WORKDIR /app
+COPY . ./
+RUN dotnet publish ./src/ReleaseCreator.CommandLine/ReleaseCreator.CommandLine.csproj -c Release -o out --no-self-contained
 
+LABEL maintainer="Benedict Zendel"
+LABEL repository="https://github.com/jhin-mista/ReleaseCreator"
+LABEL homepage="https://github.com/jhin-mista/ReleaseCreator"
+LABEL com.github.actions.name="Release Creator"
+LABEL com.github.actions.description="Creates a GitHub release"
+LABEL com.github.actions.icon="package"
+LABEL com.github.actions.color="gray-dark"
 
-# This stage is used to build the service project
-FROM mcr.microsoft.com/dotnet/sdk:9.0-preview AS build
-ARG BUILD_CONFIGURATION=Release
-WORKDIR /src
-COPY ["ReleaseCreator/ReleaseCreator.csproj", "ReleaseCreator/"]
-RUN dotnet restore "./ReleaseCreator/ReleaseCreator.csproj"
-COPY . .
-WORKDIR "/src/ReleaseCreator"
-RUN dotnet build "./ReleaseCreator.csproj" -c $BUILD_CONFIGURATION -o /app/build
-
-# This stage is used to publish the service project to be copied to the final stage
-FROM build AS publish
-ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./ReleaseCreator.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
-
-# This stage is used in production or when running from VS in regular mode (Default when not using the Debug configuration)
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "ReleaseCreator.dll"]
+FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1
+# Copy binaries to the final layer
+COPY --from=base /app/out /app
+# Set entrypoint for the container
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
