@@ -37,7 +37,7 @@ runs:
   env:
     Logging__LogLevel__Default: "${{ inputs.log-level }}"
   using: 'docker'
-  image: 'Dockerfile'
+  image: 'docker://ghcr.io/jhin-mista/ReleaseCreator:latest'
   args:
     - '--branch'
     - ${{ inputs.branch }}
