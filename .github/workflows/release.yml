@@ -20,7 +20,7 @@ on:
                 description: An optional pre-release identifier
                 type: string
                 required: false
-                default: null
+                default: ""
 
 jobs:
     create-release:
@@ -32,6 +32,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Call release creator action
+              id: release-creator
               if: ${{ github.ref_type == 'branch' }}
               uses: ./
               with:
@@ -41,3 +42,9 @@ jobs:
                 pre-release: ${{ github.event.inputs.is-pre-release }}
                 pre-release-identifier: ${{ inputs.pre-release-identifier }}
                 log-level: Debug
+
+            - name: Build container image
+              run: "docker build -t ghcr.io/jhin-mista/releasecreator:latest -t ghcr.io/jhin-mista/releasecreator:${{ steps.release-creator.outputs.next-version }} ."
+
+            - name: Push container image
+              run: "docker push --all-tags ghcr.io/jhin-mista/releasecreator"
