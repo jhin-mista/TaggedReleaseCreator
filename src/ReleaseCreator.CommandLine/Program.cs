@@ -65,14 +65,9 @@ public class Program
         rootCommand.SetHandler(x => releaseCreatorOptions = x, releaseCreatorOptionsBinder);
 
         var exitCode = rootCommand.Invoke(args);
-
         result = releaseCreatorOptions;
-        if (exitCode != 0 || result == null)
-        {
-            return false;
-        }
 
-        return true;
+        return exitCode == 0 && result != null;
     }
 
     private static ServiceProvider SetupServices(string accessToken)
@@ -84,6 +79,7 @@ public class Program
             .AddVersionIncrementorServicesSingleton()
             .AddGitServicesSingleton()
             .AddSingleton<IEnvironmentService, EnvironmentService>()
+            .AddSingleton<IFileService, FileService>()
             .AddSingleton<INextVersionCalculator, NextVersionCalculator>()
             .AddSingleton(_ => client)
             .AddSingleton<IReleaseCreator, GitHubReleaseCreator>();

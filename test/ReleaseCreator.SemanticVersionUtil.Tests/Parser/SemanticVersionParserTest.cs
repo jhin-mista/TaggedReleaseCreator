@@ -14,13 +14,14 @@ public class SemanticVersionParserTest
         _sut = new();
     }
 
-    [TestCase(1u, 0u, 0u, null, null, null, "v1.0.0", TestName = "Only core version")]
-    [TestCase(1u, 0u, 0u, new string[] { "alpha" }, null, null, "1.0.0-alpha", TestName = "Core + pre-release identifier")]
-    [TestCase(1u, 0u, 0u, null, 1u, null, "1.0.0-1", TestName = "Core + pre-release number")]
-    [TestCase(1u, 0u, 0u, new string[] { "alpha" }, 1u, null, "1.0.0-alpha.1", TestName = "Core + pre-release version")]
-    [TestCase(1u, 0u, 0u, null, null, new string[] { "156f46a8", "42" }, "1.0.0+156f46a8.42", TestName = "Core version + build metadata")]
-    [TestCase(1u, 0u, 0u, new string[] { "alpha" }, 1u, new string[] { "156f46a8", "42" }, "1.0.0-alpha.1+156f46a8.42", TestName = "Core + pre-release version + build metadata")]
+    [TestCase("v", 1u, 0u, 0u, null, null, null, "v1.0.0", TestName = "Only core version")]
+    [TestCase(null, 1u, 0u, 0u, new string[] { "alpha" }, null, null, "1.0.0-alpha", TestName = "Core + pre-release identifier")]
+    [TestCase(null, 1u, 0u, 0u, null, 1u, null, "1.0.0-1", TestName = "Core + pre-release number")]
+    [TestCase(null, 1u, 0u, 0u, new string[] { "alpha" }, 1u, null, "1.0.0-alpha.1", TestName = "Core + pre-release version")]
+    [TestCase(null, 1u, 0u, 0u, null, null, new string[] { "156f46a8", "42" }, "1.0.0+156f46a8.42", TestName = "Core version + build metadata")]
+    [TestCase(null, 1u, 0u, 0u, new string[] { "alpha" }, 1u, new string[] { "156f46a8", "42" }, "1.0.0-alpha.1+156f46a8.42", TestName = "Core + pre-release version + build metadata")]
     public void Parse_ShouldParseAsExpected(
+        string? prefix,
         uint major,
         uint minor,
         uint patch,
@@ -33,6 +34,7 @@ public class SemanticVersionParserTest
         var result = _sut.Parse(input);
 
         // assert
+        result.Prefix.Should().Be(prefix);
         result.Major.Should().Be(major);
         result.Minor.Should().Be(minor);
         result.Patch.Should().Be(patch);

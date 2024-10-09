@@ -9,7 +9,15 @@
 /// <param name="PreReleaseIdentifier">The optional pre-release identifier.</param>
 /// <param name="PreReleaseNumber">The optional pre-release number.</param>
 /// <param name="BuildMetadata">The optional build metadata.</param>
-public record SemanticVersion(uint Major, uint Minor, uint Patch, IList<string>? PreReleaseIdentifier, uint? PreReleaseNumber, IList<string>? BuildMetadata)
+/// <param name="Prefix">An optional prefix. This is not semantic version compliant but found very often in version tags.</param>
+public record SemanticVersion(
+    uint Major,
+    uint Minor,
+    uint Patch,
+    IList<string>? PreReleaseIdentifier,
+    uint? PreReleaseNumber,
+    IList<string>? BuildMetadata,
+    string? Prefix = null)
 {
     private static readonly char _separator = '.';
     private static readonly char _preReleaseStartSign = '-';
@@ -27,6 +35,14 @@ public record SemanticVersion(uint Major, uint Minor, uint Patch, IList<string>?
             : string.Empty;
 
         return coreVersion + preReleaseVersion + buildMetaData;
+    }
+
+    /// <summary>
+    /// Returns the semantic version string with its prefix, if it exists.
+    /// </summary>
+    public string ToStringWithPrefix()
+    {
+        return Prefix + ToString();
     }
 
     private string GetPreReleaseVersion()

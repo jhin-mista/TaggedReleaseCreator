@@ -16,6 +16,7 @@ namespace ReleaseCreator.SemanticVersionUtil.Incrementor
         public SemanticVersion IncrementPreReleaseToPreRelease(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
         {
             _builder.SetBuildMetadata(currentVersion.BuildMetadata);
+            _builder.SetPrefix(currentVersion.Prefix);
             SetCoreVersion(currentVersion.Major, currentVersion.Minor, currentVersion.Patch);
 
             if (IsNewPreReleaseIdentifier(currentVersion, semanticVersionIncrementDto))
@@ -35,6 +36,7 @@ namespace ReleaseCreator.SemanticVersionUtil.Incrementor
         public SemanticVersion IncrementPreReleaseToStable(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
         {
             _builder.SetBuildMetadata(currentVersion.BuildMetadata);
+            _builder.SetPrefix(currentVersion.Prefix);
             SetCoreVersion(currentVersion.Major, currentVersion.Minor, currentVersion.Patch);
 
             return _builder.GetSemanticVersion();
@@ -43,6 +45,7 @@ namespace ReleaseCreator.SemanticVersionUtil.Incrementor
         public SemanticVersion IncrementStableToPreRelease(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
         {
             _builder.SetBuildMetadata(currentVersion.BuildMetadata);
+            _builder.SetPrefix(currentVersion.Prefix);
             SetIncrementedCoreVersion(currentVersion, semanticVersionIncrementDto.SemanticVersionCorePart);
             SetIncrementedPreReleaseNumber(currentVersion);
             SetPreReleaseIdentifier(currentVersion, semanticVersionIncrementDto.PreReleaseIdentifier);
@@ -53,6 +56,7 @@ namespace ReleaseCreator.SemanticVersionUtil.Incrementor
         public SemanticVersion IncrementStableToStable(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
         {
             _builder.SetBuildMetadata(currentVersion.BuildMetadata);
+            _builder.SetPrefix(currentVersion.Prefix);
             SetIncrementedCoreVersion(currentVersion, semanticVersionIncrementDto.SemanticVersionCorePart);
 
             return _builder.GetSemanticVersion();

@@ -4,6 +4,8 @@ namespace ReleaseCreator.SemanticVersionUtil.Builder
 {
     internal interface ISemanticVersionBuilder
     {
+        internal void SetPrefix(string? prefix);
+
         internal void SetMajorVersion(uint majorVersion);
 
         internal void SetMinorVersion(uint minorVersion);
