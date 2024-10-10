@@ -8,21 +8,14 @@ using ReleaseCreator.SemanticVersionUtil.Types;
 
 namespace ReleaseCreator.CommandLine.VersionCalculation
 {
-    internal class NextVersionCalculator : INextVersionCalculator
+    internal class NextVersionCalculator(
+        ITagRetriever tagRetriever,
+        ISemanticVersionIncrementor semanticVersionIncrementor,
+        ISemanticVersionParser semanticVersionParser) : INextVersionCalculator
     {
-        private readonly ISemanticVersionIncrementor _semanticVersionIncrementor;
-        private readonly ITagRetriever _tagRetriever;
-        private readonly ISemanticVersionParser _semanticVersionParser;
-
-        public NextVersionCalculator(
-            ITagRetriever tagRetriever,
-            ISemanticVersionIncrementor semanticVersionIncrementor,
-            ISemanticVersionParser semanticVersionParser)
-        {
-            _tagRetriever = tagRetriever;
-            _semanticVersionIncrementor = semanticVersionIncrementor;
-            _semanticVersionParser = semanticVersionParser;
-        }
+        private readonly ISemanticVersionIncrementor _semanticVersionIncrementor = semanticVersionIncrementor;
+        private readonly ITagRetriever _tagRetriever = tagRetriever;
+        private readonly ISemanticVersionParser _semanticVersionParser = semanticVersionParser;
 
         public SemanticVersion CalculateNextVersion(ReleaseCreatorOptions releaseCreatorOptions)
         {
