@@ -10,6 +10,9 @@
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" />
     <PackageReference Include="Octokit" />
     <PackageReference Include="System.CommandLine" />
+    <PackageReference Include="System.IO.Packaging" />
+    <PackageReference Include="System.Runtime.Caching" />
+    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 
   <ItemGroup>
