@@ -32,6 +32,9 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
 
+            - name: Docker login
+              run: docker login --username jhin-mista --password ${{ secrets.GITHUB_TOKEN }} ghcr.io
+
             - name: Call release creator action
               id: release-creator
               if: ${{ github.ref_type == 'branch' }}
