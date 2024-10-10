@@ -1,5 +1,5 @@
 {
-  "version": 1,
+  "version": 2,
   "dependencies": {
     "net9.0": {
       "Microsoft.Extensions.Hosting": {
@@ -208,11 +208,6 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
-        "type": "Transitive",
-        "resolved": "8.0.2",
-        "contentHash": "3iE7UF7MQkCv1cxzCahz+Y/guQbTqieyxyaWKhrRO91itI9cOKO76OHeQDahqG4MmW5umr3CcCvGmK92lWNlbg=="
-      },
       "Microsoft.Extensions.Diagnostics": {
         "type": "Transitive",
         "resolved": "8.0.1",
@@ -275,14 +270,6 @@
           "Microsoft.Extensions.DependencyInjection": "8.0.1",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
           "Microsoft.Extensions.Options": "8.0.2"
-        }
-      },
-      "Microsoft.Extensions.Logging.Abstractions": {
-        "type": "Transitive",
-        "resolved": "8.0.2",
-        "contentHash": "nroMDjS7hNBPtkZqVBbSiQaQjWRDxITI8Y7XnDs97rqG3EbzVTNLZQf7bIeUJcaHOV8bca47s1Uxq94+2oGdxA==",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
         }
       },
       "Microsoft.Extensions.Logging.Configuration": {
@@ -465,35 +452,6 @@
         "type": "Transitive",
         "resolved": "7.4.0",
         "contentHash": "FlaJ3JBWhqFToYT0ycMb/Xxzoof7oTQbNyI4UikgubC7AMWt5ptBNKjIAMPvOcvEHr+ohaO9GvRWp3tiyS3sKw=="
-      },
-      "Microsoft.PowerShell.SDK": {
-        "type": "Transitive",
-        "resolved": "7.4.5",
-        "contentHash": "POa9ARY/dyJy+rivTJ9skJ+qwbN5prjVgdxkdxiU7r77PZjBpY8fq2W/vsDuA7AqkL7q7Cb7IbdxWnxJgaFSPQ==",
-        "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
-          "Microsoft.Extensions.ObjectPool": "8.0.8",
-          "Microsoft.Management.Infrastructure.CimCmdlets": "7.4.5",
-          "Microsoft.PowerShell.Commands.Diagnostics": "7.4.5",
-          "Microsoft.PowerShell.Commands.Management": "7.4.5",
-          "Microsoft.PowerShell.Commands.Utility": "7.4.5",
-          "Microsoft.PowerShell.ConsoleHost": "7.4.5",
-          "Microsoft.PowerShell.Security": "7.4.5",
-          "Microsoft.WSMan.Management": "7.4.5",
-          "Microsoft.Windows.Compatibility": "8.0.8",
-          "System.Data.SqlClient": "4.8.6",
-          "System.IO.Packaging": "8.0.0",
-          "System.Management.Automation": "7.4.5",
-          "System.Net.Http.WinHttpHandler": "8.0.2",
-          "System.Private.ServiceModel": "4.10.3",
-          "System.ServiceModel.Duplex": "4.10.3",
-          "System.ServiceModel.Http": "4.10.3",
-          "System.ServiceModel.NetTcp": "4.10.3",
-          "System.ServiceModel.Primitives": "4.10.3",
-          "System.ServiceModel.Security": "4.10.3",
-          "System.Text.Encodings.Web": "8.0.0",
-          "System.Web.Services.Description": "4.10.3"
-        }
       },
       "Microsoft.PowerShell.Security": {
         "type": "Transitive",
@@ -783,29 +741,6 @@
           "System.CodeDom": "8.0.0"
         }
       },
-      "System.Management.Automation": {
-        "type": "Transitive",
-        "resolved": "7.4.5",
-        "contentHash": "M8diPEl3ycy5juoSwCQkJVyiG6pHjv9IPD/bvqcnrQfAsbYzqDLVQLzfurHVrQHKvqAWB4k3xwtHMyYjG8xR9Q==",
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "2.21.0",
-          "Microsoft.Management.Infrastructure": "3.0.0",
-          "Microsoft.PowerShell.CoreCLR.Eventing": "7.4.5",
-          "Microsoft.PowerShell.Native": "7.4.0",
-          "Microsoft.Security.Extensions": "1.2.0",
-          "Microsoft.Win32.Registry.AccessControl": "8.0.0",
-          "Newtonsoft.Json": "13.0.3",
-          "System.Configuration.ConfigurationManager": "8.0.0",
-          "System.Diagnostics.DiagnosticSource": "8.0.1",
-          "System.DirectoryServices": "8.0.0",
-          "System.Formats.Asn1": "8.0.1",
-          "System.Management": "8.0.0",
-          "System.Security.AccessControl": "6.0.1",
-          "System.Security.Cryptography.Pkcs": "8.0.0",
-          "System.Security.Permissions": "8.0.0",
-          "System.Text.Encoding.CodePages": "8.0.0"
-        }
-      },
       "System.Net.Http.WinHttpHandler": {
         "type": "Transitive",
         "resolved": "8.0.2",
@@ -1007,6 +942,75 @@
         "type": "Project",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.2, )"
+        }
+      },
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.2, )",
+        "resolved": "8.0.2",
+        "contentHash": "3iE7UF7MQkCv1cxzCahz+Y/guQbTqieyxyaWKhrRO91itI9cOKO76OHeQDahqG4MmW5umr3CcCvGmK92lWNlbg=="
+      },
+      "Microsoft.Extensions.Logging.Abstractions": {
+        "type": "CentralTransitive",
+        "requested": "[8.0.2, )",
+        "resolved": "8.0.2",
+        "contentHash": "nroMDjS7hNBPtkZqVBbSiQaQjWRDxITI8Y7XnDs97rqG3EbzVTNLZQf7bIeUJcaHOV8bca47s1Uxq94+2oGdxA==",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "8.0.2"
+        }
+      },
+      "Microsoft.PowerShell.SDK": {
+        "type": "CentralTransitive",
+        "requested": "[7.4.5, )",
+        "resolved": "7.4.5",
+        "contentHash": "POa9ARY/dyJy+rivTJ9skJ+qwbN5prjVgdxkdxiU7r77PZjBpY8fq2W/vsDuA7AqkL7q7Cb7IbdxWnxJgaFSPQ==",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
+          "Microsoft.Extensions.ObjectPool": "8.0.8",
+          "Microsoft.Management.Infrastructure.CimCmdlets": "7.4.5",
+          "Microsoft.PowerShell.Commands.Diagnostics": "7.4.5",
+          "Microsoft.PowerShell.Commands.Management": "7.4.5",
+          "Microsoft.PowerShell.Commands.Utility": "7.4.5",
+          "Microsoft.PowerShell.ConsoleHost": "7.4.5",
+          "Microsoft.PowerShell.Security": "7.4.5",
+          "Microsoft.WSMan.Management": "7.4.5",
+          "Microsoft.Windows.Compatibility": "8.0.8",
+          "System.Data.SqlClient": "4.8.6",
+          "System.IO.Packaging": "8.0.0",
+          "System.Management.Automation": "7.4.5",
+          "System.Net.Http.WinHttpHandler": "8.0.2",
+          "System.Private.ServiceModel": "4.10.3",
+          "System.ServiceModel.Duplex": "4.10.3",
+          "System.ServiceModel.Http": "4.10.3",
+          "System.ServiceModel.NetTcp": "4.10.3",
+          "System.ServiceModel.Primitives": "4.10.3",
+          "System.ServiceModel.Security": "4.10.3",
+          "System.Text.Encodings.Web": "8.0.0",
+          "System.Web.Services.Description": "4.10.3"
+        }
+      },
+      "System.Management.Automation": {
+        "type": "CentralTransitive",
+        "requested": "[7.4.5, )",
+        "resolved": "7.4.5",
+        "contentHash": "M8diPEl3ycy5juoSwCQkJVyiG6pHjv9IPD/bvqcnrQfAsbYzqDLVQLzfurHVrQHKvqAWB4k3xwtHMyYjG8xR9Q==",
+        "dependencies": {
+          "Microsoft.ApplicationInsights": "2.21.0",
+          "Microsoft.Management.Infrastructure": "3.0.0",
+          "Microsoft.PowerShell.CoreCLR.Eventing": "7.4.5",
+          "Microsoft.PowerShell.Native": "7.4.0",
+          "Microsoft.Security.Extensions": "1.2.0",
+          "Microsoft.Win32.Registry.AccessControl": "8.0.0",
+          "Newtonsoft.Json": "13.0.3",
+          "System.Configuration.ConfigurationManager": "8.0.0",
+          "System.Diagnostics.DiagnosticSource": "8.0.1",
+          "System.DirectoryServices": "8.0.0",
+          "System.Formats.Asn1": "8.0.1",
+          "System.Management": "8.0.0",
+          "System.Security.AccessControl": "6.0.1",
+          "System.Security.Cryptography.Pkcs": "8.0.0",
+          "System.Security.Permissions": "8.0.0",
+          "System.Text.Encoding.CodePages": "8.0.0"
         }
       }
     }
