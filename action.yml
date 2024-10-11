@@ -4,6 +4,10 @@ branding:
   icon: package
   color: gray-dark
 inputs:
+  branch:
+    description:
+      'The branch to create the release from'
+    required: true
   type:
     description:
       'The release type to create (Major|Minor|Patch)'
@@ -37,7 +41,7 @@ runs:
   image: 'Dockerfile'
   args:
     - '--commit'
-    - ${{ github.sha }}
+    - ${{ inputs.commit }}
     - '--type'
     - ${{ inputs.type }}
     - '--token'
