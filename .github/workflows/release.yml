@@ -44,10 +44,8 @@ jobs:
 
             - name: Call release creator action
               id: release-creator
-              if: ${{ github.ref_type == 'branch' }}
               uses: ./
               with:
-                branch: ${{ github.ref_name }}
                 type: ${{ inputs.release-type }}
                 token: ${{ secrets.GITHUB_TOKEN }}
                 pre-release: ${{ github.event.inputs.is-pre-release }}
