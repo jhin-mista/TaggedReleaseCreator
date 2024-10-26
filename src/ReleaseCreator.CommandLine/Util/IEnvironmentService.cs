@@ -2,5 +2,5 @@
 
 internal interface IEnvironmentService
 {
-    public string? GetEnvironmentVariable(string name);
+    public string GetRequiredEnvironmentVariable(string name);
 }

@@ -3,7 +3,7 @@
 namespace ReleaseCreator.CommandLine.Types;
 
 internal record ReleaseCreatorOptions(
-    string BranchName,
+    string CommitSha,
     ReleaseType VersionIncreasePart,
     string? PreReleaseIdentifier,
     bool IsPreRelease,

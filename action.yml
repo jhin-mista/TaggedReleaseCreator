@@ -4,9 +4,9 @@ branding:
   icon: package
   color: gray-dark
 inputs:
-  branch:
+  commit:
     description:
-      'The branch to create the release from'
+      'The commit to create the release from'
     required: true
   type:
     description:
@@ -29,6 +29,9 @@ inputs:
       'Configures the log level (default: information)'
     required: false
     default: 'Information'
+outputs:
+  next-version:
+    description: 'The next semantic version created by this action'
 
 runs:
   env:
@@ -36,8 +39,8 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - '--branch'
-    - ${{ inputs.branch }}
+    - '--commit'
+    - ${{ inputs.commit }}
     - '--type'
     - ${{ inputs.type }}
     - '--token'

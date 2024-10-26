@@ -4,6 +4,8 @@ namespace ReleaseCreator.SemanticVersionUtil.Builder
 {
     internal class SemanticVersionBuilder : ISemanticVersionBuilder
     {
+        private string? _prefix;
+
         private uint _major;
         private uint _minor;
         private uint _patch;
@@ -15,7 +17,12 @@ namespace ReleaseCreator.SemanticVersionUtil.Builder
 
         public SemanticVersion GetSemanticVersion()
         {
-            return new(_major, _minor, _patch, _preReleaseIdentifier, _preReleaseNumber, _buildMetadata);
+            return new(_major, _minor, _patch, _preReleaseIdentifier, _preReleaseNumber, _buildMetadata, _prefix);
+        }
+
+        public void SetPrefix(string? prefix)
+        {
+            _prefix = prefix;
         }
 
         public void SetBuildMetadata(IList<string>? buildMetadata)
