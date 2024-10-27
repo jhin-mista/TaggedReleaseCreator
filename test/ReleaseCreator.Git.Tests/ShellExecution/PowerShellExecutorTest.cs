@@ -6,7 +6,7 @@ using ReleaseCreator.Git.ShellExecution;
 namespace ReleaseCreator.Git.Tests.ShellExecution;
 
 [TestFixture]
-class PowerShellExecutorTest
+public class PowerShellExecutorTest
 {
     private PowerShellExecutor _sut;
     private Mock<ILogger<PowerShellExecutor>> _loggerMock;
