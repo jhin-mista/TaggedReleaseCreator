@@ -27,9 +27,6 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             contents: write
-        env:
-          REGISTRY: ghcr.io
-          IMAGE_NAME: jhin-mista/releasecreator
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -41,6 +38,6 @@ jobs:
                 commit: ${{ github.sha }}
                 type: ${{ inputs.release-type }}
                 token: ${{ secrets.GITHUB_TOKEN }}
-                pre-release: ${{ github.event.inputs.is-pre-release }}
+                pre-release: ${{ inputs.is-pre-release }}
                 pre-release-identifier: ${{ inputs.pre-release-identifier }}
                 log-level: Debug
