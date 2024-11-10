@@ -2,14 +2,14 @@
 using Microsoft.Extensions.Logging;
 using Moq;
 using Octokit;
-using ReleaseCreator.CommandLine.Enums;
-using ReleaseCreator.CommandLine.ReleaseCreation.GitHub;
-using ReleaseCreator.CommandLine.Types;
-using ReleaseCreator.CommandLine.Util;
-using ReleaseCreator.CommandLine.VersionCalculation;
+using ReleaseCreator.Client.Enums;
+using ReleaseCreator.Client.ReleaseCreation.GitHub;
+using ReleaseCreator.Client.Types;
+using ReleaseCreator.Client.Util;
+using ReleaseCreator.Client.VersionCalculation;
 using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.CommandLine.Tests.ReleaseCreation.GitHub;
+namespace ReleaseCreator.Client.Tests.ReleaseCreation.GitHub;
 
 [TestFixture]
 public class GitHubReleaseCreatorTest

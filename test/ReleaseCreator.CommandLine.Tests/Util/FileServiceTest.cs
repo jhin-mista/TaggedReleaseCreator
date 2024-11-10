@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using ReleaseCreator.CommandLine.Util;
+using ReleaseCreator.Client.Util;
 
-namespace ReleaseCreator.CommandLine.Tests.Util;
+namespace ReleaseCreator.Client.Tests.Util;
 
 [TestFixture]
 public class FileServiceTest

@@ -1,7 +1,7 @@
 ﻿using Octokit;
-using ReleaseCreator.CommandLine.Types;
+using ReleaseCreator.Client.Types;
 
-namespace ReleaseCreator.CommandLine.ReleaseCreation;
+namespace ReleaseCreator.Client.ReleaseCreation;
 
 internal interface IReleaseCreator
 {

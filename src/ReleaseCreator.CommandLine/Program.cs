@@ -3,17 +3,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Octokit;
 using Octokit.Internal;
-using ReleaseCreator.CommandLine.ReleaseCreation;
-using ReleaseCreator.CommandLine.ReleaseCreation.GitHub;
-using ReleaseCreator.CommandLine.Types;
-using ReleaseCreator.CommandLine.Util;
-using ReleaseCreator.CommandLine.VersionCalculation;
+using ReleaseCreator.Client.ReleaseCreation;
+using ReleaseCreator.Client.ReleaseCreation.GitHub;
+using ReleaseCreator.Client.Types;
+using ReleaseCreator.Client.Util;
+using ReleaseCreator.Client.VersionCalculation;
 using ReleaseCreator.Git.Extensions;
 using ReleaseCreator.SemanticVersionUtil.Extensions;
 using System.CommandLine;
 using System.Diagnostics.CodeAnalysis;
 
-namespace ReleaseCreator.CommandLine;
+namespace ReleaseCreator.Client;
 
 /// <summary>
 /// Entry class for invocations of this program.

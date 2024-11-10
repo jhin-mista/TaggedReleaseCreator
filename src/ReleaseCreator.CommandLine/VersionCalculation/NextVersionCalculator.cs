@@ -1,12 +1,12 @@
-﻿using ReleaseCreator.CommandLine.Enums;
-using ReleaseCreator.CommandLine.Types;
+﻿using ReleaseCreator.Client.Enums;
+using ReleaseCreator.Client.Types;
 using ReleaseCreator.Git.Tag;
 using ReleaseCreator.SemanticVersionUtil.Enums;
 using ReleaseCreator.SemanticVersionUtil.Incrementor;
 using ReleaseCreator.SemanticVersionUtil.Parser;
 using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.CommandLine.VersionCalculation;
+namespace ReleaseCreator.Client.VersionCalculation;
 
 internal class NextVersionCalculator(
     ITagRetriever tagRetriever,

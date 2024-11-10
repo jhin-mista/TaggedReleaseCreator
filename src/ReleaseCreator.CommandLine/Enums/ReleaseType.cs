@@ -1,4 +1,4 @@
-﻿namespace ReleaseCreator.CommandLine.Enums;
+﻿namespace ReleaseCreator.Client.Enums;
 
 /// <summary>
 /// Represents a semantic version core part.

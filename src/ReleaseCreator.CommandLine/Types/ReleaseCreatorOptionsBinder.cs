@@ -1,9 +1,9 @@
-﻿using ReleaseCreator.CommandLine.Enums;
+﻿using ReleaseCreator.Client.Enums;
 using System.CommandLine;
 using System.CommandLine.Binding;
 using System.CommandLine.Parsing;
 
-namespace ReleaseCreator.CommandLine.Types;
+namespace ReleaseCreator.Client.Types;
 
 internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
 {
