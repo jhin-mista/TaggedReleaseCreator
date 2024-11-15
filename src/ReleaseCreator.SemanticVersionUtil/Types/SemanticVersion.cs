@@ -63,7 +63,7 @@ public record SemanticVersion(
         }
         else if (preReleaseIdentifier != null && !PreReleaseNumber.HasValue)
         {
-            preReleaseVersion = _preReleaseStartSign + preReleaseIdentifier;
+            preReleaseVersion = $"{_preReleaseStartSign}{preReleaseIdentifier}";
         }
         else
         {
