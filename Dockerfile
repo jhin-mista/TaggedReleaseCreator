@@ -1,7 +1,7 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.2 AS base
 WORKDIR /app
 COPY . ./
-RUN dotnet publish ./src/ReleaseCreator.CommandLine/ReleaseCreator.CommandLine.csproj -c Release -o out --no-self-contained
+RUN dotnet publish ./src/ReleaseCreator.Client/ReleaseCreator.Client.csproj -c Release -o out --no-self-contained
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.2
 # Copy binaries to the final layer
