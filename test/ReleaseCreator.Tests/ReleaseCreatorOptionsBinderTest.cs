@@ -8,12 +8,12 @@ namespace ReleaseCreator.Tests;
 [TestFixture]
 public class ReleaseCreatorOptionsBinderTest
 {
-    private ReleaseCreatorOptionsBinder sut;
+    private ReleaseCreatorOptionsBinder _sut;
 
     [SetUp]
     public void Setup()
     {
-        sut = new();
+        _sut = new();
     }
 
     [Test]
@@ -23,10 +23,10 @@ public class ReleaseCreatorOptionsBinderTest
         var command = new Command("Test");
 
         // act
-        sut.AddOptionsTo(command);
+        _sut.AddOptionsTo(command);
 
         // assert
-        var sutType = sut.GetType();
+        var sutType = _sut.GetType();
         var sutPropertiesInfo = sutType.GetProperties(BindingFlags.NonPublic | BindingFlags.Instance);
         var expectedOptions = sutPropertiesInfo.Where(
                 x => x.PropertyType.IsGenericType && x.PropertyType.GetGenericTypeDefinition() == typeof(Option<>))
@@ -37,7 +37,7 @@ public class ReleaseCreatorOptionsBinderTest
         var actualOptions = command.Options;
         foreach (var optionPropertyInfo in expectedOptions)
         {
-            var expectedOption = (Option)optionPropertyInfo.GetValue(sut)!;
+            var expectedOption = (Option)optionPropertyInfo.GetValue(_sut)!;
             actualOptions.Should().Contain(expectedOption, $"only {nameof(Option)} properties of {nameof(ReleaseCreatorOptionsBinder)} should be added to the given command");
         }
     }
