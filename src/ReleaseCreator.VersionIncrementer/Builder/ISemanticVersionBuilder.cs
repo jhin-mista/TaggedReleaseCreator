@@ -10,7 +10,7 @@ namespace ReleaseCreator.VersionIncrementor.Builder
 
         internal void SetPatchVersion(uint patchVersion);
 
-        internal void SetPreReleaseNumber(uint? preReleaseVersion);
+        internal void SetPreReleaseNumber(uint? preReleaseNumber);
 
         internal void SetPreReleaseIdentifier(IList<string>? preReleaseIdentifier);
 
