@@ -1,10 +1,10 @@
 ﻿using Microsoft.Extensions.Logging;
 using Octokit;
-using ReleaseCreator.CommandLine.Types;
-using ReleaseCreator.CommandLine.Util;
-using ReleaseCreator.CommandLine.VersionCalculation;
+using ReleaseCreator.Client.Types;
+using ReleaseCreator.Client.Util;
+using ReleaseCreator.Client.VersionCalculation;
 
-namespace ReleaseCreator.CommandLine.ReleaseCreation.GitHub;
+namespace ReleaseCreator.Client.ReleaseCreation.GitHub;
 
 internal class GitHubReleaseCreator(
     IReleasesClient releasesClient,

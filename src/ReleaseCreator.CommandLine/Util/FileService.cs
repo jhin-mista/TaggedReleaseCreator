@@ -1,4 +1,4 @@
-﻿namespace ReleaseCreator.CommandLine.Util;
+﻿namespace ReleaseCreator.Client.Util;
 
 internal class FileService : IFileService
 {

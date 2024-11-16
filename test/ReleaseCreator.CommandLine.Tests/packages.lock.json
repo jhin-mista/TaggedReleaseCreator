@@ -1072,7 +1072,7 @@
         "resolved": "8.0.0",
         "contentHash": "Obg3a90MkOw9mYKxrardLpY2u0axDMrSmy4JCdq2cYbelM2cUwmUir5Bomvd1yxmPL9h5LVHU1tuKBZpUjfASg=="
       },
-      "releasecreator.commandline": {
+      "releasecreator.client": {
         "type": "Project",
         "dependencies": {
           "Microsoft.Extensions.Hosting": "[8.0.1, )",

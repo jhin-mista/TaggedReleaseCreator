@@ -1,6 +1,6 @@
-﻿using ReleaseCreator.CommandLine.Enums;
+﻿using ReleaseCreator.Client.Enums;
 
-namespace ReleaseCreator.CommandLine.Types;
+namespace ReleaseCreator.Client.Types;
 
 internal record ReleaseCreatorOptions(
     string CommitSha,

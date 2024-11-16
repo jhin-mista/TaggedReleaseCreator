@@ -2,7 +2,7 @@
 using Moq;
 using Octokit;
 
-namespace ReleaseCreator.CommandLine.Tests;
+namespace ReleaseCreator.Client.Tests;
 
 [TestFixture]
 public class ProgramIntegrationTest

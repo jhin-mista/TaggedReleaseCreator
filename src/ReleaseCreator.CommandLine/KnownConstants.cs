@@ -1,4 +1,4 @@
-﻿namespace ReleaseCreator.CommandLine;
+﻿namespace ReleaseCreator.Client;
 
 internal static class KnownConstants
 {

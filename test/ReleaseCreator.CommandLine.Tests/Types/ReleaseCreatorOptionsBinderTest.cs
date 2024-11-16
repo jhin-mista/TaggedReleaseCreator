@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using ReleaseCreator.CommandLine.Types;
+using ReleaseCreator.Client.Types;
 using System.CommandLine;
 using System.Reflection;
 
-namespace ReleaseCreator.CommandLine.Tests.Types;
+namespace ReleaseCreator.Client.Tests.Types;
 
 [TestFixture]
 public class ReleaseCreatorOptionsBinderTest

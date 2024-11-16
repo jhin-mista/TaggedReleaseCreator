@@ -16,4 +16,4 @@ do
 done
 set -- $arguments
 
-dotnet /app/ReleaseCreator.CommandLine.dll $@
+dotnet /app/ReleaseCreator.Client.dll $@
