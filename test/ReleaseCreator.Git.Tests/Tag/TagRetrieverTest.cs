@@ -32,7 +32,7 @@ namespace ReleaseCreator.Git.Tests.Tag
             var actualTagName = _sut.GetLatestTag();
 
             // assert
-            var expectedScript = "git tag --sort=-v:refname | Select-Object -First 1";
+            var expectedScript = "git tag --sort=-v:refname --merged | Select-Object -First 1";
 
             actualTagName.Should().Be(expectedTagName);
 
