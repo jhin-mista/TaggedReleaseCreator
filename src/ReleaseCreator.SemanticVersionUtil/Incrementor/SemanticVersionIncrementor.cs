@@ -2,14 +2,9 @@
 
 namespace ReleaseCreator.SemanticVersionUtil.Incrementor
 {
-    internal class SemanticVersionIncrementor : ISemanticVersionIncrementor
+    internal class SemanticVersionIncrementor(ISemanticVersionIncrementDirector director) : ISemanticVersionIncrementor
     {
-        private readonly ISemanticVersionIncrementDirector _director;
-
-        public SemanticVersionIncrementor(ISemanticVersionIncrementDirector director)
-        {
-            _director = director;
-        }
+        private readonly ISemanticVersionIncrementDirector _director = director;
 
         /// <inheritdoc/>
         public SemanticVersion Increment(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)

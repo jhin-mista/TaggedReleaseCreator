@@ -25,8 +25,11 @@ namespace ReleaseCreator.CommandLine.Tests
         public async Task Main_ShouldCreateNextReleaseAndCallClient()
         {
             // arrange
+            const string ExpectedTagName = "v2.0.0";
             long repositoryId = -123456789;
-            Environment.SetEnvironmentVariable("GITHUB_REPOSITORY_ID", repositoryId.ToString());
+            var tmpFilePath = Path.GetTempFileName();
+            Environment.SetEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.RepositoryId, repositoryId.ToString());
+            Environment.SetEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.OutputFilePath, tmpFilePath);
 
             var clientMock = new Mock<IReleasesClient>(MockBehavior.Strict);
             var createdRelease = new Release();
@@ -39,7 +42,7 @@ namespace ReleaseCreator.CommandLine.Tests
 
             string[] arguments =
                 [
-                    "--branch", "main",
+                    "--commit", "abc123",
                     "--type", "major",
                     "--token", "token",
                 ];
@@ -54,7 +57,11 @@ namespace ReleaseCreator.CommandLine.Tests
             clientMock.VerifyNoOtherCalls();
 
             calculatedNewRelease.Should().NotBeNull();
-            calculatedNewRelease!.TagName.Should().Be("v2.0.0");
+            calculatedNewRelease!.TagName.Should().Be(ExpectedTagName);
+
+            var outputFileContents = File.ReadAllLines(tmpFilePath);
+            outputFileContents.Should().ContainSingle()
+                .Which.Should().Be($"{KnownConstants.GitHub.Action.NextVersionOutputVariableName}={ExpectedTagName}");
         }
 
         [Test]

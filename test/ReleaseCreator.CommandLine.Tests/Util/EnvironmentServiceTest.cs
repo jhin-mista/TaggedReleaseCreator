@@ -15,7 +15,7 @@ namespace ReleaseCreator.CommandLine.Tests.Util
         }
 
         [Test]
-        public void GetEnvironmentVariable_ShouldReturnExpectedValue()
+        public void GetRequiredEnvironmentVariable_ShouldReturnExpectedValue()
         {
             // arrange
             var key = Guid.NewGuid().ToString();
@@ -24,23 +24,23 @@ namespace ReleaseCreator.CommandLine.Tests.Util
             Environment.SetEnvironmentVariable(key, value);
 
             // act
-            var result = _sut.GetEnvironmentVariable(key);
+            var result = _sut.GetRequiredEnvironmentVariable(key);
 
             // assert
             result.Should().Be(value);
         }
 
         [Test]
-        public void GetEnvironmentVariable_WhenVariableDoesNotExist_ShouldReturnNull()
+        public void GetRequiredEnvironmentVariable_WhenVariableDoesNotExist_ShouldThrowExceptionWithMessage()
         {
             // arrange
             var key = Guid.NewGuid().ToString();
 
             // act
-            var result = _sut.GetEnvironmentVariable(key);
+            var invocation = _sut.Invoking(x => x.GetRequiredEnvironmentVariable(key));
 
             // assert
-            result.Should().BeNull();
+            invocation.Should().Throw<Exception>().WithMessage($"Environment variable '{key}' is not set but required.");
         }
     }
 }

@@ -2,5 +2,7 @@
 
 internal class EnvironmentService : IEnvironmentService
 {
-    public string? GetEnvironmentVariable(string name) => Environment.GetEnvironmentVariable(name);
+    /// <exception cref="Exception"></exception>
+    public string GetRequiredEnvironmentVariable(string name) => Environment.GetEnvironmentVariable(name)
+        ?? throw new Exception($"Environment variable '{name}' is not set but required.");
 }
