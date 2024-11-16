@@ -1,10 +1,9 @@
-﻿namespace ReleaseCreator.CommandLine.Util
+﻿namespace ReleaseCreator.CommandLine.Util;
+
+internal class FileService : IFileService
 {
-    internal class FileService : IFileService
+    public void AppendLine(string filePath, string content)
     {
-        public void AppendLine(string filePath, string content)
-        {
-            File.AppendAllLines(filePath, [content]);
-        }
+        File.AppendAllLines(filePath, [content]);
     }
 }

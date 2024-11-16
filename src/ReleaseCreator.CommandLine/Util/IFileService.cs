@@ -1,7 +1,6 @@
-﻿namespace ReleaseCreator.CommandLine.Util
+﻿namespace ReleaseCreator.CommandLine.Util;
+
+internal interface IFileService
 {
-    internal interface IFileService
-    {
-        void AppendLine(string filePath, string content);
-    }
+    void AppendLine(string filePath, string content);
 }
