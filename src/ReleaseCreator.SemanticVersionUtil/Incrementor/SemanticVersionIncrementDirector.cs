@@ -4,14 +4,9 @@ using ReleaseCreator.SemanticVersionUtil.Types;
 
 namespace ReleaseCreator.SemanticVersionUtil.Incrementor
 {
-    internal class SemanticVersionIncrementDirector : ISemanticVersionIncrementDirector
+    internal class SemanticVersionIncrementDirector(ISemanticVersionBuilder builder) : ISemanticVersionIncrementDirector
     {
-        private readonly ISemanticVersionBuilder _builder;
-
-        public SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
-        {
-            _builder = builder;
-        }
+        private readonly ISemanticVersionBuilder _builder = builder;
 
         public SemanticVersion IncrementPreReleaseToPreRelease(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
         {

@@ -3,14 +3,9 @@
 namespace ReleaseCreator.Git.Tag;
 
 /// <inheritdoc cref="ITagRetriever"/>
-internal class TagRetriever : ITagRetriever
+internal class TagRetriever(IPowerShellExecutor powerShellExecutor) : ITagRetriever
 {
-    private readonly IPowerShellExecutor _powerShellExecutor;
-
-    public TagRetriever(IPowerShellExecutor powerShellExecutor)
-    {
-        _powerShellExecutor = powerShellExecutor;
-    }
+    private readonly IPowerShellExecutor _powerShellExecutor = powerShellExecutor;
 
     /// <inheritdoc/>
     /// <exception cref="AggregateException"/>
