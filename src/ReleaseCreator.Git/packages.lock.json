@@ -2,6 +2,12 @@
   "version": 1,
   "dependencies": {
     "net9.0": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+        "type": "Direct",
+        "requested": "[8.0.1, )",
+        "resolved": "8.0.1",
+        "contentHash": "fGLiCRLMYd00JYpClraLjJTNKLmMJPnqxMaiRzEBIIvevlzxz33mXy39Lkd48hu1G+N21S7QpaO5ZzKsI6FRuA=="
+      },
       "Microsoft.PowerShell.SDK": {
         "type": "Direct",
         "requested": "[7.4.5, )",
