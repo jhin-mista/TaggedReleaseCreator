@@ -17,4 +17,6 @@ do
 done
 set -- $arguments
 
-dotnet /github/workspace/ReleaseCreator/ReleaseCreator.CommandLine.dll $@
+git tag
+echo "$@"
+# dotnet /github/workspace/ReleaseCreator/ReleaseCreator.CommandLine.dll $@
