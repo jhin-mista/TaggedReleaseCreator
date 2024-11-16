@@ -14,7 +14,7 @@ The image for the container is based on the [dotnet sdk image](https://github.co
 ## action.yml
 
 ### Logging
-To not pollute the [ReleaseCreatorOptions](https://github.com/jhin-mista/ReleaseCreator/blob/main/src/ReleaseCreator.CommandLine/Types/ReleaseCreatorOptions.cs) type with logging configuration, the log level is passed as an environment variable. The log level defaults to `LogLevel.Information`.
+To not pollute the [ReleaseCreatorOptions](https://github.com/jhin-mista/ReleaseCreator/blob/main/src/ReleaseCreator.Client/Types/ReleaseCreatorOptions.cs) type with logging configuration, the log level is passed as an environment variable. The log level defaults to `LogLevel.Information`.
 
 ### Using a pre-built container from a registry
 Pulling a built container of the action would make it overly complicated to support using a specific version of the action. Pushing the container to a registry decouples the repository code state with the container code state.
