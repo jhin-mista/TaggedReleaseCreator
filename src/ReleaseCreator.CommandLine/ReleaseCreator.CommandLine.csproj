@@ -27,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="$(ProjectName).Tests"/>
+    <InternalsVisibleTo Include="$(ProjectName).Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ReleaseCreator.VersionIncrementer\ReleaseCreator.VersionIncrementor.csproj" />
   </ItemGroup>
 </Project>
