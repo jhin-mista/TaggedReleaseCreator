@@ -32,7 +32,7 @@ inputs:
 
 runs:
   env:
-    export Logging__LogLevel__Default: "${{ inputs.log-level }}"
+    Logging__LogLevel__Default: "${{ inputs.log-level }}"
   using: 'docker'
   image: 'Dockerfile'
   args:
