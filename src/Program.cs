@@ -3,8 +3,15 @@ using System.CommandLine;
 
 namespace ReleaseCreator;
 
+/// <summary>
+/// Entry class for invocations of this program.
+/// </summary>
 public class Program
 {
+    /// <summary>
+    /// Main entry point of the program.
+    /// </summary>
+    /// <param name="args">The command line arguments.</param>
     public static async Task Main(string[] args)
     {
         var rootCommand = GetRootCommand();
