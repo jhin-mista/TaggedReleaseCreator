@@ -16,4 +16,7 @@ do
 done
 set -- $arguments
 
+cd /github/workspace
+git tag
+
 dotnet /github/workspace/ReleaseCreator/ReleaseCreator.CommandLine.dll $@
