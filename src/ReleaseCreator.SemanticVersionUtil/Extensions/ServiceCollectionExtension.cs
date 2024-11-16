@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using ReleaseCreator.SemanticVersionUtil.Builder;
 using ReleaseCreator.SemanticVersionUtil.Incrementor;
+using ReleaseCreator.SemanticVersionUtil.Parser;
 
 namespace ReleaseCreator.SemanticVersionUtil.Extensions;
 
@@ -15,9 +16,10 @@ public static class ServiceCollectionExtension
     /// <param name="services">The <see cref="IServiceCollection"/> to add the service to.</param>
     public static IServiceCollection AddVersionIncrementorServicesSingleton(this IServiceCollection services)
     {
-        services.AddSingleton<ISemanticVersionBuilder, SemanticVersionBuilder>();
-        services.AddSingleton<ISemanticVersionIncrementDirector, SemanticVersionIncrementDirector>();
-        services.AddSingleton<ISemanticVersionIncrementor, SemanticVersionIncrementor>();
+        services.AddSingleton<ISemanticVersionBuilder, SemanticVersionBuilder>()
+        .AddSingleton<ISemanticVersionIncrementDirector, SemanticVersionIncrementDirector>()
+        .AddSingleton<ISemanticVersionIncrementor, SemanticVersionIncrementor>()
+        .AddSingleton<ISemanticVersionParser, SemanticVersionParser>();
 
         return services;
     }
