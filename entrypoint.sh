@@ -1,9 +1,7 @@
 #!/bin/sh
 
-mv /app /github/workspace/ReleaseCreator
-
 # Make binaries executable
-chmod -R +x /github/workspace/ReleaseCreator
+chmod -R +x /app
 
 git config --global --add safe.directory /github/workspace
 git fetch --tags --unshallow
@@ -18,4 +16,4 @@ do
 done
 set -- $arguments
 
-dotnet /github/workspace/ReleaseCreator/ReleaseCreator.CommandLine.dll $@
+dotnet /app/ReleaseCreator.CommandLine.dll $@
