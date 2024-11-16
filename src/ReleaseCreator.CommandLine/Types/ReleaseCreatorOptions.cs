@@ -6,6 +6,7 @@ internal record ReleaseCreatorOptions(
     string BranchName,
     ReleaseType VersionIncreasePart,
     string? PreReleaseIdentifier,
+    bool IsPreRelease,
     string AccessToken)
 {
 }
