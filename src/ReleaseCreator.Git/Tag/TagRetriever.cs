@@ -2,10 +2,8 @@
 
 namespace ReleaseCreator.Git.Tag;
 
-/// <summary>
-/// Contains methods for retrieving git tags.
-/// </summary>
-public class TagRetriever
+/// <inheritdoc cref="ITagRetriever"/>
+public class TagRetriever : ITagRetriever
 {
     private readonly IPowerShellExecutor _powerShellExecutor;
 
@@ -14,15 +12,11 @@ public class TagRetriever
         _powerShellExecutor = powerShellExecutor;
     }
 
-    /// <summary>
-    /// Gets the latest tag in a git repository under the specified <paramref name="repositoryPath"/>.
-    /// </summary>
-    /// <returns>The tag name of the latest tag or <see langword="null"/>, if no tags exist.</returns>
+    /// <inheritdoc/>
     /// <exception cref="AggregateException"/>
-    public string? GetLatestTag(string repositoryPath)
+    public string? GetLatestTag()
     {
-        var script = $@"Set-Location {repositoryPath}
-git tag --sort=-v:refname | Select-Object -First 1";
+        var script = "git tag --sort=-v:refname | Select-Object -First 1";
 
         var results = _powerShellExecutor.Execute(script);
 
