@@ -24,9 +24,15 @@ inputs:
     description:
       'The pre-release identifier'
     required: false
-    default: null
+  log-level:
+    description:
+      'Configure the log level (default: information)'
+    required: false
+    default: 'Information'
 
 runs:
+  env:
+    export Logging__LogLevel__Default: "${{ inputs.log-level }}"
   using: 'docker'
   image: 'Dockerfile'
   args:

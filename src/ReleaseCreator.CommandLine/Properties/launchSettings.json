@@ -1,6 +1,10 @@
 {
   "profiles": {
     "ReleaseCreator": {
+      "environmentVariables": {
+        "GITHUB_REPOSITORY_ID": "1234",
+        "Logging__LogLevel__Default": "Debug"
+      },
       "commandName": "Project",
       "commandLineArgs": "--type patch --pre-release alpha --token abc --branch main"
     },
