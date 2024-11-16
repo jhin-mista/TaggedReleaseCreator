@@ -37,4 +37,4 @@ runs:
     - '--token'
     - ${{ inputs.token }}
     - ${{ inputs.pre-release == 'true' && '--pre-release' || null }}
-    - ${{ (inputs.pre-release == 'true' && inputs.pre-release-identifier != '') && inputs.pre-release-identifier || null }}
+    - ${{ inputs.pre-release == 'true' && inputs.pre-release-identifier || null }}
