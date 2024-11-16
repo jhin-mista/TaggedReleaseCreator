@@ -42,7 +42,7 @@ namespace ReleaseCreator.CommandLine.Tests.ReleaseCreation.GitHub
         public async Task CreateReleaseAsync_WhenReleaseCanBeCreated_ShouldCallDependenciesAsExpected()
         {
             // arrange
-            var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, true, "access token");
+            var input = new ReleaseCreatorOptions("commit sha", ReleaseType.Major, null, true, "access token");
             long repositoryId = 123;
             var outputFilePath = "path/to/file";
             var nextVersion = new SemanticVersion(1, 1, 1, null, 1, null);
@@ -81,7 +81,7 @@ namespace ReleaseCreator.CommandLine.Tests.ReleaseCreation.GitHub
             _releasesClientMock.VerifyNoOtherCalls();
             usedNewRelease!.TagName.Should().Be(ExpectedNextVersion);
             usedNewRelease.Prerelease.Should().BeTrue();
-            usedNewRelease.TargetCommitish.Should().Be(input.BranchName);
+            usedNewRelease.TargetCommitish.Should().Be(input.CommitSha);
 
             _nextVersionCalculatorMock.Verify(x => x.CalculateNextVersion(input), Times.Once);
             _nextVersionCalculatorMock.VerifyNoOtherCalls();

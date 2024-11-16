@@ -26,7 +26,7 @@ internal class GitHubReleaseCreator(
         var nextRelease = new NewRelease(nextVersion.ToStringWithPrefix())
         {
             Prerelease = releaseCreatorOptions.IsPreRelease,
-            TargetCommitish = releaseCreatorOptions.BranchName,
+            TargetCommitish = releaseCreatorOptions.CommitSha,
         };
 
         var repositoryId = GetRepositoryId();

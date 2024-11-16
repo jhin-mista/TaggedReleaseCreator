@@ -6,7 +6,7 @@
         "Logging__LogLevel__Default": "Debug"
       },
       "commandName": "Project",
-      "commandLineArgs": "--type patch --pre-release alpha --token abc --branch main"
+      "commandLineArgs": "--type patch --pre-release alpha --token abc --commit 123abc"
     },
     "Container (Dockerfile)": {
       "commandName": "Docker"

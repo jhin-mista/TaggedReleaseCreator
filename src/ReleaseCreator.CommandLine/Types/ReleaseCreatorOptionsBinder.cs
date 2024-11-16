@@ -7,14 +7,14 @@ namespace ReleaseCreator.CommandLine.Types;
 
 internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
 {
-    internal Option<string> BranchNameOption { get; }
+    internal Option<string> CommitShaOption { get; }
     internal Option<ReleaseType> ReleaseTypeOption { get; }
     internal Option<string> PreReleaseOption { get; }
     internal Option<string> AccessTokenOption { get; }
 
     internal ReleaseCreatorOptionsBinder()
     {
-        BranchNameOption = new Option<string>("--branch", "The branch to create the release from")
+        CommitShaOption = new Option<string>("--commit", "The commit SHA to create the release from")
         {
             IsRequired = true,
         };
@@ -37,7 +37,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
 
     internal void AddOptionsTo(Command command)
     {
-        command.AddOption(BranchNameOption);
+        command.AddOption(CommitShaOption);
         command.AddOption(ReleaseTypeOption);
         command.AddOption(PreReleaseOption);
         command.AddOption(AccessTokenOption);
@@ -50,7 +50,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
         var preReleaseIdentifier = parsedPreReleaseIdentifier == string.Empty ? null : parsedPreReleaseIdentifier;
         var isPreRelease = parsedPreReleaseIdentifier != null;
         return new(
-            bindingContext.ParseResult.GetValueForOption(BranchNameOption)!,
+            bindingContext.ParseResult.GetValueForOption(CommitShaOption)!,
             bindingContext.ParseResult.GetValueForOption(ReleaseTypeOption),
             preReleaseIdentifier,
             isPreRelease,

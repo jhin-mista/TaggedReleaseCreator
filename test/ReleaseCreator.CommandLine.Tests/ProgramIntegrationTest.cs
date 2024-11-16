@@ -42,7 +42,7 @@ namespace ReleaseCreator.CommandLine.Tests
 
             string[] arguments =
                 [
-                    "--branch", "main",
+                    "--commit", "abc123",
                     "--type", "major",
                     "--token", "token",
                 ];
