@@ -16,7 +16,7 @@ internal class TagRetriever : ITagRetriever
     /// <exception cref="AggregateException"/>
     public string? GetLatestTag()
     {
-        var script = "git tag --sort=-v:refname --merged | Select-Object -First 1";
+        var script = "git tag --list \"*.*.*\" --sort=-v:refname --merged | Select-Object -First 1";
 
         var results = _powerShellExecutor.Execute(script);
 

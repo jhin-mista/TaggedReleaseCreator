@@ -14,7 +14,8 @@ namespace ReleaseCreator.SemanticVersionUtil.Parser
         private const string _patch = "patch";
         private const string _preRelease = "preRelease";
         private const string _buildMetadata = "buildMetadata";
-        private const string _regex = $@"^[v|V]?(?<{_major}>0|[1-9]\d*)\.(?<{_minor}>0|[1-9]\d*)\.(?<{_patch}>0|[1-9]\d*)(?:-(?<{_preRelease}>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<{_buildMetadata}>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$";
+        private const string _prefix = "prefix";
+        private const string _regex = $@"^(?<{_prefix}>[v|V]?)(?<{_major}>0|[1-9]\d*)\.(?<{_minor}>0|[1-9]\d*)\.(?<{_patch}>0|[1-9]\d*)(?:-(?<{_preRelease}>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<{_buildMetadata}>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$";
 
         /// <inheritdoc/>
         /// <exception cref="FormatException"></exception>
@@ -36,7 +37,9 @@ namespace ReleaseCreator.SemanticVersionUtil.Parser
 
                 var buildMetadata = GetParsedBuildMetadata(groups[_buildMetadata].Value);
 
-                return new(major, minor, patch, preReleaseIdentifier, preReleaseNumber, buildMetadata);
+                var prefix = GetParsedPrefix(groups[_prefix].Value);
+
+                return new(major, minor, patch, preReleaseIdentifier, preReleaseNumber, buildMetadata, prefix);
             }
 
             throw new FormatException($"'{semanticVersionString}' is not a valid semantic version.");
@@ -77,6 +80,13 @@ namespace ReleaseCreator.SemanticVersionUtil.Parser
             }
 
             return [.. buildMetadata.Split(".")];
+        }
+
+        private static string? GetParsedPrefix(string prefix)
+        {
+            return prefix.Length > 0
+                ? prefix
+                : null;
         }
     }
 }

@@ -29,6 +29,9 @@ inputs:
       'Configures the log level (default: information)'
     required: false
     default: 'Information'
+outputs:
+  next-version:
+    description: 'The next semantic version created by this action'
 
 runs:
   env:
