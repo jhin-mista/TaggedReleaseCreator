@@ -42,7 +42,7 @@ public class GitHubReleaseCreatorTest
     public async Task CreateReleaseAsync_WhenReleaseCanBeCreated_ShouldCallDependenciesAsExpected()
     {
         // arrange
-        var input = new ReleaseCreatorOptions("commit sha", ReleaseType.Major, null, true, "access token");
+        var input = new ReleaseCreatorOptions("commit sha", ReleaseType.Major, string.Empty, "access token");
         long repositoryId = 123;
         var outputFilePath = "path/to/file";
         var nextVersion = new SemanticVersion(1, 1, 1, [], 1, []);
@@ -92,7 +92,7 @@ public class GitHubReleaseCreatorTest
     {
         // arrange
         const string EnvironmentVariableValue = "not a long";
-        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, true, "access token");
+        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, string.Empty, "access token");
         var nextVersion = new SemanticVersion(1, 1, 1, [], 1, []);
 
         _environmentServiceMock.Setup(x => x.GetRequiredEnvironmentVariable(It.IsAny<string>()))

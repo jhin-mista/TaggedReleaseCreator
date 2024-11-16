@@ -23,8 +23,7 @@ internal class NextVersionCalculator(
         var coreVersionPartToUpdate = GetSemanticVersionCorePart(releaseCreatorOptions.VersionIncreasePart);
         var versionIncrementDto = new SemanticVersionIncrementDto(
             coreVersionPartToUpdate,
-            releaseCreatorOptions.PreReleaseIdentifier,
-            releaseCreatorOptions.IsPreRelease);
+            releaseCreatorOptions.PreReleaseIdentifier);
 
         return _semanticVersionIncrementor.Increment(currentSemanticVersion, versionIncrementDto);
     }

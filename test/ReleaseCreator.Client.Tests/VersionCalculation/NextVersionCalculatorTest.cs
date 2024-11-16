@@ -34,7 +34,7 @@ public class NextVersionCalculatorTest
     {
         // arrange
         const string RetrievedTag = "0.0.0";
-        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, false, "access token");
+        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, "access token");
         var returnedIncrementedVersion = new SemanticVersion(1, 1, 1, [], null, []);
         var returnedCurrentVersion = new SemanticVersion(0, 0, 0, [], null, []);
 
@@ -71,7 +71,7 @@ public class NextVersionCalculatorTest
     public void CalculateNextVersion_WhenNoTagExists_ShouldSetCurrentVersionAsZero()
     {
         // arrange
-        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, false, "access token");
+        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, "access token");
         var expectedCurrentVersion = new SemanticVersion(0, 0, 0, [], null, []);
 
         SemanticVersion? actualCurrentSemanticVersion = null;
@@ -96,7 +96,7 @@ public class NextVersionCalculatorTest
     public void CalculateNextVersion_ShouldMapReleaseTypeToExpectedSemanticVersionCorePart(ReleaseType releaseType, SemanticVersionCorePart expectedSemanticVersionCorePart)
     {
         // arrange
-        var input = new ReleaseCreatorOptions("branch name", releaseType, null, false, "access token");
+        var input = new ReleaseCreatorOptions("branch name", releaseType, null, "access token");
 
         SemanticVersionIncrementDto? actualSemanticVersionIncrementDto = null;
         _semanticVersionIncrementorMock.Setup(x => x.Increment(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
@@ -121,7 +121,7 @@ public class NextVersionCalculatorTest
     {
         // arrange
         var invalidReleaseType = (ReleaseType)(-1);
-        var input = new ReleaseCreatorOptions("branch name", invalidReleaseType, null, false, "access token");
+        var input = new ReleaseCreatorOptions("branch name", invalidReleaseType, null, "access token");
 
         _tagRetrieverMock.Setup(x => x.GetLatestTag()).Returns("0.0.0");
 
