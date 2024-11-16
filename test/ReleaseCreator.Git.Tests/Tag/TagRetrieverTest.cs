@@ -23,18 +23,16 @@ namespace ReleaseCreator.Git.Tests.Tag
         public void GetLatestTag_WhenTagExists_ShouldReturnTagName()
         {
             // arrange
-            var path = "path/to/somewhere";
             var expectedTagName = "tag";
             var powerShellResult = new PSObject(expectedTagName);
 
             _powerShellExecutorMock.Setup(x => x.Execute(It.IsAny<string>())).Returns([powerShellResult]);
 
             // act
-            var actualTagName = _sut.GetLatestTag(path);
+            var actualTagName = _sut.GetLatestTag();
 
             // assert
-            var expectedScript = $@"Set-Location {path}
-git tag --sort=-v:refname | Select-Object -First 1";
+            var expectedScript = "git tag --sort=-v:refname --merged | Select-Object -First 1";
 
             actualTagName.Should().Be(expectedTagName);
 

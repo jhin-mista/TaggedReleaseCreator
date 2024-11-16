@@ -6,8 +6,8 @@ namespace ReleaseCreator.SemanticVersionUtil.Parser
     /// <summary>
     /// Provides methods for parsing a semantic version into a <see cref="SemanticVersion"/>.
     /// </summary>
-    /// <remarks>A leading v (case insensitive) character can be handled (e.g. in <c>v1.2.3</c> like it's commonly found in git version tags.)</remarks>
-    public static partial class SemanticVersionParser
+    /// <remarks>A leading v (case insensitive) character can be handled (e.g. <c>v1.2.3</c> like it's commonly found in git version tags.)</remarks>
+    public partial class SemanticVersionParser : ISemanticVersionParser
     {
         private const string _major = "major";
         private const string _minor = "minor";
@@ -16,13 +16,10 @@ namespace ReleaseCreator.SemanticVersionUtil.Parser
         private const string _buildMetadata = "buildMetadata";
         private const string _regex = $@"^[v|V]?(?<{_major}>0|[1-9]\d*)\.(?<{_minor}>0|[1-9]\d*)\.(?<{_patch}>0|[1-9]\d*)(?:-(?<{_preRelease}>(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+(?<{_buildMetadata}>[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$";
 
-        /// <summary>
-        /// Parses a <see cref="string"/> into a <see cref="SemanticVersion"/>.
-        /// </summary>
-        /// <param name="semanticVersionString">The string containing a semantic version.</param>
+        /// <inheritdoc/>
         /// <exception cref="FormatException"></exception>
         /// <exception cref="ArgumentNullException"></exception>
-        public static SemanticVersion Parse(string semanticVersionString)
+        public SemanticVersion Parse(string semanticVersionString)
         {
             ArgumentException.ThrowIfNullOrEmpty(semanticVersionString, nameof(semanticVersionString));
 
