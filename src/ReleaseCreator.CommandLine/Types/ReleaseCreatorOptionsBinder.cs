@@ -1,7 +1,7 @@
 ﻿using System.CommandLine;
 using System.CommandLine.Binding;
 
-namespace ReleaseCreator.Types;
+namespace ReleaseCreator.CommandLine.Types;
 
 internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
 {

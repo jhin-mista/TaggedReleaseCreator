@@ -7,7 +7,6 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-    <EmitCompilerGeneratedFiles />
     <AnalysisLevel>latest</AnalysisLevel>
     <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -28,6 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="ReleaseCreator.Tests"/>
+    <InternalsVisibleTo Include="$(ProjectName).Tests"/>
   </ItemGroup>
 </Project>
