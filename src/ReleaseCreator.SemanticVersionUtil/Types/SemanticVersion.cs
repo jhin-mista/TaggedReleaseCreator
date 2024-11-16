@@ -14,9 +14,9 @@ public record SemanticVersion(
     uint Major,
     uint Minor,
     uint Patch,
-    IList<string>? PreReleaseIdentifier,
+    IList<string> PreReleaseIdentifier,
     uint? PreReleaseNumber,
-    IList<string>? BuildMetadata,
+    IList<string> BuildMetadata,
     string? Prefix = null)
 {
     private static readonly char _separator = '.';
@@ -30,9 +30,7 @@ public record SemanticVersion(
 
         var preReleaseVersion = GetPreReleaseVersion();
 
-        var buildMetaData = BuildMetadata != null
-            ? _buildMetadataStartSign + string.Join(_separator, BuildMetadata)
-            : string.Empty;
+        var buildMetaData = GetBuildMetadata();
 
         return coreVersion + preReleaseVersion + buildMetaData;
     }
@@ -45,10 +43,21 @@ public record SemanticVersion(
         return Prefix + ToString();
     }
 
+    private string GetBuildMetadata()
+    {
+        var filledBuildMetadata = BuildMetadata.Where(x => !string.IsNullOrEmpty(x));
+        var buildMetadata = BuildMetadata.Any()
+            ? _buildMetadataStartSign + string.Join(_separator, filledBuildMetadata)
+            : string.Empty;
+
+        return buildMetadata;
+    }
+
     private string GetPreReleaseVersion()
     {
-        var preReleaseIdentifier = PreReleaseIdentifier != null
-            ? string.Join(_separator, PreReleaseIdentifier)
+        var filledPreReleaseIdentifier = PreReleaseIdentifier.Where(x => !string.IsNullOrEmpty(x));
+        var preReleaseIdentifier = PreReleaseIdentifier.Any()
+            ? string.Join(_separator, filledPreReleaseIdentifier)
             : null;
 
         string preReleaseVersion;

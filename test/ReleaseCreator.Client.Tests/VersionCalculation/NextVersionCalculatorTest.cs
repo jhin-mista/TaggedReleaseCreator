@@ -35,8 +35,8 @@ public class NextVersionCalculatorTest
         // arrange
         const string RetrievedTag = "0.0.0";
         var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, false, "access token");
-        var returnedIncrementedVersion = new SemanticVersion(1, 1, 1, null, null, null);
-        var returnedCurrentVersion = new SemanticVersion(0, 0, 0, null, null, null);
+        var returnedIncrementedVersion = new SemanticVersion(1, 1, 1, [], null, []);
+        var returnedCurrentVersion = new SemanticVersion(0, 0, 0, [], null, []);
 
         SemanticVersionIncrementDto? actualSemanticVersionIncrementDto = null;
         _semanticVersionIncrementorMock.Setup(x => x.Increment(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
@@ -72,12 +72,12 @@ public class NextVersionCalculatorTest
     {
         // arrange
         var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, false, "access token");
-        var expectedCurrentVersion = new SemanticVersion(0, 0, 0, null, null, null);
+        var expectedCurrentVersion = new SemanticVersion(0, 0, 0, [], null, []);
 
         SemanticVersion? actualCurrentSemanticVersion = null;
         _semanticVersionIncrementorMock.Setup(x => x.Increment(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
             .Callback<SemanticVersion, SemanticVersionIncrementDto>((currentVersion, _) => actualCurrentSemanticVersion = currentVersion)
-            .Returns(new SemanticVersion(1, 1, 1, null, null, null));
+            .Returns(new SemanticVersion(1, 1, 1, [], null, []));
 
         _tagRetrieverMock.Setup(x => x.GetLatestTag()).Returns((string?)null);
 
@@ -101,12 +101,12 @@ public class NextVersionCalculatorTest
         SemanticVersionIncrementDto? actualSemanticVersionIncrementDto = null;
         _semanticVersionIncrementorMock.Setup(x => x.Increment(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
             .Callback<SemanticVersion, SemanticVersionIncrementDto>((_, incrementDto) => actualSemanticVersionIncrementDto = incrementDto)
-            .Returns(new SemanticVersion(1, 1, 1, null, null, null));
+            .Returns(new SemanticVersion(1, 1, 1, [], null, []));
 
         _tagRetrieverMock.Setup(x => x.GetLatestTag()).Returns("0.0.0");
 
         _semanticVersionParserMock.Setup(x => x.Parse(It.IsAny<string>()))
-            .Returns(new SemanticVersion(0, 0, 0, null, null, null));
+            .Returns(new SemanticVersion(0, 0, 0, [], null, []));
 
         // act
         _sut.CalculateNextVersion(input);
@@ -126,7 +126,7 @@ public class NextVersionCalculatorTest
         _tagRetrieverMock.Setup(x => x.GetLatestTag()).Returns("0.0.0");
 
         _semanticVersionParserMock.Setup(x => x.Parse(It.IsAny<string>()))
-            .Returns(new SemanticVersion(0, 0, 0, null, null, null));
+            .Returns(new SemanticVersion(0, 0, 0, [], null, []));
 
         // act
         var invocation = _sut.Invoking(x => x.CalculateNextVersion(input));

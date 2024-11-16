@@ -16,16 +16,16 @@ internal class SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
 
         if (IsNewPreReleaseIdentifier(currentVersion, semanticVersionIncrementDto))
         {
-            SetIncrementedPreReleaseNumber(currentVersion);
+            _builder.SetPreReleaseIdentifier(semanticVersionIncrementDto.PreReleaseIdentifier);
+            _builder.SetPreReleaseNumber(1);
         }
         else
         {
-            _builder.SetPreReleaseNumber(1);
+            _builder.SetPreReleaseIdentifier(currentVersion.PreReleaseIdentifier);
+            SetIncrementedPreReleaseNumber(currentVersion);
         }
 
-        SetPreReleaseIdentifier(currentVersion, semanticVersionIncrementDto.PreReleaseIdentifier);
-
-        return _builder.GetSemanticVersion();
+        return _builder.BuildSemanticVersion();
     }
 
     public SemanticVersion IncrementPreReleaseToStable(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
@@ -34,7 +34,7 @@ internal class SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
         _builder.SetPrefix(currentVersion.Prefix);
         SetCoreVersion(currentVersion.Major, currentVersion.Minor, currentVersion.Patch);
 
-        return _builder.GetSemanticVersion();
+        return _builder.BuildSemanticVersion();
     }
 
     public SemanticVersion IncrementStableToPreRelease(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
@@ -43,9 +43,9 @@ internal class SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
         _builder.SetPrefix(currentVersion.Prefix);
         SetIncrementedCoreVersion(currentVersion, semanticVersionIncrementDto.SemanticVersionCorePart);
         SetIncrementedPreReleaseNumber(currentVersion);
-        SetPreReleaseIdentifier(currentVersion, semanticVersionIncrementDto.PreReleaseIdentifier);
+        _builder.SetPreReleaseIdentifier(semanticVersionIncrementDto.PreReleaseIdentifier);
 
-        return _builder.GetSemanticVersion();
+        return _builder.BuildSemanticVersion();
     }
 
     public SemanticVersion IncrementStableToStable(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
@@ -54,12 +54,13 @@ internal class SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
         _builder.SetPrefix(currentVersion.Prefix);
         SetIncrementedCoreVersion(currentVersion, semanticVersionIncrementDto.SemanticVersionCorePart);
 
-        return _builder.GetSemanticVersion();
+        return _builder.BuildSemanticVersion();
     }
 
     private static bool IsNewPreReleaseIdentifier(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
     {
-        return currentVersion.PreReleaseIdentifier?.Last() == semanticVersionIncrementDto.PreReleaseIdentifier || semanticVersionIncrementDto.PreReleaseIdentifier == null;
+        return !string.IsNullOrWhiteSpace(semanticVersionIncrementDto.PreReleaseIdentifier)
+            && currentVersion.PreReleaseIdentifier?.LastOrDefault() != semanticVersionIncrementDto.PreReleaseIdentifier;
     }
 
     private void SetIncrementedCoreVersion(SemanticVersion currentVersion, SemanticVersionCorePart semanticVersionCorePart)
@@ -92,17 +93,5 @@ internal class SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
         var newPreReleaseNumber = (currentVersion.PreReleaseNumber ?? 0) + 1;
 
         _builder.SetPreReleaseNumber(newPreReleaseNumber);
-    }
-
-    private void SetPreReleaseIdentifier(SemanticVersion currentVersion, string? newPreReleaseIdentifier)
-    {
-        if (newPreReleaseIdentifier == null)
-        {
-            _builder.SetPreReleaseIdentifier(currentVersion.PreReleaseIdentifier);
-        }
-        else
-        {
-            _builder.SetPreReleaseIdentifier([newPreReleaseIdentifier]);
-        }
     }
 }
