@@ -16,7 +16,7 @@ public static class ServiceCollectionExtension
     /// <param name="services">The <see cref="IServiceCollection"/> to add the service to.</param>
     public static IServiceCollection AddVersionIncrementorServicesSingleton(this IServiceCollection services)
     {
-        services.AddSingleton<ISemanticVersionBuilder, SemanticVersionBuilder>()
+        services.AddTransient<ISemanticVersionBuilder, SemanticVersionBuilder>()
         .AddSingleton<ISemanticVersionIncrementDirector, SemanticVersionIncrementDirector>()
         .AddSingleton<ISemanticVersionIncrementor, SemanticVersionIncrementor>()
         .AddSingleton<ISemanticVersionParser, SemanticVersionParser>();

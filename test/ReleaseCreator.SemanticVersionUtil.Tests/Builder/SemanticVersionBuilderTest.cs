@@ -18,17 +18,17 @@ public class SemanticVersionBuilderTest
     public void GetSemanticVersion_ShouldBuildSemanticVersionAsExpected()
     {
         // act
-        var result = _sut.GetSemanticVersion();
+        var result = _sut.BuildSemanticVersion();
 
         // assert
         result.Major.Should().Be(default);
         result.Minor.Should().Be(default);
         result.Patch.Should().Be(default);
 
-        result.PreReleaseIdentifier.Should().BeNull();
+        result.PreReleaseIdentifier.Should().BeEmpty();
         result.PreReleaseNumber.Should().BeNull();
 
-        result.BuildMetadata.Should().BeNull();
+        result.BuildMetadata.Should().BeEmpty();
     }
 
     [Test]
@@ -41,15 +41,15 @@ public class SemanticVersionBuilderTest
         _sut.SetMajorVersion(major);
 
         // assert
-        var result = _sut.GetSemanticVersion();
+        var result = _sut.BuildSemanticVersion();
         result.Major.Should().Be(major);
         result.Minor.Should().Be(default);
         result.Patch.Should().Be(default);
 
-        result.PreReleaseIdentifier.Should().BeNull();
+        result.PreReleaseIdentifier.Should().BeEmpty();
         result.PreReleaseNumber.Should().BeNull();
 
-        result.BuildMetadata.Should().BeNull();
+        result.BuildMetadata.Should().BeEmpty();
     }
 
     [Test]
@@ -62,15 +62,15 @@ public class SemanticVersionBuilderTest
         _sut.SetMinorVersion(minor);
 
         // assert
-        var result = _sut.GetSemanticVersion();
+        var result = _sut.BuildSemanticVersion();
         result.Major.Should().Be(default);
         result.Minor.Should().Be(minor);
         result.Patch.Should().Be(default);
 
-        result.PreReleaseIdentifier.Should().BeNull();
+        result.PreReleaseIdentifier.Should().BeEmpty();
         result.PreReleaseNumber.Should().BeNull();
 
-        result.BuildMetadata.Should().BeNull();
+        result.BuildMetadata.Should().BeEmpty();
     }
 
     [Test]
@@ -83,15 +83,15 @@ public class SemanticVersionBuilderTest
         _sut.SetPatchVersion(patch);
 
         // assert
-        var result = _sut.GetSemanticVersion();
+        var result = _sut.BuildSemanticVersion();
         result.Major.Should().Be(default);
         result.Minor.Should().Be(default);
         result.Patch.Should().Be(patch);
 
-        result.PreReleaseIdentifier.Should().BeNull();
+        result.PreReleaseIdentifier.Should().BeEmpty();
         result.PreReleaseNumber.Should().BeNull();
 
-        result.BuildMetadata.Should().BeNull();
+        result.BuildMetadata.Should().BeEmpty();
     }
 
     [Test]
@@ -104,7 +104,7 @@ public class SemanticVersionBuilderTest
         _sut.SetPreReleaseIdentifier(preReleaseIdentifier);
 
         // assert
-        var result = _sut.GetSemanticVersion();
+        var result = _sut.BuildSemanticVersion();
         result.Major.Should().Be(default);
         result.Minor.Should().Be(default);
         result.Patch.Should().Be(default);
@@ -112,7 +112,7 @@ public class SemanticVersionBuilderTest
         result.PreReleaseIdentifier.Should().BeEquivalentTo(preReleaseIdentifier);
         result.PreReleaseNumber.Should().BeNull();
 
-        result.BuildMetadata.Should().BeNull();
+        result.BuildMetadata.Should().BeEmpty();
     }
 
     [Test]
@@ -125,15 +125,15 @@ public class SemanticVersionBuilderTest
         _sut.SetPreReleaseNumber(preReleaseNumber);
 
         // assert
-        var result = _sut.GetSemanticVersion();
+        var result = _sut.BuildSemanticVersion();
         result.Major.Should().Be(default);
         result.Minor.Should().Be(default);
         result.Patch.Should().Be(default);
 
-        result.PreReleaseIdentifier.Should().BeNull();
+        result.PreReleaseIdentifier.Should().BeEmpty();
         result.PreReleaseNumber.Should().Be(preReleaseNumber);
 
-        result.BuildMetadata.Should().BeNull();
+        result.BuildMetadata.Should().BeEmpty();
     }
 
     [Test]
@@ -146,12 +146,12 @@ public class SemanticVersionBuilderTest
         _sut.SetBuildMetadata(buildMetadata);
 
         // assert
-        var result = _sut.GetSemanticVersion();
+        var result = _sut.BuildSemanticVersion();
         result.Major.Should().Be(default);
         result.Minor.Should().Be(default);
         result.Patch.Should().Be(default);
 
-        result.PreReleaseIdentifier.Should().BeNull();
+        result.PreReleaseIdentifier.Should().BeEmpty();
         result.PreReleaseNumber.Should().BeNull();
 
         result.BuildMetadata.Should().BeEquivalentTo(buildMetadata);

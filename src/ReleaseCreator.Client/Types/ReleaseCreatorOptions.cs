@@ -6,7 +6,7 @@ internal record ReleaseCreatorOptions(
     string CommitSha,
     ReleaseType VersionIncreasePart,
     string? PreReleaseIdentifier,
-    bool IsPreRelease,
     string AccessToken)
 {
+    internal bool IsPreRelease => PreReleaseIdentifier != null;
 }

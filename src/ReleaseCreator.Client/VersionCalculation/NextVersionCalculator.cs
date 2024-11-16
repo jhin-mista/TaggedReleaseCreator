@@ -23,8 +23,7 @@ internal class NextVersionCalculator(
         var coreVersionPartToUpdate = GetSemanticVersionCorePart(releaseCreatorOptions.VersionIncreasePart);
         var versionIncrementDto = new SemanticVersionIncrementDto(
             coreVersionPartToUpdate,
-            releaseCreatorOptions.PreReleaseIdentifier,
-            releaseCreatorOptions.IsPreRelease);
+            releaseCreatorOptions.PreReleaseIdentifier);
 
         return _semanticVersionIncrementor.Increment(currentSemanticVersion, versionIncrementDto);
     }
@@ -34,7 +33,7 @@ internal class NextVersionCalculator(
         var currentTag = _tagRetriever.GetLatestTag();
 
         return currentTag == null
-            ? new SemanticVersion(0, 0, 0, null, null, null)
+            ? new SemanticVersion(0, 0, 0, [], null, [])
             : _semanticVersionParser.Parse(currentTag);
     }
 

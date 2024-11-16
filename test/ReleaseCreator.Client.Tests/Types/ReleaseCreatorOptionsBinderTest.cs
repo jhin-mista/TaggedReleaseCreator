@@ -41,4 +41,58 @@ public class ReleaseCreatorOptionsBinderTest
             actualOptions.Should().Contain(expectedOption, $"only {nameof(Option)} properties of {nameof(ReleaseCreatorOptionsBinder)} should be added to the given command");
         }
     }
+
+    [Test]
+    public void Invoke_WhenPreReleaseIdentifierIsEmptyString_ShouldPassPreReleaseOptionsAsExpected()
+    {
+        // arrange
+        var command = new Command("Test");
+        _sut.AddOptionsTo(command);
+
+        string[] arguments =
+            [
+                "--commit", "abc123",
+                "--type", "major",
+                "--token", "token",
+                "--pre-release", "",
+            ];
+
+        ReleaseCreatorOptions? releaseCreatorOptions = null;
+        command.SetHandler(x => releaseCreatorOptions = x, _sut);
+
+        // act
+        command.Invoke(arguments);
+
+        // assert
+        releaseCreatorOptions.Should().NotBeNull();
+        releaseCreatorOptions!.PreReleaseIdentifier.Should().BeEmpty();
+        releaseCreatorOptions.IsPreRelease.Should().BeTrue();
+    }
+
+    [Test]
+    public void Invoke_WhenPreReleaseIdentifierIsNotSet_ShouldPassPreReleaseOptionsAsExpected()
+    {
+        // arrange
+        var command = new Command("Test");
+        _sut.AddOptionsTo(command);
+
+        string[] arguments =
+            [
+                "--commit", "abc123",
+                "--type", "major",
+                "--token", "token",
+                "--pre-release",
+            ];
+
+        ReleaseCreatorOptions? releaseCreatorOptions = null;
+        command.SetHandler(x => releaseCreatorOptions = x, _sut);
+
+        // act
+        command.Invoke(arguments);
+
+        // assert
+        releaseCreatorOptions.Should().NotBeNull();
+        releaseCreatorOptions!.PreReleaseIdentifier.Should().BeEmpty();
+        releaseCreatorOptions.IsPreRelease.Should().BeTrue();
+    }
 }

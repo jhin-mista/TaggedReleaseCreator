@@ -4,16 +4,17 @@
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageVersion Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
     <PackageVersion Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
+    <PackageVersion Include="Microsoft.VisualStudio.Validation" Version="17.8.8" />
     <PackageVersion Include="Octokit" Version="13.0.1" />
     <PackageVersion Include="System.CommandLine" Version="2.0.0-beta4.22272.1" />
-    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
-    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
-    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.4.5" />
-    <PackageVersion Include="System.IO.Packaging" Version="8.0.1" />
-    <PackageVersion Include="System.Management.Automation" Version="7.4.5" />
-    <PackageVersion Include="System.Runtime.Caching" Version="8.0.1" />
-    <PackageVersion Include="System.Text.Json" Version="8.0.5" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+    <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.4.6" />
+    <PackageVersion Include="System.IO.Packaging" Version="9.0.0" />
+    <PackageVersion Include="System.Management.Automation" Version="7.4.6" />
+    <PackageVersion Include="System.Runtime.Caching" Version="9.0.0" />
+    <PackageVersion Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 </Project>
