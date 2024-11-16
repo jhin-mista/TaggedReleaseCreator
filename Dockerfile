@@ -11,6 +11,10 @@ LABEL com.github.actions.description="Creates a GitHub release"
 LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="gray-dark"
 
-FROM mcr.microsoft.com/dotnet/runtime:9.0-preview
+FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1
+# Copy binaries to the final layer
 COPY --from=base /app/out /github/workspace/ReleaseCreator
-ENTRYPOINT [ "ReleaseCreator/ReleaseCreator.CommandLine.dll" ]
+# Make binaries executable
+RUN chmod -R +x /github/workspace/ReleaseCreator
+# Set entrypoint for the container
+ENTRYPOINT [ "dotnet", "/github/workspace/ReleaseCreator/ReleaseCreator.CommandLine.dll" ]
