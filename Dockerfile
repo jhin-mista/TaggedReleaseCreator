@@ -13,11 +13,11 @@ LABEL maintainer="Benedict Zendel"
 LABEL repository="https://github.com/jhin-mista/ReleaseCreator"
 LABEL homepage="https://github.com/jhin-mista/ReleaseCreator"
 LABEL com.github.actions.name="Release Creator"
-LABEL com.github.actions.description="Creates a GitHub release"
+LABEL com.github.actions.description="Creates a GitHub release and calculates the next semantic version number."
 LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="gray-dark"
 LABEL org.opencontainers.image.source="https://github.com/jhin-mista/ReleaseCreator"
-LABEL org.opencontainers.image.description="Creates a GitHub release"
+LABEL org.opencontainers.image.description="Creates a GitHub release and calculates the next semantic version number."
 LABEL org.opencontainers.image.licenses="MIT"
 
 RUN chmod +x entrypoint.sh
