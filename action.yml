@@ -4,10 +4,6 @@ branding:
   icon: package
   color: gray-dark
 inputs:
-  branch:
-    description:
-      'The branch to create the release from'
-    required: true
   type:
     description:
       'The release type to create (Major|Minor|Patch)'
@@ -39,8 +35,8 @@ runs:
   using: 'docker'
   image: 'docker://ghcr.io/jhin-mista/releasecreator:latest'
   args:
-    - '--branch'
-    - ${{ inputs.branch }}
+    - '--commit'
+    - ${{ github.sha }}
     - '--type'
     - ${{ inputs.type }}
     - '--token'
