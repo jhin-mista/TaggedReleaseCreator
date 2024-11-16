@@ -33,7 +33,8 @@ runs:
   env:
     Logging__LogLevel__Default: "${{ inputs.log-level }}"
   using: 'docker'
-  image: 'docker://ghcr.io/jhin-mista/releasecreator:latest'
+  # image: 'docker://ghcr.io/jhin-mista/releasecreator:v0' # This works once the repository is public
+  image: 'Dockerfile'
   args:
     - '--commit'
     - ${{ github.sha }}
