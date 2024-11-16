@@ -1,4 +1,7 @@
-﻿using ReleaseCreator.CommandLine.Types;
+﻿using Microsoft.Extensions.Hosting;
+using ReleaseCreator.CommandLine.Types;
+using ReleaseCreator.Git.Extensions;
+using ReleaseCreator.SemanticVersionUtil.Extensions;
 using System.CommandLine;
 
 namespace ReleaseCreator.CommandLine;
@@ -21,17 +24,28 @@ public class Program
 
     private static RootCommand GetRootCommand()
     {
+        var builder = Host.CreateApplicationBuilder();
+        SetupServices(builder);
+        var host = builder.Build();
+
         var rootCommand = new RootCommand("CLI utility for creating a github release");
         var releaseCreatorOptionsBinder = new ReleaseCreatorOptionsBinder();
 
         releaseCreatorOptionsBinder.AddOptionsTo(rootCommand);
-        rootCommand.SetHandler(CreateRelease, releaseCreatorOptionsBinder);
+        rootCommand.SetHandler(x => CreateRelease(x, host), releaseCreatorOptionsBinder);
 
         return rootCommand;
     }
 
-    private static void CreateRelease(ReleaseCreatorOptions releaseCreatorOptions)
+    private static void CreateRelease(ReleaseCreatorOptions releaseCreatorOptions, IHost host)
     {
         Console.WriteLine(releaseCreatorOptions.ToString());
+    }
+
+    private static void SetupServices(HostApplicationBuilder hostBuilder)
+    {
+        hostBuilder.Services
+            .AddVersionIncrementorServicesSingleton()
+            .AddGitServicesSingleton();
     }
 }
