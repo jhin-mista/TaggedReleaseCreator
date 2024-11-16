@@ -1,0 +1,40 @@
+name: 'Release Creator'
+description: 'Creates a GitHub release'
+branding:
+  icon: package
+  color: gray-dark
+inputs:
+  branch:
+    description:
+      'The branch to create the release from'
+    required: true
+  type:
+    description:
+      'The release type to create (Major|Minor|Patch)'
+    required: true
+  token:
+    description:
+      'The access token for authenticating against GitHub'
+    required: true
+  pre-release:
+    description:
+      'Indicates if this release is a pre-release'
+    required: true
+  pre-release-identifier:
+    description:
+      'The pre-release identifier'
+    required: false
+    default: null
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - '--branch'
+    - ${{ inputs.branch }}
+    - '--type'
+    - ${{ inputs.type }}
+    - '--token'
+    - ${{ inputs.token }}
+    - ${{ inputs.pre-release == 'true' && '--pre-release' || null }}
+    - ${{ inputs.pre-release == 'true' && inputs.pre-release-identifier || null }}
