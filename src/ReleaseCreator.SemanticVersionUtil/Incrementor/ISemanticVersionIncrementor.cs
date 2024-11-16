@@ -1,6 +1,6 @@
 ﻿using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.SemanticVersionUtil
+namespace ReleaseCreator.SemanticVersionUtil.Incrementor
 {
     /// <summary>
     /// Represents a component for incrementing a semantic version.
