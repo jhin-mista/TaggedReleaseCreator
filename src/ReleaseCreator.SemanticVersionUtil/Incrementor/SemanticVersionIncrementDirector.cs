@@ -8,7 +8,7 @@ namespace ReleaseCreator.SemanticVersionUtil.Incrementor
     {
         private readonly ISemanticVersionBuilder _builder;
 
-        internal SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
+        public SemanticVersionIncrementDirector(ISemanticVersionBuilder builder)
         {
             _builder = builder;
         }
