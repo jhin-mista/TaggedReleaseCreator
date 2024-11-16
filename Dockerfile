@@ -10,6 +10,9 @@ LABEL com.github.actions.name="Release Creator"
 LABEL com.github.actions.description="Creates a GitHub release"
 LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="gray-dark"
+LABEL org.opencontainers.image.source="https://github.com/jhin-mista/ReleaseCreator"
+LABEL org.opencontainers.image.description="Creates a GitHub release"
+LABEL org.opencontainers.image.licenses="MIT"
 
 FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1
 # Copy binaries to the final layer
