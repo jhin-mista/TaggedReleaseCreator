@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Octokit;
 using Octokit.Internal;
 using ReleaseCreator.CommandLine.ReleaseCreation;
@@ -26,16 +28,27 @@ public class Program
     /// <param name="args">The command line arguments.</param>
     public static async Task<int> Main(string[] args)
     {
-        if (TryGetReleaseCreatorOptions(args, out var releaseCreatorOptions))
+        if (!TryGetReleaseCreatorOptions(args, out var releaseCreatorOptions))
         {
-            var serviceProvider = SetupServices(releaseCreatorOptions.AccessToken);
-            var releaseCreator = serviceProvider.GetRequiredService<IReleaseCreator>();
+            return -1;
+        }
+
+        var serviceProvider = SetupServices(releaseCreatorOptions.AccessToken);
+        var releaseCreator = serviceProvider.GetRequiredService<IReleaseCreator>();
+        var logger = serviceProvider.GetRequiredService<ILogger<Program>>();
+
+        try
+        {
+            var passedArguments = string.Join(", ", args);
+            logger.LogDebug("Input arguments: {arguments}", passedArguments);
 
             var createdRelease = await releaseCreator.CreateReleaseAsync(releaseCreatorOptions);
-            Console.WriteLine($"Created release under the following URL: {createdRelease.HtmlUrl}");
+            logger.LogInformation("Created release under the following URL: {releaseUrl}", createdRelease.HtmlUrl);
         }
-        else
+        catch (Exception ex)
         {
+            logger.LogError(ex, "Exception while creating release");
+
             return -1;
         }
 
@@ -67,7 +80,8 @@ public class Program
         var client = ReleasesClientFactory(accessToken);
         var services = new ServiceCollection();
 
-        services.AddVersionIncrementorServicesSingleton()
+        services.AddLogging(AddConsoleLoggerWithLogLevelSetByEnvironmentVariable)
+            .AddVersionIncrementorServicesSingleton()
             .AddGitServicesSingleton()
             .AddSingleton<IEnvironmentService, EnvironmentService>()
             .AddSingleton<INextVersionCalculator, NextVersionCalculator>()
@@ -85,5 +99,13 @@ public class Program
         var connection = new Connection(userAgent, credentialStore);
         var apiConnection = new ApiConnection(connection);
         return new ReleasesClient(apiConnection);
+    }
+
+    private static void AddConsoleLoggerWithLogLevelSetByEnvironmentVariable(ILoggingBuilder builder)
+    {
+        var config = new ConfigurationBuilder().AddEnvironmentVariables().Build();
+
+        builder.AddConsole()
+            .AddConfiguration(config.GetSection("Logging"));
     }
 }

@@ -1,12 +1,14 @@
-﻿using Microsoft.PowerShell.Commands;
+﻿using Microsoft.Extensions.Logging;
 using System.Collections.ObjectModel;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 
 namespace ReleaseCreator.Git.ShellExecution
 {
-    internal class PowerShellExecutor : IPowerShellExecutor
+    internal class PowerShellExecutor(ILogger<PowerShellExecutor> logger) : IPowerShellExecutor
     {
+        private readonly ILogger<PowerShellExecutor> _logger = logger;
+
         public Collection<PSObject> Execute(string script)
         {
             var initialSessionState = InitialSessionState.CreateDefault();
@@ -19,30 +21,7 @@ namespace ReleaseCreator.Git.ShellExecution
             return result;
         }
 
-        private static InitialSessionState GetInitialSessionState()
-        {
-            var initialSessionState = InitialSessionState.Create();
-
-            var setLocationCmdletEntry = new SessionStateCmdletEntry("Set-Location", typeof(SetLocationCommand), null);
-            var selectObjectCmdletEntry = new SessionStateCmdletEntry("Select-Object", typeof(SelectObjectCommand), null);
-            var generalApplicationEntry = new SessionStateApplicationEntry("*");
-
-            initialSessionState.Commands.Add([setLocationCmdletEntry, selectObjectCmdletEntry, generalApplicationEntry]);
-            initialSessionState.LanguageMode = PSLanguageMode.FullLanguage;
-
-            var fileSystemSessionStateProvider = new SessionStateProviderEntry("FileSystem", typeof(FileSystemProvider), null);
-            var environmentSessionStateProvider = new SessionStateProviderEntry("Environment", typeof(EnvironmentProvider), null);
-
-            initialSessionState.Providers.Add(
-            [
-                fileSystemSessionStateProvider,
-                environmentSessionStateProvider,
-            ]);
-
-            return initialSessionState;
-        }
-
-        private static Collection<PSObject> ExecuteScript(Runspace runSpace, string script)
+        private Collection<PSObject> ExecuteScript(Runspace runSpace, string script)
         {
             using var powerShell = PowerShell.Create(runSpace);
             powerShell.AddScript(script);
@@ -54,6 +33,8 @@ namespace ReleaseCreator.Git.ShellExecution
                 var exceptions = powerShell.Streams.Error.Select(x => x.Exception);
                 throw new AggregateException($"Error(s) executing script '{script}'", exceptions);
             }
+
+            _logger.LogDebug("Script execution returned {result}", result);
 
             return result;
         }
