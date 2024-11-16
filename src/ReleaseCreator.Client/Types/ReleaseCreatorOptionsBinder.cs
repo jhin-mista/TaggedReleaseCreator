@@ -46,16 +46,10 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
     /// <inheritdoc/>
     protected override ReleaseCreatorOptions GetBoundValue(BindingContext bindingContext)
     {
-        var parsedPreReleaseIdentifier = bindingContext.ParseResult.GetValueForOption(PreReleaseOption);
-        // replace empty string with null so that pre-release identifiers in the current version will not get overridden
-        var preReleaseIdentifier = parsedPreReleaseIdentifier == string.Empty ? null : parsedPreReleaseIdentifier;
-        var isPreRelease = parsedPreReleaseIdentifier != null;
-
         return new(
             bindingContext.ParseResult.GetValueForOption(CommitShaOption)!,
             bindingContext.ParseResult.GetValueForOption(ReleaseTypeOption),
-            preReleaseIdentifier,
-            isPreRelease,
+            bindingContext.ParseResult.GetValueForOption(PreReleaseOption),
             bindingContext.ParseResult.GetValueForOption(AccessTokenOption)!
             );
     }
@@ -64,7 +58,11 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
     {
         return argument.Tokens.Count switch
         {
-            0 => null,
+            // By default, a token count of 0 would return null.
+            // Setting this to not null helps us differentiate between the pre-release option
+            // being set with (token value) or without an identifier (empty string)
+            // or not at all (null)
+            0 => string.Empty,
             _ => argument.Tokens[0].Value,
         };
     }

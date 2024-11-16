@@ -19,14 +19,14 @@ public class SemanticVersionIncrementDirectorTest
         _sut = new(_builderMock.Object);
     }
 
-    public static IEnumerable<TestCaseData> PreReleaseToPrereleaseIncreasesStaticIdentifier
+    public static IEnumerable<TestCaseData> PreReleaseToPrereleaseIncreasesWithStaticIdentifier
     {
         get
         {
             // no new pre-release identifier | pre-release number exists
-            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Major, null, 2);
-            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Minor, null, 2);
-            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Patch, null, 2);
+            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Major, string.Empty, 2);
+            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Minor, string.Empty, 2);
+            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Patch, string.Empty, 2);
 
             // same pre-release identifier | pre-release number exists
             yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Major, "alpha", 2);
@@ -34,9 +34,9 @@ public class SemanticVersionIncrementDirectorTest
             yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Patch, "alpha", 2);
 
             // no new pre-release identifier | no pre-release number exists
-            yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Major, null, 1);
-            yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Minor, null, 1);
-            yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Patch, null, 1);
+            yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Major, string.Empty, 1);
+            yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Minor, string.Empty, 1);
+            yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Patch, string.Empty, 1);
 
             // same pre-release identifier | no pre-release number exists
             yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Major, "alpha", 1);
@@ -44,24 +44,18 @@ public class SemanticVersionIncrementDirectorTest
             yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Patch, "alpha", 1);
 
             // no current pre-release identifier | no new pre-release identifier
-            yield return new("v", Array.Empty<string>(), 1, SemanticVersionCorePart.Major, null, 2);
-            yield return new("v", Array.Empty<string>(), 1, SemanticVersionCorePart.Minor, null, 2);
-            yield return new("v", Array.Empty<string>(), 1, SemanticVersionCorePart.Patch, null, 2);
             yield return new("v", Array.Empty<string>(), 1, SemanticVersionCorePart.Major, string.Empty, 2);
             yield return new("v", Array.Empty<string>(), 1, SemanticVersionCorePart.Minor, string.Empty, 2);
             yield return new("v", Array.Empty<string>(), 1, SemanticVersionCorePart.Patch, string.Empty, 2);
-            yield return new("v", new string[] { string.Empty }, 1, SemanticVersionCorePart.Major, null, 2);
-            yield return new("v", new string[] { string.Empty }, 1, SemanticVersionCorePart.Minor, null, 2);
-            yield return new("v", new string[] { string.Empty }, 1, SemanticVersionCorePart.Patch, null, 2);
             yield return new("v", new string[] { string.Empty }, 1, SemanticVersionCorePart.Major, string.Empty, 2);
             yield return new("v", new string[] { string.Empty }, 1, SemanticVersionCorePart.Minor, string.Empty, 2);
             yield return new("v", new string[] { string.Empty }, 1, SemanticVersionCorePart.Patch, string.Empty, 2);
         }
     }
 
-    [TestCaseSource(nameof(PreReleaseToPrereleaseIncreasesStaticIdentifier))]
+    [TestCaseSource(nameof(PreReleaseToPrereleaseIncreasesWithStaticIdentifier))]
 
-    public void IncrementPreReleaseToPreRelease_WhenPreReleaseIdentifierDoesNotChange_ShouldIncrementAsExpected(
+    public void IncrementPreReleaseToPreRelease_WhenPreReleaseIdentifierDoesNotChange_ShouldCallBuilderAsExpected(
         string? prefix,
         string[] currentPreReleaseIdentifier,
         int? preReleaseNumber,
@@ -71,7 +65,7 @@ public class SemanticVersionIncrementDirectorTest
     {
         // arrange
         var currentVersion = new SemanticVersion(1, 2, 3, currentPreReleaseIdentifier, (uint?)preReleaseNumber, [], prefix);
-        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, newPreReleaseIdentifier, true);
+        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, newPreReleaseIdentifier);
 
         _builderMock.Setup(x => x.SetPrefix(It.IsAny<string?>()));
 
@@ -110,9 +104,9 @@ public class SemanticVersionIncrementDirectorTest
         {
 
             // different pre-release identifier | pre-release number exists
-            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Major, "beta", 1);
-            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Minor, "beta", 1);
-            yield return new("v", new string[] { "alpha" }, 1, SemanticVersionCorePart.Patch, "beta", 1);
+            yield return new("v", new string[] { "alpha" }, 2, SemanticVersionCorePart.Major, "beta", 1);
+            yield return new("v", new string[] { "alpha" }, 2, SemanticVersionCorePart.Minor, "beta", 1);
+            yield return new("v", new string[] { "alpha" }, 2, SemanticVersionCorePart.Patch, "beta", 1);
 
             // different pre-release identifier | no pre-release number exists
             yield return new("v", new string[] { "alpha" }, null, SemanticVersionCorePart.Major, "beta", 1);
@@ -127,7 +121,7 @@ public class SemanticVersionIncrementDirectorTest
     }
 
     [TestCaseSource(nameof(PreReleaseToPreReleaseIncreasesChangingIdentifier))]
-    public void IncrementPreReleaseToPreRelease_WhenPreReleaseIdentifierChanges_ShouldIncrementAsExpected(
+    public void IncrementPreReleaseToPreRelease_WhenPreReleaseIdentifierChanges_ShouldCallBuilderAsExpected(
         string? prefix,
         string[] currentPreReleaseIdentifier,
         int? preReleaseNumber,
@@ -137,7 +131,7 @@ public class SemanticVersionIncrementDirectorTest
     {
         // arrange
         var currentVersion = new SemanticVersion(1, 2, 3, currentPreReleaseIdentifier, (uint?)preReleaseNumber, [], prefix);
-        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, newPreReleaseIdentifier, true);
+        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, newPreReleaseIdentifier);
 
         _builderMock.Setup(x => x.SetPrefix(It.IsAny<string?>()));
 
@@ -181,7 +175,7 @@ public class SemanticVersionIncrementDirectorTest
     }
 
     [TestCaseSource(nameof(PreReleaseToStableIncreases))]
-    public void IncrementPreReleaseToStable_ShouldIncrementAsExpected(
+    public void IncrementPreReleaseToStable_ShouldCallBuilderAsExpected(
         string? prefix,
         string[] currentPreReleaseIdentifier,
         int? preReleaseNumber,
@@ -189,7 +183,7 @@ public class SemanticVersionIncrementDirectorTest
     {
         // arrange
         var currentVersion = new SemanticVersion(1, 2, 3, currentPreReleaseIdentifier, (uint?)preReleaseNumber, [], prefix);
-        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, null, false);
+        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, null);
 
         _builderMock.Setup(x => x.SetPrefix(It.IsAny<string?>()));
 
@@ -223,14 +217,14 @@ public class SemanticVersionIncrementDirectorTest
             yield return new("v", 1, 1, 1, "alpha", SemanticVersionCorePart.Minor, 1, 2, 0, "alpha");
             yield return new("v", 1, 1, 1, "alpha", SemanticVersionCorePart.Patch, 1, 1, 2, "alpha");
 
-            yield return new("v", 1, 1, 1, null, SemanticVersionCorePart.Major, 2, 0, 0, null);
-            yield return new("v", 1, 1, 1, null, SemanticVersionCorePart.Minor, 1, 2, 0, null);
-            yield return new("v", 1, 1, 1, null, SemanticVersionCorePart.Patch, 1, 1, 2, null);
+            yield return new("v", 1, 1, 1, string.Empty, SemanticVersionCorePart.Major, 2, 0, 0, string.Empty);
+            yield return new("v", 1, 1, 1, string.Empty, SemanticVersionCorePart.Minor, 1, 2, 0, string.Empty);
+            yield return new("v", 1, 1, 1, string.Empty, SemanticVersionCorePart.Patch, 1, 1, 2, string.Empty);
         }
     }
 
     [TestCaseSource(nameof(StableIncreasesToPreRelease))]
-    public void IncrementStableToPreRelease_ShouldIncrementAsExpected(
+    public void IncrementStableToPreRelease_ShouldCallBuilderAsExpected(
         string? prefix,
         int major,
         int minor,
@@ -244,7 +238,7 @@ public class SemanticVersionIncrementDirectorTest
     {
         // arrange
         var currentVersion = new SemanticVersion((uint)major, (uint)minor, (uint)patch, [], null, [], prefix);
-        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, nextPreReleaseIdentifier, true);
+        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, nextPreReleaseIdentifier);
 
         _builderMock.Setup(x => x.SetPrefix(It.IsAny<string?>()));
 
@@ -288,7 +282,7 @@ public class SemanticVersionIncrementDirectorTest
     }
 
     [TestCaseSource(nameof(StableToStableIncreases))]
-    public void IncrementStableToStable_ShouldIncrementAsExpected(
+    public void IncrementStableToStable_ShouldCallBuilderAsExpected(
         string? prefix,
         int major,
         int minor,
@@ -300,7 +294,7 @@ public class SemanticVersionIncrementDirectorTest
     {
         // arrange
         var currentVersion = new SemanticVersion((uint)major, (uint)minor, (uint)patch, [], null, [], prefix);
-        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, null, false);
+        var incrementDto = new SemanticVersionIncrementDto(semanticVersionCorePart, null);
 
         _builderMock.Setup(x => x.SetPrefix(It.IsAny<string?>()));
 
