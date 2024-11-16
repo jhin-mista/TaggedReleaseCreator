@@ -1,7 +1,7 @@
-﻿using ReleaseCreator.Types;
+﻿using ReleaseCreator.CommandLine.Types;
 using System.CommandLine;
 
-namespace ReleaseCreator;
+namespace ReleaseCreator.CommandLine;
 
 /// <summary>
 /// Entry class for invocations of this program.
