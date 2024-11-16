@@ -2,13 +2,14 @@
 using Moq;
 using ReleaseCreator.CommandLine.Enums;
 using ReleaseCreator.CommandLine.Types;
+using ReleaseCreator.CommandLine.VersionCalculation;
 using ReleaseCreator.Git.Tag;
 using ReleaseCreator.SemanticVersionUtil.Enums;
 using ReleaseCreator.SemanticVersionUtil.Incrementor;
 using ReleaseCreator.SemanticVersionUtil.Parser;
 using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.CommandLine.Tests
+namespace ReleaseCreator.CommandLine.Tests.VersionCalculation
 {
     [TestFixture]
     public class NextVersionCalculatorTest
