@@ -4,9 +4,9 @@ branding:
   icon: package
   color: gray-dark
 inputs:
-  branch:
+  commit:
     description:
-      'The branch to create the release from'
+      'The commit to create the release from'
     required: true
   type:
     description:
