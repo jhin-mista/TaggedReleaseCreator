@@ -40,9 +40,9 @@ internal class GitHubReleaseCreator(
 
     private void SetNextVersionOutput(string nextVersion)
     {
-        var outputVariableName = KnownConstants.GitHub.EnvironmentVariables.OutputFilePath;
+        var outputFilePathVariableName = KnownConstants.GitHub.EnvironmentVariables.OutputFilePath;
 
-        var outputFilePath = _environmentService.GetRequiredEnvironmentVariable(outputVariableName);
+        var outputFilePath = _environmentService.GetRequiredEnvironmentVariable(outputFilePathVariableName);
 
         _fileService.AppendLine(outputFilePath, $"{KnownConstants.GitHub.Action.NextVersionOutputVariableName}={nextVersion}");
     }
