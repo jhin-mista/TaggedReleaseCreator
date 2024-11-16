@@ -7,7 +7,7 @@ namespace ReleaseCreator.CommandLine.Tests
     [TestFixture]
     public class ProgramIntegrationTest
     {
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             var workingDirectory = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "TestRepository");
@@ -15,7 +15,7 @@ namespace ReleaseCreator.CommandLine.Tests
             Directory.Move(".igit", ".git");
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
             Directory.Move(".git", ".igit");
