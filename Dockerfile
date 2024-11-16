@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1 AS base
+FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.2 AS base
 WORKDIR /app
 COPY . ./
 RUN dotnet publish ./src/ReleaseCreator.CommandLine/ReleaseCreator.CommandLine.csproj -c Release -o out --no-self-contained
@@ -14,7 +14,7 @@ LABEL org.opencontainers.image.source="https://github.com/jhin-mista/ReleaseCrea
 LABEL org.opencontainers.image.description="Creates a GitHub release"
 LABEL org.opencontainers.image.licenses="MIT"
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.1
+FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.2
 # Copy binaries to the final layer
 COPY --from=base /app/out /app
 # Set entrypoint for the container
