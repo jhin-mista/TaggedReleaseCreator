@@ -46,6 +46,7 @@ jobs:
               id: release-creator
               uses: ./
               with:
+                commit: ${{ github.sha }}
                 type: ${{ inputs.release-type }}
                 token: ${{ secrets.GITHUB_TOKEN }}
                 pre-release: ${{ github.event.inputs.is-pre-release }}
