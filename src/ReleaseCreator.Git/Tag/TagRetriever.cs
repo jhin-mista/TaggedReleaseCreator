@@ -1,4 +1,6 @@
-﻿namespace ReleaseCreator.Git;
+﻿using ReleaseCreator.Git.ShellExecution;
+
+namespace ReleaseCreator.Git.Tag;
 
 /// <summary>
 /// Contains methods for retrieving git tags.
