@@ -597,6 +597,11 @@
         "resolved": "1.21.0",
         "contentHash": "8NudeHOE56YsY59HYY89akRMup8Ho+7Y3cADTGjajjWroXVU9RQai2nA6PfteB8AuzmRHZ5NZQB2BnWhQEul5g=="
       },
+      "Microsoft.VisualStudio.Validation": {
+        "type": "Transitive",
+        "resolved": "17.8.8",
+        "contentHash": "rWXThIpyQd4YIXghNkiv2+VLvzS+MCMKVRDR0GAMlflsdo+YcAN2g2r5U1Ah98OFjQMRexTFtXQQ2LkajxZi3g=="
+      },
       "Microsoft.Win32.Registry": {
         "type": "Transitive",
         "resolved": "4.7.0",
@@ -1101,7 +1106,8 @@
       "releasecreator.semanticversionutil": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.2, )"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.2, )",
+          "Microsoft.VisualStudio.Validation": "[17.8.8, )"
         }
       }
     }

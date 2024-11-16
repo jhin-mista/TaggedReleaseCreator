@@ -22,7 +22,7 @@ public class SemanticVersionIncrementorTest
     public void Increment_WhenCalledForPreReleaseToPreReleaseIncrement_ShouldCallDirectorAsExpected()
     {
         //arrange
-        var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, null);
+        var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, []);
         var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, null, true);
 
         _semanticVersionBuilderMock.Setup(x =>
@@ -41,7 +41,7 @@ public class SemanticVersionIncrementorTest
     public void Increment_WhenCalledForPreReleaseToStableIncrement_ShouldCallDirectorAsExpected()
     {
         //arrange
-        var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, null);
+        var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, []);
         var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, null, false);
 
         _semanticVersionBuilderMock.Setup(x =>
@@ -60,7 +60,7 @@ public class SemanticVersionIncrementorTest
     public void Increment_WhenCalledForStableToPreReleaseIncrement_ShouldCallDirectorAsExpected()
     {
         //arrange
-        var currentVersion = new SemanticVersion(1, 1, 1, null, null, null);
+        var currentVersion = new SemanticVersion(1, 1, 1, [], null, []);
         var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, "alpha", true);
 
         _semanticVersionBuilderMock.Setup(x =>
@@ -79,7 +79,7 @@ public class SemanticVersionIncrementorTest
     public void Increment_WhenCalledForStableToStableIncrement_ShouldCallDirectorAsExpected()
     {
         //arrange
-        var currentVersion = new SemanticVersion(1, 1, 1, null, null, null);
+        var currentVersion = new SemanticVersion(1, 1, 1, [], null, []);
         var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, null, false);
 
         _semanticVersionBuilderMock.Setup(x =>

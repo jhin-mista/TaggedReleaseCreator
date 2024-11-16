@@ -1,5 +1,8 @@
 ﻿using FluentAssertions;
+using Moq;
+using ReleaseCreator.SemanticVersionUtil.Builder;
 using ReleaseCreator.SemanticVersionUtil.Parser;
+using ReleaseCreator.SemanticVersionUtil.Types;
 
 namespace ReleaseCreator.SemanticVersionUtil.Tests.Parser;
 
@@ -7,48 +10,77 @@ namespace ReleaseCreator.SemanticVersionUtil.Tests.Parser;
 public class SemanticVersionParserTest
 {
     private SemanticVersionParser _sut;
+    private Mock<ISemanticVersionBuilder> _builderMock;
 
     [SetUp]
     public void SetUp()
     {
-        _sut = new();
+        _builderMock = new(MockBehavior.Strict);
+        _sut = new(_builderMock.Object);
     }
 
-    [TestCase("v", 1u, 0u, 0u, null, null, null, "v1.0.0", TestName = "Only core version")]
-    [TestCase(null, 1u, 0u, 0u, new string[] { "alpha" }, null, null, "1.0.0-alpha", TestName = "Core + pre-release identifier")]
-    [TestCase(null, 1u, 0u, 0u, null, 1u, null, "1.0.0-1", TestName = "Core + pre-release number")]
-    [TestCase(null, 1u, 0u, 0u, new string[] { "alpha" }, 1u, null, "1.0.0-alpha.1", TestName = "Core + pre-release version")]
-    [TestCase(null, 1u, 0u, 0u, null, null, new string[] { "156f46a8", "42" }, "1.0.0+156f46a8.42", TestName = "Core version + build metadata")]
-    [TestCase(null, 1u, 0u, 0u, new string[] { "alpha" }, 1u, new string[] { "156f46a8", "42" }, "1.0.0-alpha.1+156f46a8.42", TestName = "Core + pre-release version + build metadata")]
+    [TestCase("v", 1u, 0u, 0u, new string[] { "" }, new string[] { "" }, "v1.0.0", TestName = "Only core version")]
+    [TestCase("", 1u, 0u, 0u, new string[] { "alpha" }, new string[] { "" }, "1.0.0-alpha", TestName = "Core + pre-release identifier")]
+    [TestCase("", 1u, 0u, 0u, new string[] { "1" }, new string[] { "" }, "1.0.0-1", TestName = "Core + pre-release number")]
+    [TestCase("", 1u, 0u, 0u, new string[] { "alpha", "1" }, new string[] { "" }, "1.0.0-alpha.1", TestName = "Core + pre-release version")]
+    [TestCase("", 1u, 0u, 0u, new string[] { "" }, new string[] { "156f46a8", "42" }, "1.0.0+156f46a8.42", TestName = "Core version + build metadata")]
+    [TestCase("", 1u, 0u, 0u, new string[] { "alpha", "1" }, new string[] { "156f46a8", "42" }, "1.0.0-alpha.1+156f46a8.42", TestName = "Core + pre-release version + build metadata")]
     public void Parse_ShouldParseAsExpected(
-        string? prefix,
+        string prefix,
         uint major,
         uint minor,
         uint patch,
-        string[]? preReleaseIdentifier,
-        uint? preReleaseNumber,
-        string[]? buildMetadata,
+        string[] preReleaseVersion,
+        string[] buildMetadata,
         string input)
     {
+        // arrange
+        _builderMock.Setup(x => x.SetMajorVersion(It.IsAny<uint>()));
+        _builderMock.Setup(x => x.SetMinorVersion(It.IsAny<uint>()));
+        _builderMock.Setup(x => x.SetPatchVersion(It.IsAny<uint>()));
+
+        _builderMock.Setup(x => x.SetPreReleaseVersion(It.IsAny<string?>()));
+
+        _builderMock.Setup(x => x.SetBuildMetadata(It.IsAny<string?>()));
+
+        _builderMock.Setup(x => x.SetPrefix(It.IsAny<string?>()));
+
+        var builderResult = new SemanticVersion(1, 1, 1, [], 1, []);
+        _builderMock.Setup(x => x.BuildSemanticVersion()).Returns(builderResult);
+
         // act
         var result = _sut.Parse(input);
 
         // assert
-        result.Prefix.Should().Be(prefix);
-        result.Major.Should().Be(major);
-        result.Minor.Should().Be(minor);
-        result.Patch.Should().Be(patch);
-        result.PreReleaseIdentifier.Should().BeEquivalentTo(preReleaseIdentifier);
-        result.PreReleaseNumber.Should().Be(preReleaseNumber);
-        result.BuildMetadata.Should().BeEquivalentTo(buildMetadata);
+        result.Should().Be(builderResult);
+
+        _builderMock.Verify(x => x.SetPrefix(prefix), Times.Once);
+        _builderMock.Verify(x => x.SetMajorVersion(major), Times.Once);
+        _builderMock.Verify(x => x.SetMinorVersion(minor), Times.Once);
+        _builderMock.Verify(x => x.SetPatchVersion(patch), Times.Once);
+
+        _builderMock.Verify(x => x.SetPreReleaseVersion(string.Join('.', preReleaseVersion)), Times.Once);
+
+        _builderMock.Verify(x => x.SetBuildMetadata(string.Join('.', buildMetadata)), Times.Once);
+
+        _builderMock.Verify(x => x.BuildSemanticVersion(), Times.Once);
+
+        _builderMock.VerifyNoOtherCalls();
     }
 
-    [Test]
-    public void Parse_WhenPassedInvalidInput_ShouldThrowException()
+    [TestCase("invalid")]
+    [TestCase("1")]
+    [TestCase("1.")]
+    [TestCase("1.1")]
+    [TestCase("1..1")]
+    [TestCase("1.1..1")]
+    [TestCase("1.1.1-")]
+    [TestCase("1.1.1-+")]
+    [TestCase("01.1.1")]
+    [TestCase("1.01.1")]
+    [TestCase("1.1.01")]
+    public void Parse_WhenPassedInvalidInput_ShouldThrowException(string input)
     {
-        // arrange
-        var input = "invalid";
-
         // act
         var invocation = () => _sut.Parse(input);
 

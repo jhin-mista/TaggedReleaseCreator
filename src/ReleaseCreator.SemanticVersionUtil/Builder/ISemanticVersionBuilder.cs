@@ -2,21 +2,73 @@
 
 namespace ReleaseCreator.SemanticVersionUtil.Builder;
 
-internal interface ISemanticVersionBuilder
+/// <summary>
+/// Represents a builder for a <see cref="SemanticVersion"/>.
+/// </summary>
+public interface ISemanticVersionBuilder
 {
-    internal void SetPrefix(string? prefix);
+    /// <summary>
+    /// Sets an optional version prefix.
+    /// </summary>
+    /// <param name="prefix">The optional prefix.</param>
+    public void SetPrefix(string? prefix);
 
-    internal void SetMajorVersion(uint majorVersion);
+    /// <summary>
+    /// Sets the major version.
+    /// </summary>
+    /// <param name="majorVersion">The major version.</param>
+    public void SetMajorVersion(uint majorVersion);
 
-    internal void SetMinorVersion(uint minorVersion);
+    /// <summary>
+    /// Sets the minor version.
+    /// </summary>
+    /// <param name="minorVersion">The minor version.</param>
+    public void SetMinorVersion(uint minorVersion);
 
-    internal void SetPatchVersion(uint patchVersion);
+    /// <summary>
+    /// Sets the patch version.
+    /// </summary>
+    /// <param name="patchVersion">The patch version.</param>
+    public void SetPatchVersion(uint patchVersion);
 
-    internal void SetPreReleaseNumber(uint? preReleaseNumber);
+    /// <summary>
+    /// Sets the pre-release number.
+    /// </summary>
+    /// <param name="preReleaseNumber">The pre-release number.</param>
+    public void SetPreReleaseNumber(uint? preReleaseNumber);
 
-    internal void SetPreReleaseIdentifier(IList<string>? preReleaseIdentifier);
+    /// <summary>
+    /// Sets the pre-release version (e.g. pre-release identifier + pre-release number).
+    /// </summary>
+    /// <param name="preReleaseVersion">The pre-release version.</param>
+    public void SetPreReleaseVersion(string? preReleaseVersion);
 
-    internal void SetBuildMetadata(IList<string>? buildMetadata);
+    /// <summary>
+    /// Sets the pre-release identifier.
+    /// </summary>
+    /// <param name="preReleaseIdentifier">The list of elements from a dot separated pre-release identifier.</param>
+    public void SetPreReleaseIdentifier(IList<string> preReleaseIdentifier);
 
-    internal SemanticVersion GetSemanticVersion();
+    /// <summary>
+    /// Sets the pre-release identifier.
+    /// </summary>
+    /// <param name="preReleaseIdentifier">The dot separated pre-release identifier.</param>
+    public void SetPreReleaseIdentifier(string? preReleaseIdentifier);
+
+    /// <summary>
+    /// Sets the build metadata.
+    /// </summary>
+    /// <param name="buildMetadata">The list of elements from a dot separated build metadata.</param>
+    public void SetBuildMetadata(IList<string> buildMetadata);
+
+    /// <summary>
+    /// Sets the build metadata.
+    /// </summary>
+    /// <param name="buildMetadata"></param>
+    public void SetBuildMetadata(string? buildMetadata);
+
+    /// <summary>
+    /// Builds a new <see cref="SemanticVersion"/>.
+    /// </summary>
+    public SemanticVersion BuildSemanticVersion();
 }

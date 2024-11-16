@@ -9,7 +9,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
 {
     internal Option<string> CommitShaOption { get; }
     internal Option<ReleaseType> ReleaseTypeOption { get; }
-    internal Option<string> PreReleaseOption { get; }
+    internal Option<string?> PreReleaseOption { get; }
     internal Option<string> AccessTokenOption { get; }
 
     internal ReleaseCreatorOptionsBinder()
@@ -24,7 +24,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
             IsRequired = true,
         };
 
-        PreReleaseOption = new Option<string>("--pre-release", parseArgument: ParsePreReleaseOption, description: "Indicates if this release is a pre-release. Optionally set a pre-release identifier")
+        PreReleaseOption = new Option<string?>("--pre-release", parseArgument: ParsePreReleaseOption, description: "Indicates if this release is a pre-release. Optionally set a pre-release identifier")
         {
             Arity = ArgumentArity.ZeroOrOne,
         };
@@ -47,8 +47,10 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
     protected override ReleaseCreatorOptions GetBoundValue(BindingContext bindingContext)
     {
         var parsedPreReleaseIdentifier = bindingContext.ParseResult.GetValueForOption(PreReleaseOption);
+        // replace empty string with null so that pre-release identifiers in the current version will not get overridden
         var preReleaseIdentifier = parsedPreReleaseIdentifier == string.Empty ? null : parsedPreReleaseIdentifier;
         var isPreRelease = parsedPreReleaseIdentifier != null;
+
         return new(
             bindingContext.ParseResult.GetValueForOption(CommitShaOption)!,
             bindingContext.ParseResult.GetValueForOption(ReleaseTypeOption),
@@ -58,11 +60,11 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
             );
     }
 
-    private string ParsePreReleaseOption(ArgumentResult argument)
+    private string? ParsePreReleaseOption(ArgumentResult argument)
     {
         return argument.Tokens.Count switch
         {
-            0 => string.Empty,
+            0 => null,
             _ => argument.Tokens[0].Value,
         };
     }

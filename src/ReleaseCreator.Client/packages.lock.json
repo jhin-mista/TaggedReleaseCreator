@@ -944,7 +944,8 @@
       "releasecreator.semanticversionutil": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.2, )"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "[8.0.2, )",
+          "Microsoft.VisualStudio.Validation": "[17.8.8, )"
         }
       },
       "Microsoft.Extensions.DependencyInjection.Abstractions": {
@@ -991,6 +992,12 @@
           "System.Text.Encodings.Web": "8.0.0",
           "System.Web.Services.Description": "4.10.3"
         }
+      },
+      "Microsoft.VisualStudio.Validation": {
+        "type": "CentralTransitive",
+        "requested": "[17.8.8, )",
+        "resolved": "17.8.8",
+        "contentHash": "rWXThIpyQd4YIXghNkiv2+VLvzS+MCMKVRDR0GAMlflsdo+YcAN2g2r5U1Ah98OFjQMRexTFtXQQ2LkajxZi3g=="
       },
       "System.Management.Automation": {
         "type": "CentralTransitive",
