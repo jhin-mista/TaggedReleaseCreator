@@ -1,6 +1,6 @@
-﻿using ReleaseCreator.VersionIncrementor.Types;
+﻿using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor.Builder
+namespace ReleaseCreator.SemanticVersionUtil.Builder
 {
     internal class SemanticVersionBuilder : ISemanticVersionBuilder
     {
@@ -8,10 +8,10 @@ namespace ReleaseCreator.VersionIncrementor.Builder
         private uint _minor;
         private uint _patch;
 
-        IList<string>? _buildMetadata;
+        private IList<string>? _buildMetadata;
 
-        IList<string>? _preReleaseIdentifier;
-        uint? _preReleaseNumber;
+        private IList<string>? _preReleaseIdentifier;
+        private uint? _preReleaseNumber;
 
         public SemanticVersion GetSemanticVersion()
         {

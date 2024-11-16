@@ -1,8 +1,8 @@
-﻿using ReleaseCreator.VersionIncrementor.Types;
+﻿using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor.Builder
+namespace ReleaseCreator.SemanticVersionUtil.Incrementor
 {
-    internal interface ISemanticVersionDirector
+    internal interface ISemanticVersionIncrementDirector
     {
         public SemanticVersion IncrementPreReleaseToStable(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto);
 

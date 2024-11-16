@@ -1,13 +1,12 @@
-﻿using ReleaseCreator.VersionIncrementor.Builder;
-using ReleaseCreator.VersionIncrementor.Types;
+﻿using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor
+namespace ReleaseCreator.SemanticVersionUtil.Incrementor
 {
     internal class SemanticVersionIncrementor : ISemanticVersionIncrementor
     {
-        private readonly ISemanticVersionDirector _director;
+        private readonly ISemanticVersionIncrementDirector _director;
 
-        internal SemanticVersionIncrementor(ISemanticVersionDirector director)
+        internal SemanticVersionIncrementor(ISemanticVersionIncrementDirector director)
         {
             _director = director;
         }

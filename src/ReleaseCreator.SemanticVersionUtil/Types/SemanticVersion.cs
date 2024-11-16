@@ -1,4 +1,4 @@
-﻿namespace ReleaseCreator.VersionIncrementor.Types;
+﻿namespace ReleaseCreator.SemanticVersionUtil.Types;
 
 /// <summary>
 /// Represents a semantic version.
