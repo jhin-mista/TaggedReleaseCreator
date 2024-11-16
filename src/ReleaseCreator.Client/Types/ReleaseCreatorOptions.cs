@@ -7,6 +7,4 @@ internal record ReleaseCreatorOptions(
     ReleaseType VersionIncreasePart,
     string? PreReleaseIdentifier,
     bool IsPreRelease,
-    string AccessToken)
-{
-}
+    string AccessToken);
