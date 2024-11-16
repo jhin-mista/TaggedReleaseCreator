@@ -8,10 +8,10 @@ namespace ReleaseCreator.SemanticVersionUtil.Builder
         private uint _minor;
         private uint _patch;
 
-        IList<string>? _buildMetadata;
+        private IList<string>? _buildMetadata;
 
-        IList<string>? _preReleaseIdentifier;
-        uint? _preReleaseNumber;
+        private IList<string>? _preReleaseIdentifier;
+        private uint? _preReleaseNumber;
 
         public SemanticVersion GetSemanticVersion()
         {
