@@ -1,7 +1,7 @@
-﻿using ReleaseCreator.VersionIncrementor.Builder;
-using ReleaseCreator.VersionIncrementor.Types;
+﻿using ReleaseCreator.SemanticVersionUtil.Builder;
+using ReleaseCreator.SemanticVersionUtil.Types;
 
-namespace ReleaseCreator.VersionIncrementor
+namespace ReleaseCreator.SemanticVersionUtil
 {
     internal class SemanticVersionIncrementor : ISemanticVersionIncrementor
     {
