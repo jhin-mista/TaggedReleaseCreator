@@ -12,9 +12,6 @@
     <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0" />
     <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
     <PackageVersion Include="Microsoft.PowerShell.SDK" Version="7.4.6" />
-    <PackageVersion Include="System.IO.Packaging" Version="9.0.0" />
     <PackageVersion Include="System.Management.Automation" Version="7.4.6" />
-    <PackageVersion Include="System.Runtime.Caching" Version="9.0.0" />
-    <PackageVersion Include="System.Text.Json" Version="9.0.0" />
   </ItemGroup>
 </Project>

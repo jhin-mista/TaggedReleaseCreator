@@ -9,9 +9,5 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
     <PackageReference Include="Microsoft.PowerShell.SDK" />
-    <PackageReference Include="System.IO.Packaging" />
-    <PackageReference Include="System.Management.Automation" />
-    <PackageReference Include="System.Runtime.Caching" />
-    <PackageReference Include="System.Text.Json" />
   </ItemGroup>
 </Project>
