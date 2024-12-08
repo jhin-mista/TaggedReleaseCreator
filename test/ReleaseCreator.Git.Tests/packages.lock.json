@@ -776,7 +776,6 @@
       "releasecreator.git": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.0, )",
           "Microsoft.Extensions.Logging.Abstractions": "[9.0.0, )",
           "Microsoft.PowerShell.SDK": "[7.4.6, )"
         }
