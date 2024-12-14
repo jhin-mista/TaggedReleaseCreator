@@ -1,10 +1,10 @@
 # Infrastructure Setup for the Release Creator Action
 This file is intended to present an overview of the special setup needed to make the release creator action work. The infrastructure setup mainly resides in the following files
-- [Dockerfile](https://github.com/jhin-mista/ReleaseCreator/blob/main/Dockerfile)
+- [Dockerfile](/Dockerfile)
   - Creates an image that can run the release creator application
-- [action.yml](https://github.com/jhin-mista/ReleaseCreator/blob/feature/github-action-support/action.yml)
+- [action.yml](/action.yml)
   - GitHub specific metadata file defining inputs and how those inputs are being passed to the container
-- [entrypoint.sh](https://github.com/jhin-mista/ReleaseCreator/blob/feature/github-action-support/entrypoint.sh)
+- [entrypoint.sh](/entrypoint.sh)
   - Entrypoint of the container
   - Configures the container at runtime and starts the release creator
 
@@ -14,7 +14,7 @@ The image for the container is based on the [dotnet sdk image](https://github.co
 ## action.yml
 
 ### Logging
-To not pollute the [ReleaseCreatorOptions](https://github.com/jhin-mista/ReleaseCreator/blob/main/src/ReleaseCreator.Client/Types/ReleaseCreatorOptions.cs) type with logging configuration, the log level is passed as an environment variable. The log level defaults to `LogLevel.Information`.
+To not pollute the [ReleaseCreatorOptions](/src/ReleaseCreator.Client/Types/ReleaseCreatorOptions.cs) type with logging configuration, the log level is passed as an environment variable. The log level defaults to `LogLevel.Information`.
 
 ### Using a pre-built container from a registry
 Pulling a built container of the action would make it overly complicated to support using a specific version of the action. Pushing the container to a registry decouples the repository code state with the container code state.
@@ -23,7 +23,7 @@ Suppose the repository and container has a latest version of `1.2.3`. If `action
 
 Using tags on the container images would solve this. However, a released version and the used container version would still be decoupled as the container version tag would have to be hard coded into the `action.yml` and updated before every release. This would also defeat the purpose of automatically incrementing the semantic version as one would have to compute the next semantic version by themself before the release workflow runs. This seems very error prone.
 
-For rolling versions to be supported, a branch for every version would have to be created. There are challenges to this approach which are described in more detail in the [roadmap](https://github.com/jhin-mista/ReleaseCreator/issues/4)
+For rolling versions to be supported, a branch for every version would have to be created. There are challenges to this approach which are described in more detail in the [roadmap](https://github.com/jhin-mista/TaggedReleaseCreator/issues/4)
 
 The benefit of not having to build the image on every action run does not seem worth the effort. Building the image takes roughly 30 seconds. Creating a release is not that time critical most of the time.
 
