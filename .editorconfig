@@ -3,13 +3,13 @@ root = true
 # All files
 [*]
 indent_style = space
+spelling_language = en-gb
 
 # XML project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
 indent_size = 2
 
 [*.cs]
-
 tab_width = 4
 indent_size = 4
 

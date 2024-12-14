@@ -1,5 +1,5 @@
-name: 'Release Creator'
-description: 'Creates a GitHub release'
+name: 'Tagged Release Creator'
+description: 'Creates a GitHub release tagged with the next semantic version'
 branding:
   icon: package
   color: gray-dark
@@ -22,7 +22,7 @@ inputs:
     required: true
   pre-release-identifier:
     description:
-      'The pre-release identifier'
+      'An optional pre-release identifier'
     required: false
   log-level:
     description:

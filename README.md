@@ -1,6 +1,6 @@
-# ReleaseCreator
+# TaggedReleaseCreator
 
-[![CI pipeline](https://github.com/jhin-mista/ReleaseCreator/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jhin-mista/ReleaseCreator/actions/workflows/ci.yml)
+[![CI pipeline](https://github.com/jhin-mista/TaggedReleaseCreator/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/jhin-mista/TaggedReleaseCreator/actions/workflows/ci.yml)
 
 This action creates a [GitHub release](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) and automatically increases the [semantic version](https://semver.org) tag. It does this by finding the highest semantic version in the remote branch the action runs on and increasing it based on given inputs.
 
@@ -124,8 +124,8 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Call release creator action
-              id: release-creator
-              uses: jhin-mista/releasecreator
+              id: tagged-release-creator
+              uses: jhin-mista/taggedreleasecreator
               with:
                 commit: ${{ github.sha }} # This will be the HEAD of the branch the workflow runs on
                 type: ${{ inputs.release-type }}
