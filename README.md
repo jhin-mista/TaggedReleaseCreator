@@ -124,7 +124,7 @@ jobs:
               uses: actions/checkout@v4
 
             - name: Call release creator action
-              id: release-creator
+              id: tagged-release-creator
               uses: jhin-mista/taggedreleasecreator
               with:
                 commit: ${{ github.sha }} # This will be the HEAD of the branch the workflow runs on
