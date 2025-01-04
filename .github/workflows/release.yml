@@ -21,6 +21,10 @@ on:
                 type: string
                 required: false
                 default: ""
+            log-level:
+                description: Configures the log level
+                required: false
+                default: "Information"
 
 jobs:
     create-release:
@@ -40,4 +44,4 @@ jobs:
                 token: ${{ secrets.GITHUB_TOKEN }}
                 pre-release: ${{ inputs.is-pre-release }}
                 pre-release-identifier: ${{ inputs.pre-release-identifier }}
-                log-level: Debug
+                log-level: ${{ inputs.log-level }}
