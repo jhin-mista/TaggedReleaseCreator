@@ -22,9 +22,12 @@ on:
                 required: false
                 default: ""
             log-level:
+                type: choice
                 description: Configures the log level
                 required: false
-                default: "Information"
+                options:
+                    - Information
+                    - Debug
 
 jobs:
     create-release:
