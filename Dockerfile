@@ -10,13 +10,13 @@ COPY --from=base /app/out /app
 COPY entrypoint.sh /entrypoint.sh
 
 LABEL maintainer="Benedict Zendel"
-LABEL repository="https://github.com/jhin-mista/ReleaseCreator"
-LABEL homepage="https://github.com/jhin-mista/ReleaseCreator"
-LABEL com.github.actions.name="Release Creator"
+LABEL repository="https://github.com/jhin-mista/TaggedReleaseCreator"
+LABEL homepage="https://github.com/jhin-mista/TaggedReleaseCreator"
+LABEL com.github.actions.name="Tagged Release Creator"
 LABEL com.github.actions.description="Creates a GitHub release and calculates the next semantic version number."
 LABEL com.github.actions.icon="package"
 LABEL com.github.actions.color="gray-dark"
-LABEL org.opencontainers.image.source="https://github.com/jhin-mista/ReleaseCreator"
+LABEL org.opencontainers.image.source="https://github.com/jhin-mista/TaggedReleaseCreator"
 LABEL org.opencontainers.image.description="Creates a GitHub release and calculates the next semantic version number."
 LABEL org.opencontainers.image.licenses="MIT"
 
