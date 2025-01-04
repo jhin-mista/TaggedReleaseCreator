@@ -1,9 +1,9 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.2 AS base
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS base
 WORKDIR /app
 COPY . ./
 RUN dotnet publish ./src/ReleaseCreator.Client/ReleaseCreator.Client.csproj -c Release -o out --no-self-contained
 
-FROM mcr.microsoft.com/dotnet/sdk:9.0.100-rc.2
+FROM mcr.microsoft.com/dotnet/sdk:9.0
 # Copy binaries to the final layer
 COPY --from=base /app/out /app
 # Set entrypoint for the container
