@@ -69,12 +69,8 @@ An optional pre-release identifier that will be prepended to the pre-release num
 
 ### `log-level`
 Specifies the log level for the action. Can be one of the following values:
-- `Trace`
-- `Debug`
 - `Information`
-- `Warning`
-- `Error`
-- `Critical`
+- `Debug`
 - `None`
 
 The default log level is `Information`.
