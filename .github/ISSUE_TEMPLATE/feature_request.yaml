@@ -1,6 +1,7 @@
 name: Feature Request Form (Beta)
 description: Suggest an idea for this project.
 title: "[Feature request]: "
+labels: ["enhancement"]
 body:
  - type: markdown
    attributes:
