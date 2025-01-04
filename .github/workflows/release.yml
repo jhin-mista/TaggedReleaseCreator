@@ -28,6 +28,7 @@ on:
                 options:
                     - Information
                     - Debug
+                    - None
 
 jobs:
     create-release:
