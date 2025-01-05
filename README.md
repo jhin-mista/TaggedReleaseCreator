@@ -5,7 +5,7 @@
 This action creates a [GitHub release](https://docs.github.com/en/repositories/releasing-projects-on-github/about-releases) and automatically increases the [semantic version](https://semver.org) tag. It does this by finding the highest semantic version in the remote branch the action runs on and increasing it based on given inputs.
 
 ## Contents
-1. [Detailed incrementation behaviour](#detailed-version-increase-behaviour)
+1. [Detailed version increase behaviour](#detailed-version-increase-behaviour)
 1. [Inputs](#inputs)
 1. [Outputs](#outputs)
 1. [Usage](#usage)
