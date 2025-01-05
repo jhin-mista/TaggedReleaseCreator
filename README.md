@@ -109,6 +109,14 @@ on:
                 type: string
                 required: false
                 default: ""
+            log-level:
+                type: choice
+                description: Configures the log level
+                required: false
+                options:
+                    - Information
+                    - Debug
+                    - None
 
 jobs:
     create-release:
@@ -128,4 +136,5 @@ jobs:
                 token: ${{ secrets.GITHUB_TOKEN }}
                 pre-release: ${{ inputs.is-pre-release }}
                 pre-release-identifier: ${{ inputs.pre-release-identifier }}
+                log-level: ${{ inputs.log-level }}
 ```
