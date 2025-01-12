@@ -8,7 +8,32 @@ on:
 
 jobs:
   ci:
-    uses: jhin-mista/ReusableWorkflows/.github/workflows/dotnet-ci.yml@ff0b7fcad11959189ac9ad1b822aaebdd78835db
-    with:
-      dotnet-version: 9.0.100
-      uses-lockfile: true
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Setup git
+      run: |
+       git config --global core.autocrlf false
+       git config --global core.eol crlf
+
+    - name: Check out
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 9.0.100
+        cache: true
+        cache-dependency-path: '**/packages.lock.json'
+
+    - name: Restore dependencies
+      run: dotnet restore --locked-mode
+
+    - name: Format
+      run: dotnet format --verify-no-changes --verbosity diagnostic --no-restore
+
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --configuration Release

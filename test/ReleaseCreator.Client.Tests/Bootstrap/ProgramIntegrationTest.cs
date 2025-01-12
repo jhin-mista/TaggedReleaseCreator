@@ -1,23 +1,36 @@
 ﻿using FluentAssertions;
 using Moq;
 using Octokit;
+using ReleaseCreator.Client.Bootstrap;
 
-namespace ReleaseCreator.Client.Tests;
+namespace ReleaseCreator.Client.Tests.Bootstrap;
 
 [TestFixture]
 public class ProgramIntegrationTest
 {
+    private Mock<IReleasesClient> _releasesClientMock;
+    private Func<string, IReleasesClient> _bootstrapperReleasesClientFactory;
+
     [OneTimeSetUp]
-    public void SetUp()
+    public void OneTimeSetUp()
     {
+        _bootstrapperReleasesClientFactory = ContainerBootstrapper.ReleasesClientFactory;
         var workingDirectory = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "TestRepository");
         Environment.CurrentDirectory = workingDirectory;
         Directory.Move(".igit", ".git");
     }
 
+    [SetUp]
+    public void SetUp()
+    {
+        _releasesClientMock = new(MockBehavior.Strict);
+        ContainerBootstrapper.ReleasesClientFactory = _ => _releasesClientMock.Object;
+    }
+
     [OneTimeTearDown]
     public void TearDown()
     {
+        ContainerBootstrapper.ReleasesClientFactory = _bootstrapperReleasesClientFactory;
         Directory.Move(".git", ".igit");
     }
 
@@ -31,14 +44,11 @@ public class ProgramIntegrationTest
         Environment.SetEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.RepositoryId, repositoryId.ToString());
         Environment.SetEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.OutputFilePath, tmpFilePath);
 
-        var clientMock = new Mock<IReleasesClient>(MockBehavior.Strict);
         var createdRelease = new Release();
         NewRelease? calculatedNewRelease = null;
-        clientMock.Setup(x => x.Create(It.IsAny<long>(), It.IsAny<NewRelease>()))
+        _releasesClientMock.Setup(x => x.Create(It.IsAny<long>(), It.IsAny<NewRelease>()))
             .Callback<long, NewRelease>((_, x) => calculatedNewRelease = x)
             .ReturnsAsync(createdRelease);
-
-        Program.ReleasesClientFactory = _ => clientMock.Object;
 
         string[] arguments =
             [
@@ -48,13 +58,13 @@ public class ProgramIntegrationTest
             ];
 
         // act
-        var result = await Program.Main(arguments);
+        await Program.Main(arguments);
 
         // assert
-        result.Should().Be(0);
+        Environment.ExitCode.Should().Be(0);
 
-        clientMock.Verify(x => x.Create(repositoryId, It.IsAny<NewRelease>()), Times.Once);
-        clientMock.VerifyNoOtherCalls();
+        _releasesClientMock.Verify(x => x.Create(repositoryId, It.IsAny<NewRelease>()), Times.Once);
+        _releasesClientMock.VerifyNoOtherCalls();
 
         calculatedNewRelease.Should().NotBeNull();
         calculatedNewRelease!.TagName.Should().Be(ExpectedTagName);
@@ -67,16 +77,13 @@ public class ProgramIntegrationTest
     [Test]
     public async Task Main_WhenArgumentParsingFails_ShouldNotCreateRelease()
     {
-        // arrange
-        var clientMock = new Mock<IReleasesClient>(MockBehavior.Strict);
-        Program.ReleasesClientFactory = _ => clientMock.Object;
-
         // act
-        var result = await Program.Main([]);
+        await Program.Main([]);
 
         // assert
-        result.Should().NotBe(0);
+        Environment.ExitCode.Should().NotBe(0);
 
-        clientMock.Verify(x => x.Create(It.IsAny<long>(), It.IsAny<NewRelease>()), Times.Never);
+        _releasesClientMock.Verify(x => x.Create(It.IsAny<long>(), It.IsAny<NewRelease>()), Times.Never);
+        _releasesClientMock.VerifyNoOtherCalls();
     }
 }
