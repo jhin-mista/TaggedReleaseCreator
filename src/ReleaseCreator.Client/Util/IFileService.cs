@@ -2,5 +2,5 @@
 
 internal interface IFileService
 {
-    void AppendLine(string filePath, string content);
+    public void AppendLine(string filePath, string content);
 }
