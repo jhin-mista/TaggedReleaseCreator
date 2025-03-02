@@ -3,6 +3,8 @@
 
   <PropertyGroup>
     <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+    <IsPublishable>false</IsPublishable>
   </PropertyGroup>
 
   <!-- Workaround for https://github.com/dotnet/roslyn/issues/41640 -->
