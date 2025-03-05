@@ -15,7 +15,7 @@ public class SemanticVersionBuilderTest
     }
 
     [Test]
-    public void GetSemanticVersion_ShouldBuildSemanticVersionAsExpected()
+    public void BuildSemanticVersion_ShouldBuildSemanticVersionAsExpected()
     {
         // act
         var result = _sut.BuildSemanticVersion();
