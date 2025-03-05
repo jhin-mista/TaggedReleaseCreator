@@ -1,0 +1,5 @@
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+
+# Download a script so Visual studio is able to connect to the conainer so debugging is possible
+RUN wget https://aka.ms/getvsdbgsh && \
+    sh getvsdbgsh -v latest  -l /vsdbg
