@@ -7,6 +7,7 @@ spelling_language = en-gb
 
 # XML project files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+tab_width = 2
 indent_size = 2
 
 [*.cs]

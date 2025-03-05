@@ -1,0 +1,57 @@
+name: tests
+
+services:
+  restore:
+    pull_policy: build
+    build:
+      context: ../
+      target: base
+    image: testimage
+    volumes:
+      - type: volume
+        source: nuget-cache
+        target: /.nuget
+      - type: volume
+        source: source-data
+        target: /app
+    command: dotnet restore --locked-mode --packages /.nuget
+
+  format:
+    pull_policy: never
+    image: testimage
+    volumes:
+      - type: volume
+        source: nuget-cache
+        target: /.nuget
+      - type: volume
+        source: source-data
+        target: /app
+    command: dotnet format --verify-no-changes --verbosity diagnostic --no-restore
+
+  build:
+    pull_policy: never
+    image: testimage
+    volumes:
+      - type: volume
+        source: nuget-cache
+        target: /.nuget
+      - type: volume
+        source: source-data
+        target: /app
+    command: dotnet build --no-restore --configuration Release
+
+  tests:
+    pull_policy: never
+    image: testimage
+    volumes:
+      - type: volume
+        source: source-data
+        target: /app
+    command: dotnet test --no-build --verbosity normal --configuration Release
+
+  prod-build:
+    build: ../
+
+volumes:
+  source-data:
+  nuget-cache:
