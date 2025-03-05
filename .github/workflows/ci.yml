@@ -8,8 +8,8 @@ on:
 
 env:
   DOCKER_COMPOSE: "docker compose --file test/compose.yaml"
-  RUN: "$DOCKER_COMPOSE run --rm"
-  BUILD: "$DOCKER_COMPOSE build"
+  RUN: $DOCKER_COMPOSE run --rm
+  BUILD: $DOCKER_COMPOSE build
 
 jobs:
   ci:
