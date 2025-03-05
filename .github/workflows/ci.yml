@@ -24,13 +24,6 @@ jobs:
     - name: Check out
       uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        global-json-file: ./global.json
-        cache: true
-        cache-dependency-path: '**/packages.lock.json'
-
     - name: Restore dependencies
       run: $RUN restore
 
