@@ -7,9 +7,8 @@ on:
     branches: [ "main" ]
 
 env:
-  DOCKER_COMPOSE: "docker compose --file test/compose.yaml"
-  RUN: $DOCKER_COMPOSE run --rm
-  BUILD: $DOCKER_COMPOSE build
+  RUN: "docker compose --file test/compose.yaml run --rm"
+  BUILD: "docker compose --file test/compose.yaml build"
 
 jobs:
   ci:
