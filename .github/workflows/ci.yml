@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
+env:
+  RUN: "docker compose --file test/compose.yaml run --rm"
+  BUILD: "docker compose --file test/compose.yaml build"
+
 jobs:
   ci:
     runs-on: ubuntu-latest
@@ -19,21 +23,30 @@ jobs:
     - name: Check out
       uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 9.0.100
-        cache: true
-        cache-dependency-path: '**/packages.lock.json'
-
     - name: Restore dependencies
-      run: dotnet restore --locked-mode
+      run: $RUN restore
 
     - name: Format
-      run: dotnet format --verify-no-changes --verbosity diagnostic --no-restore
+      run: $RUN format
 
     - name: Build
-      run: dotnet build --no-restore --configuration Release
+      run: $RUN build
 
     - name: Test
-      run: dotnet test --no-build --verbosity normal --configuration Release
+      run: $RUN tests
+
+  docker-build:
+    runs-on: ubuntu-latest
+    name: Docker Build
+
+    steps:
+    - name: Setup git
+      run: |
+       git config --global core.autocrlf false
+       git config --global core.eol crlf
+
+    - name: Check out
+      uses: actions/checkout@v4
+
+    - name: Build prod image
+      run: $BUILD prod-build
