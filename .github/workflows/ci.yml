@@ -35,5 +35,10 @@ jobs:
     - name: Test
       run: $RUN tests
 
+  docker-build:
+    runs-on: ubuntu-latest
+    name: Docker Build
+
+    steps:
     - name: Build prod image
       run: $BUILD prod-build
