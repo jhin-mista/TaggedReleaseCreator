@@ -35,5 +35,18 @@ jobs:
     - name: Test
       run: $RUN tests
 
+  docker-build:
+    runs-on: ubuntu-latest
+    name: Docker Build
+
+    steps:
+    - name: Setup git
+      run: |
+       git config --global core.autocrlf false
+       git config --global core.eol crlf
+
+    - name: Check out
+      uses: actions/checkout@v4
+
     - name: Build prod image
       run: $BUILD prod-build
