@@ -5,7 +5,7 @@ services:
     pull_policy: build
     build:
       context: ../
-      target: base
+      target: appbase
     image: testimage
     volumes:
       - type: volume
