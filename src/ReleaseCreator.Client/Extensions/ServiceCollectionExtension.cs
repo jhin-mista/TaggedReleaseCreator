@@ -10,7 +10,7 @@ using Application = ReleaseCreator.Client.Bootstrap.Application;
 namespace ReleaseCreator.Client.Extensions;
 
 /// <summary>
-/// Contains extension methods for <see cref="IServiceCollection"/>.
+/// Contains extension methods for adding the release creator client services to the DI container.
 /// </summary>
 public static class ServiceCollectionExtension
 {
@@ -20,7 +20,7 @@ public static class ServiceCollectionExtension
     public static Func<string, IReleasesClient> ReleasesClientFactory { get; set; } = GetReleasesClient;
 
     /// <summary>
-    /// Adds all services for the client.
+    /// Adds all services for the release creator client.
     /// </summary>
     /// <param name="services">The <see cref="IServiceCollection"/> to add the service to.</param>
     /// <param name="accessToken">The access token.</param>

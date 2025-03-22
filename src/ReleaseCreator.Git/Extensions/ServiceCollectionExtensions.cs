@@ -5,7 +5,7 @@ using ReleaseCreator.Git.Tag;
 namespace ReleaseCreator.Git.Extensions;
 
 /// <summary>
-/// Extension methods for adding git services to the DI container.
+/// Contains extension methods for adding git services to the DI container.
 /// </summary>
 public static class ServiceCollectionExtensions
 {

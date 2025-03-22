@@ -6,7 +6,7 @@ using ReleaseCreator.SemanticVersionUtil.Parser;
 namespace ReleaseCreator.SemanticVersionUtil.Extensions;
 
 /// <summary>
-/// Contains extension methods for <see cref="IServiceCollection"/>.
+/// Contains extension methods for adding semantic version util services to the DI container.
 /// </summary>
 public static class ServiceCollectionExtension
 {
