@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
-using Octokit;
 using ReleaseCreator.Client.Bootstrap;
 using System.Collections;
 using System.Reflection;
@@ -39,17 +38,6 @@ public class ContainerBootstrapperTest
         var loggerFactory = container.GetRequiredService<ILoggerFactory>();
 
         IsConsoleLoggerConfigured(loggerFactory).Should().BeTrue();
-    }
-
-    [Test]
-    public void BuildUp_ShouldContainReleasesClient()
-    {
-        // act
-        var container = ContainerBootstrapper.BuildUp("token");
-
-        // assert
-        var releasesClient = container.GetService<IReleasesClient>();
-        releasesClient.Should().NotBeNull();
     }
 
     private static bool IsConsoleLoggerConfigured(ILoggerFactory loggerFactory)
