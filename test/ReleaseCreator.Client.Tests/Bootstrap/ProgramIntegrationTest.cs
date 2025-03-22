@@ -2,6 +2,7 @@
 using Moq;
 using Octokit;
 using ReleaseCreator.Client.Bootstrap;
+using ReleaseCreator.Client.Extensions;
 
 namespace ReleaseCreator.Client.Tests.Bootstrap;
 
@@ -9,12 +10,12 @@ namespace ReleaseCreator.Client.Tests.Bootstrap;
 public class ProgramIntegrationTest
 {
     private Mock<IReleasesClient> _releasesClientMock;
-    private Func<string, IReleasesClient> _bootstrapperReleasesClientFactory;
+    private Func<string, IReleasesClient> _releasesClientFactory;
 
     [OneTimeSetUp]
     public void OneTimeSetUp()
     {
-        _bootstrapperReleasesClientFactory = ContainerBootstrapper.ReleasesClientFactory;
+        _releasesClientFactory = ServiceCollectionExtension.ReleasesClientFactory;
         var workingDirectory = Path.Combine(Environment.CurrentDirectory, "..", "..", "..", "TestRepository");
         Environment.CurrentDirectory = workingDirectory;
         Directory.Move(".igit", ".git");
@@ -24,13 +25,13 @@ public class ProgramIntegrationTest
     public void SetUp()
     {
         _releasesClientMock = new(MockBehavior.Strict);
-        ContainerBootstrapper.ReleasesClientFactory = _ => _releasesClientMock.Object;
+        ServiceCollectionExtension.ReleasesClientFactory = _ => _releasesClientMock.Object;
     }
 
     [OneTimeTearDown]
     public void TearDown()
     {
-        ContainerBootstrapper.ReleasesClientFactory = _bootstrapperReleasesClientFactory;
+        ServiceCollectionExtension.ReleasesClientFactory = _releasesClientFactory;
         Directory.Move(".git", ".igit");
     }
 
