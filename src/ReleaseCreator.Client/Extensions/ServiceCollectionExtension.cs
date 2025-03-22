@@ -5,7 +5,6 @@ using ReleaseCreator.Client.ReleaseCreation;
 using ReleaseCreator.Client.ReleaseCreation.GitHub;
 using ReleaseCreator.Client.Util;
 using ReleaseCreator.Client.VersionCalculation;
-using Application = ReleaseCreator.Client.Bootstrap.Application;
 
 namespace ReleaseCreator.Client.Extensions;
 
@@ -32,8 +31,7 @@ public static class ServiceCollectionExtension
             .AddSingleton<IFileService, FileService>()
             .AddSingleton<INextVersionCalculator, NextVersionCalculator>()
             .AddSingleton(_ => client)
-            .AddSingleton<IReleaseCreator, GitHubReleaseCreator>()
-            .AddSingleton<Application>();
+            .AddSingleton<IReleaseCreator, GitHubReleaseCreator>();
 
         return services;
     }

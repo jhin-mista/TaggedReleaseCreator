@@ -23,7 +23,8 @@ public static class ContainerBootstrapper
         services.AddLogging(AddConsoleLoggerWithLogLevelSetByEnvironmentVariable)
             .AddSemanticVersionUtilServicesSingleton()
             .AddGitServicesSingleton()
-            .AddReleaseCreatorClientServicesSingleton(accessToken);
+            .AddReleaseCreatorClientServicesSingleton(accessToken)
+            .AddSingleton<Application>();
 
         return services.BuildServiceProvider();
     }
