@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using ReleaseCreator.Git.Extensions;
+using ReleaseCreator.Git.Tag;
 
 namespace ReleaseCreator.Git.Tests.Extensions;
 
@@ -19,9 +20,10 @@ public class ServiceCollectionExtensionsTest
     public void AddReleaseCreatorClientServicesSingleton_ShouldNotThrow()
     {
         // act
-        var invocation = _testee.Invoking(x => x.AddGitServicesSingleton());
+        var result = _testee.AddGitServicesSingleton();
 
         // assert
-        invocation.Should().NotThrow();
+        var provider = result.BuildServiceProvider();
+        provider.Invoking(x => x.GetRequiredService<ITagRetriever>()).Should().NotThrow();
     }
 }

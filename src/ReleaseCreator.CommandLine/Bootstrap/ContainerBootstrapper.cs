@@ -2,8 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ReleaseCreator.Client.Extensions;
-using ReleaseCreator.Git.Extensions;
-using ReleaseCreator.SemanticVersionUtil.Extensions;
 
 namespace ReleaseCreator.CommandLine.Bootstrap;
 
@@ -21,8 +19,6 @@ public static class ContainerBootstrapper
         var services = new ServiceCollection();
 
         services.AddLogging(AddConsoleLoggerWithLogLevelSetByEnvironmentVariable)
-            .AddSemanticVersionUtilServicesSingleton()
-            .AddGitServicesSingleton()
             .AddReleaseCreatorClientServicesSingleton(accessToken)
             .AddSingleton<Application>();
 

@@ -5,6 +5,8 @@ using ReleaseCreator.Client.ReleaseCreation;
 using ReleaseCreator.Client.ReleaseCreation.GitHub;
 using ReleaseCreator.Client.Util;
 using ReleaseCreator.Client.VersionCalculation;
+using ReleaseCreator.Git.Extensions;
+using ReleaseCreator.SemanticVersionUtil.Extensions;
 
 namespace ReleaseCreator.Client.Extensions;
 
@@ -27,7 +29,10 @@ public static class ServiceCollectionExtension
     {
         var client = ReleasesClientFactory(accessToken);
 
-        services.AddSingleton<IEnvironmentService, EnvironmentService>()
+        services
+            .AddSemanticVersionUtilServicesSingleton()
+            .AddGitServicesSingleton()
+            .AddSingleton<IEnvironmentService, EnvironmentService>()
             .AddSingleton<IFileService, FileService>()
             .AddSingleton<INextVersionCalculator, NextVersionCalculator>()
             .AddSingleton(_ => client)
