@@ -2,10 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using ReleaseCreator.Client.Extensions;
-using ReleaseCreator.Git.Extensions;
-using ReleaseCreator.SemanticVersionUtil.Extensions;
 
-namespace ReleaseCreator.Client.Bootstrap;
+namespace ReleaseCreator.CommandLine.Bootstrap;
 
 /// <summary>
 /// Represents the bootstrapping logic for the dependency injection container.
@@ -21,9 +19,8 @@ public static class ContainerBootstrapper
         var services = new ServiceCollection();
 
         services.AddLogging(AddConsoleLoggerWithLogLevelSetByEnvironmentVariable)
-            .AddSemanticVersionUtilServicesSingleton()
-            .AddGitServicesSingleton()
-            .AddReleaseCreatorClientServicesSingleton(accessToken);
+            .AddReleaseCreatorClientServicesSingleton(accessToken)
+            .AddSingleton<Application>();
 
         return services.BuildServiceProvider();
     }

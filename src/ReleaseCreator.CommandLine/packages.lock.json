@@ -2,69 +2,47 @@
   "version": 2,
   "dependencies": {
     "net9.0": {
-      "coverlet.collector": {
+      "Microsoft.Extensions.Hosting": {
         "type": "Direct",
-        "requested": "[6.0.4, )",
-        "resolved": "6.0.4",
-        "contentHash": "lkhqpF8Pu2Y7IiN7OntbsTtdbpR1syMsm2F3IgX6ootA4ffRqWL5jF7XipHuZQTdVuWG/gVAAcf8mjk8Tz0xPg=="
-      },
-      "FluentAssertions": {
-        "type": "Direct",
-        "requested": "[7.0.0, 7.0.0]",
-        "resolved": "7.0.0",
-        "contentHash": "mTLbcU991EQ1SEmNbVBaGGGJy0YFzvGd1sYJGNZ07nlPKuyHSn1I22aeKzqQXgEiaKyRO6MSCto9eN9VxMwBdA==",
+        "requested": "[9.0.3, )",
+        "resolved": "9.0.3",
+        "contentHash": "ioFXglqFA9uCYcKHI3CLVTO3I75jWIhvVxiZBzGeSPxw7XdhDLh0QvbNFrMTbZk9qqEVQcylblcvcNXnFHYXyA==",
         "dependencies": {
-          "System.Configuration.ConfigurationManager": "6.0.0"
+          "Microsoft.Extensions.Configuration": "9.0.3",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Configuration.Binder": "9.0.3",
+          "Microsoft.Extensions.Configuration.CommandLine": "9.0.3",
+          "Microsoft.Extensions.Configuration.EnvironmentVariables": "9.0.3",
+          "Microsoft.Extensions.Configuration.FileExtensions": "9.0.3",
+          "Microsoft.Extensions.Configuration.Json": "9.0.3",
+          "Microsoft.Extensions.Configuration.UserSecrets": "9.0.3",
+          "Microsoft.Extensions.DependencyInjection": "9.0.3",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Diagnostics": "9.0.3",
+          "Microsoft.Extensions.FileProviders.Abstractions": "9.0.3",
+          "Microsoft.Extensions.FileProviders.Physical": "9.0.3",
+          "Microsoft.Extensions.Hosting.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Logging": "9.0.3",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Logging.Configuration": "9.0.3",
+          "Microsoft.Extensions.Logging.Console": "9.0.3",
+          "Microsoft.Extensions.Logging.Debug": "9.0.3",
+          "Microsoft.Extensions.Logging.EventLog": "9.0.3",
+          "Microsoft.Extensions.Logging.EventSource": "9.0.3",
+          "Microsoft.Extensions.Options": "9.0.3"
         }
       },
-      "Microsoft.NET.Test.Sdk": {
+      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
         "type": "Direct",
-        "requested": "[17.13.0, )",
-        "resolved": "17.13.0",
-        "contentHash": "W19wCPizaIC9Zh47w8wWI/yxuqR7/dtABwOrc8r2jX/8mUNxM2vw4fXDh+DJTeogxV+KzKwg5jNNGQVwf3LXyA==",
-        "dependencies": {
-          "Microsoft.CodeCoverage": "17.13.0",
-          "Microsoft.TestPlatform.TestHost": "17.13.0"
-        }
+        "requested": "[1.21.2, )",
+        "resolved": "1.21.2",
+        "contentHash": "kN58RveGig9YjWAoYI3flDWC/jWCU0Xzzmp3f49fbnPwZLsVJu9qMt+VSrIz7I3Gn6jkeY1l7cVJopiRDOq3CQ=="
       },
-      "Moq": {
+      "System.CommandLine": {
         "type": "Direct",
-        "requested": "[4.20.72, )",
-        "resolved": "4.20.72",
-        "contentHash": "EA55cjyNn8eTNWrgrdZJH5QLFp2L43oxl1tlkoYUKIE9pRwL784OWiTXeCV5ApS+AMYEAlt7Fo03A2XfouvHmQ==",
-        "dependencies": {
-          "Castle.Core": "5.1.1"
-        }
-      },
-      "NUnit": {
-        "type": "Direct",
-        "requested": "[4.3.2, )",
-        "resolved": "4.3.2",
-        "contentHash": "puVXayXNmEu7MFQSUswGmUjOy3M3baprMbkLl5PAutpeDoGTr+jPv33qAYsqxywi2wJCq8l/O3EhHoLulPE1iQ=="
-      },
-      "NUnit.Analyzers": {
-        "type": "Direct",
-        "requested": "[4.6.0, )",
-        "resolved": "4.6.0",
-        "contentHash": "uK1TEViVBugOO6uDou1amu7CoNhrd2sEUFr/iaEmVfoeY8qq/zzWCCUZi97aCCSZmjnHKCCWKh3RucU27qPlKg=="
-      },
-      "NUnit3TestAdapter": {
-        "type": "Direct",
-        "requested": "[5.0.0, )",
-        "resolved": "5.0.0",
-        "contentHash": "sy4cLoUAdE6TDM4wNX5gmNCyhMev5wUz4cA6ZRf/aON9vf9t4xTVGLj/4huhDKcS4dFfmVVcgcP70yC7WC9kKg==",
-        "dependencies": {
-          "Microsoft.Testing.Extensions.VSTestBridge": "1.5.3",
-          "Microsoft.Testing.Platform.MSBuild": "1.5.3"
-        }
-      },
-      "Castle.Core": {
-        "type": "Transitive",
-        "resolved": "5.1.1",
-        "contentHash": "rpYtIczkzGpf+EkZgDr9CClTdemhsrwA/W5hMoPjLkRFnXzH44zDLoovXeKtmxb1ykXK9aJVODSpiJml8CTw2g==",
-        "dependencies": {
-          "System.Diagnostics.EventLog": "6.0.0"
-        }
+        "requested": "[2.0.0-beta4.22272.1, )",
+        "resolved": "2.0.0-beta4.22272.1",
+        "contentHash": "1uqED/q2H0kKoLJ4+hI2iPSBSEdTuhfCYADeJrAqERmiGQ2NNacYKRNEQ+gFbU4glgVyK8rxI+ZOe1onEtr/Pg=="
       },
       "Humanizer.Core": {
         "type": "Transitive",
@@ -136,11 +114,6 @@
           "System.Collections.Immutable": "8.0.0",
           "System.Reflection.Metadata": "8.0.0"
         }
-      },
-      "Microsoft.CodeCoverage": {
-        "type": "Transitive",
-        "resolved": "17.13.0",
-        "contentHash": "9LIUy0y+DvUmEPtbRDw6Bay3rzwqFV8P4efTrK4CZhQle3M/QwLPjISghfcolmEGAPWxuJi6m98ZEfk4VR4Lfg=="
       },
       "Microsoft.Extensions.Configuration": {
         "type": "Transitive",
@@ -219,10 +192,13 @@
           "Microsoft.Extensions.FileProviders.Physical": "9.0.3"
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions": {
+      "Microsoft.Extensions.DependencyInjection": {
         "type": "Transitive",
         "resolved": "9.0.3",
-        "contentHash": "TfaHPSe39NyL2wxkisRxXK7xvHGZYBZ+dy3r+mqGvnxKgAPdHkMu3QMQZI4pquP6W5FIQBqs8FJpWV8ffCgDqQ=="
+        "contentHash": "lDbxJpkl6X8KZGpkAxgrrthQ42YeiR0xjPp7KPx+sCPc3ZbpaIbjzd0QQ+9kDdK2RU2DOl3pc6tQyAgEZY3V0A==",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3"
+        }
       },
       "Microsoft.Extensions.Diagnostics": {
         "type": "Transitive",
@@ -266,35 +242,6 @@
         "resolved": "9.0.3",
         "contentHash": "Rec77KHk4iNpFznHi5/6wF3MlUDcKqg26t8gRYbUm1PSukZ4B6mrXpZsJSNOiwyhhQVkjYbaoZxi5XJgRQ5lFg=="
       },
-      "Microsoft.Extensions.Hosting": {
-        "type": "Transitive",
-        "resolved": "9.0.3",
-        "contentHash": "ioFXglqFA9uCYcKHI3CLVTO3I75jWIhvVxiZBzGeSPxw7XdhDLh0QvbNFrMTbZk9qqEVQcylblcvcNXnFHYXyA==",
-        "dependencies": {
-          "Microsoft.Extensions.Configuration": "9.0.3",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.3",
-          "Microsoft.Extensions.Configuration.Binder": "9.0.3",
-          "Microsoft.Extensions.Configuration.CommandLine": "9.0.3",
-          "Microsoft.Extensions.Configuration.EnvironmentVariables": "9.0.3",
-          "Microsoft.Extensions.Configuration.FileExtensions": "9.0.3",
-          "Microsoft.Extensions.Configuration.Json": "9.0.3",
-          "Microsoft.Extensions.Configuration.UserSecrets": "9.0.3",
-          "Microsoft.Extensions.DependencyInjection": "9.0.3",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3",
-          "Microsoft.Extensions.Diagnostics": "9.0.3",
-          "Microsoft.Extensions.FileProviders.Abstractions": "9.0.3",
-          "Microsoft.Extensions.FileProviders.Physical": "9.0.3",
-          "Microsoft.Extensions.Hosting.Abstractions": "9.0.3",
-          "Microsoft.Extensions.Logging": "9.0.3",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.3",
-          "Microsoft.Extensions.Logging.Configuration": "9.0.3",
-          "Microsoft.Extensions.Logging.Console": "9.0.3",
-          "Microsoft.Extensions.Logging.Debug": "9.0.3",
-          "Microsoft.Extensions.Logging.EventLog": "9.0.3",
-          "Microsoft.Extensions.Logging.EventSource": "9.0.3",
-          "Microsoft.Extensions.Options": "9.0.3"
-        }
-      },
       "Microsoft.Extensions.Hosting.Abstractions": {
         "type": "Transitive",
         "resolved": "9.0.3",
@@ -305,24 +252,6 @@
           "Microsoft.Extensions.Diagnostics.Abstractions": "9.0.3",
           "Microsoft.Extensions.FileProviders.Abstractions": "9.0.3",
           "Microsoft.Extensions.Logging.Abstractions": "9.0.3"
-        }
-      },
-      "Microsoft.Extensions.Logging": {
-        "type": "Transitive",
-        "resolved": "9.0.3",
-        "contentHash": "utIi2R1nm+PCWkvWBf1Ou6LWqg9iLfHU23r8yyU9VCvda4dEs7xbTZSwGa5KuwbpzpgCbHCIuKaFHB3zyFmnGw==",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "9.0.3",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.3",
-          "Microsoft.Extensions.Options": "9.0.3"
-        }
-      },
-      "Microsoft.Extensions.Logging.Abstractions": {
-        "type": "Transitive",
-        "resolved": "9.0.3",
-        "contentHash": "H/MBMLt9A/69Ux4OrV7oCKt3DcMT04o5SCqDolulzQA66TLFEpYYb4qedMs/uwrLtyHXGuDGWKZse/oa8W9AZw==",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3"
         }
       },
       "Microsoft.Extensions.Logging.Configuration": {
@@ -510,78 +439,6 @@
         "resolved": "7.4.0",
         "contentHash": "FlaJ3JBWhqFToYT0ycMb/Xxzoof7oTQbNyI4UikgubC7AMWt5ptBNKjIAMPvOcvEHr+ohaO9GvRWp3tiyS3sKw=="
       },
-      "Microsoft.PowerShell.SDK": {
-        "type": "Transitive",
-        "resolved": "7.5.0",
-        "contentHash": "0eOv0XnU3BzolKE14s3E9u6VJOzfG6jOg51u69+eVJ/4Gl9xa3cLyYayACIeyV6ZC0sJSkcYgwYSDGAirHqnhQ==",
-        "dependencies": {
-          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
-          "Microsoft.Extensions.ObjectPool": "8.0.12",
-          "Microsoft.Management.Infrastructure.CimCmdlets": "7.5.0",
-          "Microsoft.PowerShell.Commands.Diagnostics": "7.5.0",
-          "Microsoft.PowerShell.Commands.Management": "7.5.0",
-          "Microsoft.PowerShell.Commands.Utility": "7.5.0",
-          "Microsoft.PowerShell.ConsoleHost": "7.5.0",
-          "Microsoft.PowerShell.Security": "7.5.0",
-          "Microsoft.WSMan.Management": "7.5.0",
-          "Microsoft.Win32.Registry.AccessControl": "9.0.1",
-          "Microsoft.Win32.SystemEvents": "9.0.1",
-          "Microsoft.Windows.Compatibility": "9.0.1",
-          "System.CodeDom": "9.0.1",
-          "System.ComponentModel.Composition": "9.0.1",
-          "System.ComponentModel.Composition.Registration": "9.0.1",
-          "System.Configuration.ConfigurationManager": "9.0.1",
-          "System.Data.Odbc": "9.0.1",
-          "System.Data.OleDb": "9.0.1",
-          "System.Data.SqlClient": "4.8.6",
-          "System.Diagnostics.EventLog": "9.0.1",
-          "System.Diagnostics.PerformanceCounter": "9.0.1",
-          "System.DirectoryServices": "9.0.1",
-          "System.DirectoryServices.AccountManagement": "9.0.1",
-          "System.DirectoryServices.Protocols": "9.0.1",
-          "System.Drawing.Common": "9.0.1",
-          "System.IO.Packaging": "9.0.1",
-          "System.IO.Ports": "9.0.1",
-          "System.Management": "9.0.1",
-          "System.Management.Automation": "7.5.0",
-          "System.Net.Http.WinHttpHandler": "9.0.1",
-          "System.Private.ServiceModel": "4.10.3",
-          "System.Reflection.Context": "9.0.1",
-          "System.Runtime.Caching": "9.0.1",
-          "System.Security.Cryptography.Pkcs": "9.0.1",
-          "System.Security.Cryptography.ProtectedData": "9.0.1",
-          "System.Security.Cryptography.Xml": "9.0.1",
-          "System.Security.Permissions": "9.0.1",
-          "System.ServiceModel.Duplex": "4.10.3",
-          "System.ServiceModel.Http": "4.10.3",
-          "System.ServiceModel.NetTcp": "4.10.3",
-          "System.ServiceModel.Primitives": "4.10.3",
-          "System.ServiceModel.Security": "4.10.3",
-          "System.ServiceProcess.ServiceController": "9.0.1",
-          "System.Speech": "9.0.1",
-          "System.Text.Encoding.CodePages": "9.0.1",
-          "System.Text.Encodings.Web": "9.0.1",
-          "System.Threading.AccessControl": "9.0.1",
-          "System.Web.Services.Description": "8.0.0",
-          "runtime.android-arm.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.android-arm64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.android-x64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.android-x86.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-arm.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-arm64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-bionic-arm64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-bionic-x64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-musl-arm.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-musl-arm64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-musl-x64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.linux-x64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.maccatalyst-arm64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.maccatalyst-x64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.osx-arm64.runtime.native.System.IO.Ports": "9.0.1",
-          "runtime.osx-x64.runtime.native.System.IO.Ports": "9.0.1"
-        }
-      },
       "Microsoft.PowerShell.Security": {
         "type": "Transitive",
         "resolved": "7.5.0",
@@ -594,70 +451,6 @@
         "type": "Transitive",
         "resolved": "1.3.0",
         "contentHash": "xK8WFEo5WMUE8DI8W+GjhRwpVcPrxc4DyTjfxh39+yOyhAtC5TBHDlFEJks5toNZHsUeUuiWELIX25oTWOKPBw=="
-      },
-      "Microsoft.Testing.Extensions.Telemetry": {
-        "type": "Transitive",
-        "resolved": "1.5.3",
-        "contentHash": "U9pGd5DQuX1PfkrdFI+xH34JGgQ2nes5QAwIITTk+MQfLvRITqsZjJeHTjpGWh33D/0q1l7aA8/LQHR7UuCgLQ==",
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "2.22.0",
-          "Microsoft.Testing.Platform": "1.5.3"
-        }
-      },
-      "Microsoft.Testing.Extensions.TrxReport.Abstractions": {
-        "type": "Transitive",
-        "resolved": "1.5.3",
-        "contentHash": "h34zKNpGyni66VH738mRHeXSnf3klSShUdavUWNhSfWICUUi5aXeI0LBvoX/ad93N0+9xBDU3Fyi6WfxrwKQGw==",
-        "dependencies": {
-          "Microsoft.Testing.Platform": "1.5.3"
-        }
-      },
-      "Microsoft.Testing.Extensions.VSTestBridge": {
-        "type": "Transitive",
-        "resolved": "1.5.3",
-        "contentHash": "cJD67YfDT98wEWyazKVD/yPVW6+H1usXeuselCnRes7JZBTIYWtrCchcOzOahnmajT79eDKqt9sta7DXwTDU4Q==",
-        "dependencies": {
-          "Microsoft.ApplicationInsights": "2.22.0",
-          "Microsoft.TestPlatform.ObjectModel": "17.12.0",
-          "Microsoft.Testing.Extensions.Telemetry": "1.5.3",
-          "Microsoft.Testing.Extensions.TrxReport.Abstractions": "1.5.3",
-          "Microsoft.Testing.Platform": "1.5.3"
-        }
-      },
-      "Microsoft.Testing.Platform": {
-        "type": "Transitive",
-        "resolved": "1.5.3",
-        "contentHash": "WqJydnJ99dEKtquR9HwINz104ehWJKTXbQQrydGatlLRw14bmsx0pa8+E6KUXMYXZAimN0swWlDmcJGjjW4TIg=="
-      },
-      "Microsoft.Testing.Platform.MSBuild": {
-        "type": "Transitive",
-        "resolved": "1.5.3",
-        "contentHash": "bOtpRMSPeT5YLQo+NNY8EtdNTphAUcmALjW4ABU7P0rb6yR2XAZau3TzNieLmR3lRuwudguWzzBhgcLRXwZh0A==",
-        "dependencies": {
-          "Microsoft.Testing.Platform": "1.5.3"
-        }
-      },
-      "Microsoft.TestPlatform.ObjectModel": {
-        "type": "Transitive",
-        "resolved": "17.13.0",
-        "contentHash": "bt0E0Dx+iqW97o4A59RCmUmz/5NarJ7LRL+jXbSHod72ibL5XdNm1Ke+UO5tFhBG4VwHLcSjqq9BUSblGNWamw==",
-        "dependencies": {
-          "System.Reflection.Metadata": "1.6.0"
-        }
-      },
-      "Microsoft.TestPlatform.TestHost": {
-        "type": "Transitive",
-        "resolved": "17.13.0",
-        "contentHash": "9GGw08Dc3AXspjekdyTdZ/wYWFlxbgcF0s7BKxzVX+hzAwpifDOdxM+ceVaaJSQOwqt3jtuNlHn3XTpKUS9x9Q==",
-        "dependencies": {
-          "Microsoft.TestPlatform.ObjectModel": "17.13.0",
-          "Newtonsoft.Json": "13.0.1"
-        }
-      },
-      "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
-        "type": "Transitive",
-        "resolved": "1.21.2",
-        "contentHash": "kN58RveGig9YjWAoYI3flDWC/jWCU0Xzzmp3f49fbnPwZLsVJu9qMt+VSrIz7I3Gn6jkeY1l7cVJopiRDOq3CQ=="
       },
       "Microsoft.Win32.Registry": {
         "type": "Transitive",
@@ -743,11 +536,6 @@
         "type": "Transitive",
         "resolved": "13.0.3",
         "contentHash": "HrC5BXdl00IP9zeV+0Z848QWPAoCr9P3bDEZguI+gkLcBKAOxix/tLEAAHC+UvDNPv4a2d18lOReHMOagPa+zQ=="
-      },
-      "Octokit": {
-        "type": "Transitive",
-        "resolved": "14.0.0",
-        "contentHash": "jGOuTH1l+TCpJH+fwYOp7USzHDuGfN1jKbLz3J2COwyn+wL08eynvpnM6rY2qkzIEXum3PN2p2QkP3BW/p9Qcw=="
       },
       "runtime.android-arm.runtime.native.System.IO.Ports": {
         "type": "Transitive",
@@ -886,11 +674,6 @@
         "type": "Transitive",
         "resolved": "8.0.0",
         "contentHash": "AurL6Y5BA1WotzlEvVaIDpqzpIPvYnnldxru8oXJU2yFxFUy3+pNXjXd1ymO+RA0rq0+590Q8gaz2l3Sr7fmqg=="
-      },
-      "System.CommandLine": {
-        "type": "Transitive",
-        "resolved": "2.0.0-beta4.22272.1",
-        "contentHash": "1uqED/q2H0kKoLJ4+hI2iPSBSEdTuhfCYADeJrAqERmiGQ2NNacYKRNEQ+gFbU4glgVyK8rxI+ZOe1onEtr/Pg=="
       },
       "System.ComponentModel.Composition": {
         "type": "Transitive",
@@ -1225,14 +1008,110 @@
           "Microsoft.Extensions.DependencyInjection.Abstractions": "[9.0.3, )"
         }
       },
-      "Microsoft.Extensions.DependencyInjection": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions": {
         "type": "CentralTransitive",
         "requested": "[9.0.3, )",
         "resolved": "9.0.3",
-        "contentHash": "lDbxJpkl6X8KZGpkAxgrrthQ42YeiR0xjPp7KPx+sCPc3ZbpaIbjzd0QQ+9kDdK2RU2DOl3pc6tQyAgEZY3V0A==",
+        "contentHash": "TfaHPSe39NyL2wxkisRxXK7xvHGZYBZ+dy3r+mqGvnxKgAPdHkMu3QMQZI4pquP6W5FIQBqs8FJpWV8ffCgDqQ=="
+      },
+      "Microsoft.Extensions.Logging": {
+        "type": "CentralTransitive",
+        "requested": "[9.0.3, )",
+        "resolved": "9.0.3",
+        "contentHash": "utIi2R1nm+PCWkvWBf1Ou6LWqg9iLfHU23r8yyU9VCvda4dEs7xbTZSwGa5KuwbpzpgCbHCIuKaFHB3zyFmnGw==",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection": "9.0.3",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.3",
+          "Microsoft.Extensions.Options": "9.0.3"
+        }
+      },
+      "Microsoft.Extensions.Logging.Abstractions": {
+        "type": "CentralTransitive",
+        "requested": "[9.0.3, )",
+        "resolved": "9.0.3",
+        "contentHash": "H/MBMLt9A/69Ux4OrV7oCKt3DcMT04o5SCqDolulzQA66TLFEpYYb4qedMs/uwrLtyHXGuDGWKZse/oa8W9AZw==",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.3"
         }
+      },
+      "Microsoft.PowerShell.SDK": {
+        "type": "CentralTransitive",
+        "requested": "[7.5.0, )",
+        "resolved": "7.5.0",
+        "contentHash": "0eOv0XnU3BzolKE14s3E9u6VJOzfG6jOg51u69+eVJ/4Gl9xa3cLyYayACIeyV6ZC0sJSkcYgwYSDGAirHqnhQ==",
+        "dependencies": {
+          "Microsoft.Bcl.AsyncInterfaces": "8.0.0",
+          "Microsoft.Extensions.ObjectPool": "8.0.12",
+          "Microsoft.Management.Infrastructure.CimCmdlets": "7.5.0",
+          "Microsoft.PowerShell.Commands.Diagnostics": "7.5.0",
+          "Microsoft.PowerShell.Commands.Management": "7.5.0",
+          "Microsoft.PowerShell.Commands.Utility": "7.5.0",
+          "Microsoft.PowerShell.ConsoleHost": "7.5.0",
+          "Microsoft.PowerShell.Security": "7.5.0",
+          "Microsoft.WSMan.Management": "7.5.0",
+          "Microsoft.Win32.Registry.AccessControl": "9.0.1",
+          "Microsoft.Win32.SystemEvents": "9.0.1",
+          "Microsoft.Windows.Compatibility": "9.0.1",
+          "System.CodeDom": "9.0.1",
+          "System.ComponentModel.Composition": "9.0.1",
+          "System.ComponentModel.Composition.Registration": "9.0.1",
+          "System.Configuration.ConfigurationManager": "9.0.1",
+          "System.Data.Odbc": "9.0.1",
+          "System.Data.OleDb": "9.0.1",
+          "System.Data.SqlClient": "4.8.6",
+          "System.Diagnostics.EventLog": "9.0.1",
+          "System.Diagnostics.PerformanceCounter": "9.0.1",
+          "System.DirectoryServices": "9.0.1",
+          "System.DirectoryServices.AccountManagement": "9.0.1",
+          "System.DirectoryServices.Protocols": "9.0.1",
+          "System.Drawing.Common": "9.0.1",
+          "System.IO.Packaging": "9.0.1",
+          "System.IO.Ports": "9.0.1",
+          "System.Management": "9.0.1",
+          "System.Management.Automation": "7.5.0",
+          "System.Net.Http.WinHttpHandler": "9.0.1",
+          "System.Private.ServiceModel": "4.10.3",
+          "System.Reflection.Context": "9.0.1",
+          "System.Runtime.Caching": "9.0.1",
+          "System.Security.Cryptography.Pkcs": "9.0.1",
+          "System.Security.Cryptography.ProtectedData": "9.0.1",
+          "System.Security.Cryptography.Xml": "9.0.1",
+          "System.Security.Permissions": "9.0.1",
+          "System.ServiceModel.Duplex": "4.10.3",
+          "System.ServiceModel.Http": "4.10.3",
+          "System.ServiceModel.NetTcp": "4.10.3",
+          "System.ServiceModel.Primitives": "4.10.3",
+          "System.ServiceModel.Security": "4.10.3",
+          "System.ServiceProcess.ServiceController": "9.0.1",
+          "System.Speech": "9.0.1",
+          "System.Text.Encoding.CodePages": "9.0.1",
+          "System.Text.Encodings.Web": "9.0.1",
+          "System.Threading.AccessControl": "9.0.1",
+          "System.Web.Services.Description": "8.0.0",
+          "runtime.android-arm.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.android-arm64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.android-x64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.android-x86.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-arm.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-arm64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-bionic-arm64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-bionic-x64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-musl-arm.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-musl-arm64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-musl-x64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.linux-x64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.maccatalyst-arm64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.maccatalyst-x64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.osx-arm64.runtime.native.System.IO.Ports": "9.0.1",
+          "runtime.osx-x64.runtime.native.System.IO.Ports": "9.0.1"
+        }
+      },
+      "Octokit": {
+        "type": "CentralTransitive",
+        "requested": "[14.0.0, )",
+        "resolved": "14.0.0",
+        "contentHash": "jGOuTH1l+TCpJH+fwYOp7USzHDuGfN1jKbLz3J2COwyn+wL08eynvpnM6rY2qkzIEXum3PN2p2QkP3BW/p9Qcw=="
       }
     }
   }

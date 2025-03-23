@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
-using ReleaseCreator.Client.Types;
+using ReleaseCreator.CommandLine.Types;
 
-namespace ReleaseCreator.Client.Tests.Types;
+namespace ReleaseCreator.CommandLine.Tests.Types;
 
 [TestFixture]
 public class ReleaseCreatorOptionsTest
@@ -10,14 +10,14 @@ public class ReleaseCreatorOptionsTest
     public void ToString_ShouldPrintAllPropertiesButAccessToken()
     {
         // arrange
-        var testee = new ReleaseCreatorOptions("sha", Enums.ReleaseType.Major, "identifier", "access token");
+        var testee = new ReleaseCreatorCommandLineOptions("sha", Enums.SemanticReleaseType.Major, "identifier", "access token");
 
         // act
         var result = testee.ToString();
 
         // assert
-        result.Should().Contain(testee.CommitSha);
-        result.Should().Contain(testee.VersionIncreasePart.ToString());
+        result.Should().Contain(testee.Commitish);
+        result.Should().Contain(testee.SemanticReleaseType.ToString());
         result.Should().Contain(testee.PreReleaseIdentifier);
         result.Should().Contain(testee.IsPreRelease.ToString());
         result.Should().NotContain(testee.AccessToken);

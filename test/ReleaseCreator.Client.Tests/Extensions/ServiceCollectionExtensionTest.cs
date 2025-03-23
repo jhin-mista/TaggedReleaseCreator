@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using ReleaseCreator.Client.Extensions;
+using ReleaseCreator.Client.ReleaseCreation;
 
 namespace ReleaseCreator.Client.Tests.Extensions;
 
@@ -19,9 +20,10 @@ public class ServiceCollectionExtensionTest
     public void AddReleaseCreatorClientServicesSingleton_ShouldNotThrow()
     {
         // act
-        var invocation = _testee.Invoking(x => x.AddReleaseCreatorClientServicesSingleton("token"));
+        var result = _testee.AddReleaseCreatorClientServicesSingleton("token");
 
         // assert
-        invocation.Should().NotThrow();
+        var provider = result.BuildServiceProvider();
+        provider.Invoking(x => x.GetRequiredService<IReleaseCreator>()).Should().NotThrow();
     }
 }

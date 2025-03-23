@@ -1,0 +1,21 @@
+{
+  "profiles": {
+    "ReleaseCreator.CommandLine": {
+      "environmentVariables": {
+        "GITHUB_REPOSITORY_ID": "-1",
+        "Logging__LogLevel__Default": "Debug"
+      },
+      "commandName": "Project",
+      "commandLineArgs": "--type patch --pre-release alpha --token abc --commit 123abc"
+    },
+    "Container (Dockerfile)": {
+      "environmentVariables": {
+        "GITHUB_REPOSITORY_ID": "-1",
+        "GITHUB_OUTPUT": "/home/app/output",
+        "Logging__LogLevel__Default": "Debug"
+      },
+      "commandName": "Docker",
+      "commandLineArgs": "--type patch --pre-release alpha --token abc --commit 123abc"
+    }
+  }
+}

@@ -26,7 +26,7 @@ internal class GitHubReleaseCreator(
         var nextRelease = new NewRelease(nextVersion.ToStringWithPrefix())
         {
             Prerelease = releaseCreatorOptions.IsPreRelease,
-            TargetCommitish = releaseCreatorOptions.CommitSha,
+            TargetCommitish = releaseCreatorOptions.Commitish,
         };
 
         var repositoryId = GetRepositoryId();
@@ -40,7 +40,7 @@ internal class GitHubReleaseCreator(
 
     private void SetNextVersionOutput(string nextVersion)
     {
-        var outputFilePathVariableName = KnownConstants.GitHub.EnvironmentVariables.OutputFilePath;
+        var outputFilePathVariableName = KnownConstants.GitHub.Action.EnvironmentVariables.OutputFilePath;
 
         var outputFilePath = _environmentService.GetRequiredEnvironmentVariable(outputFilePathVariableName);
 
@@ -49,7 +49,7 @@ internal class GitHubReleaseCreator(
 
     private long GetRepositoryId()
     {
-        var repositoryIdVariableName = KnownConstants.GitHub.EnvironmentVariables.RepositoryId;
+        var repositoryIdVariableName = KnownConstants.GitHub.Action.EnvironmentVariables.RepositoryId;
 
         var repositoryId = _environmentService.GetRequiredEnvironmentVariable(repositoryIdVariableName);
 

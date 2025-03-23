@@ -1,19 +1,24 @@
-﻿using ReleaseCreator.Client.Enums;
+﻿using ReleaseCreator.CommandLine.Enums;
 using System.Text;
 
-namespace ReleaseCreator.Client.Types;
+namespace ReleaseCreator.CommandLine.Types;
 
 /// <summary>
 /// Holds options for creating a release, including versioning and access details.
 /// </summary>
 /// <param name="Commitish">Specifies the unique identifier for the commit associated with the release.</param>
-/// <param name="SemanticReleaseType">Indicates the type of semantic release.</param>
+/// <param name="SemanticReleaseType">Indicates the part of the version number that should be incremented.</param>
 /// <param name="PreReleaseIdentifier">Allows for the inclusion of an identifier for pre-release versions.</param>
-public record ReleaseCreatorOptions(
+/// <param name="AccessToken">Provides the authentication token required for accessing the release creation functionality.</param>
+internal record ReleaseCreatorCommandLineOptions(
     string Commitish,
     SemanticReleaseType SemanticReleaseType,
-    string? PreReleaseIdentifier)
+    string? PreReleaseIdentifier,
+    string AccessToken)
 {
+    /// <summary>
+    /// Indicates if this is a pre-release.
+    /// </summary>
     internal bool IsPreRelease => PreReleaseIdentifier != null;
 
     /// <summary>

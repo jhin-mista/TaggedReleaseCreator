@@ -1,6 +1,8 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.DependencyInjection;
 using ReleaseCreator.SemanticVersionUtil.Extensions;
+using ReleaseCreator.SemanticVersionUtil.Incrementor;
+using ReleaseCreator.SemanticVersionUtil.Parser;
 
 namespace ReleaseCreator.SemanticVersionUtil.Tests.Extensions;
 [TestFixture]
@@ -18,9 +20,11 @@ public class ServiceCollectionExtensionsTest
     public void AddReleaseCreatorClientServicesSingleton_ShouldNotThrow()
     {
         // act
-        var invocation = _testee.Invoking(x => x.AddSemanticVersionUtilServicesSingleton());
+        var result = _testee.AddSemanticVersionUtilServicesSingleton();
 
         // assert
-        invocation.Should().NotThrow();
+        var provider = result.BuildServiceProvider();
+        provider.Invoking(x => x.GetRequiredService<ISemanticVersionParser>()).Should().NotThrow();
+        provider.Invoking(x => x.GetRequiredService<ISemanticVersionIncrementor>()).Should().NotThrow();
     }
 }

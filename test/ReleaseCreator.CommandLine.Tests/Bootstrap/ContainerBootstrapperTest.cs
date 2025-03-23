@@ -2,11 +2,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Console;
-using ReleaseCreator.Client.Bootstrap;
+using ReleaseCreator.CommandLine.Bootstrap;
 using System.Collections;
 using System.Reflection;
 
-namespace ReleaseCreator.Client.Tests.Bootstrap;
+namespace ReleaseCreator.CommandLine.Tests.Bootstrap;
 
 [TestFixture]
 public class ContainerBootstrapperTest

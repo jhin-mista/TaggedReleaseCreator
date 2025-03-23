@@ -15,8 +15,9 @@ public static class ServiceCollectionExtensions
     /// <param name="services">The <see cref="IServiceCollection"/> to add the services to.</param>
     public static IServiceCollection AddGitServicesSingleton(this IServiceCollection services)
     {
-        services.AddSingleton<ITagRetriever, TagRetriever>();
-        services.AddSingleton<IPowerShellExecutor, PowerShellExecutor>();
+        services.AddLogging()
+            .AddSingleton<ITagRetriever, TagRetriever>()
+            .AddSingleton<IPowerShellExecutor, PowerShellExecutor>();
 
         return services;
     }

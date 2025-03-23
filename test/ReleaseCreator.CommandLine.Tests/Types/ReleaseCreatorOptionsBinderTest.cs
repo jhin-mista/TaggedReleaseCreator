@@ -1,9 +1,9 @@
 ﻿using FluentAssertions;
-using ReleaseCreator.Client.Types;
+using ReleaseCreator.CommandLine.Types;
 using System.CommandLine;
 using System.Reflection;
 
-namespace ReleaseCreator.Client.Tests.Types;
+namespace ReleaseCreator.CommandLine.Tests.Types;
 
 [TestFixture]
 public class ReleaseCreatorOptionsBinderTest
@@ -57,16 +57,16 @@ public class ReleaseCreatorOptionsBinderTest
                 "--pre-release", "",
             ];
 
-        ReleaseCreatorOptions? releaseCreatorOptions = null;
-        command.SetHandler(x => releaseCreatorOptions = x, _sut);
+        ReleaseCreatorCommandLineOptions? releaseCreatorCommandLineOptions = null;
+        command.SetHandler(x => releaseCreatorCommandLineOptions = x, _sut);
 
         // act
         command.Invoke(arguments);
 
         // assert
-        releaseCreatorOptions.Should().NotBeNull();
-        releaseCreatorOptions!.PreReleaseIdentifier.Should().BeEmpty();
-        releaseCreatorOptions.IsPreRelease.Should().BeTrue();
+        releaseCreatorCommandLineOptions.Should().NotBeNull();
+        releaseCreatorCommandLineOptions!.PreReleaseIdentifier.Should().BeEmpty();
+        releaseCreatorCommandLineOptions.IsPreRelease.Should().BeTrue();
     }
 
     [Test]
@@ -84,15 +84,15 @@ public class ReleaseCreatorOptionsBinderTest
                 "--pre-release",
             ];
 
-        ReleaseCreatorOptions? releaseCreatorOptions = null;
-        command.SetHandler(x => releaseCreatorOptions = x, _sut);
+        ReleaseCreatorCommandLineOptions? releaseCreatorCommandLineOptions = null;
+        command.SetHandler(x => releaseCreatorCommandLineOptions = x, _sut);
 
         // act
         command.Invoke(arguments);
 
         // assert
-        releaseCreatorOptions.Should().NotBeNull();
-        releaseCreatorOptions!.PreReleaseIdentifier.Should().BeEmpty();
-        releaseCreatorOptions.IsPreRelease.Should().BeTrue();
+        releaseCreatorCommandLineOptions.Should().NotBeNull();
+        releaseCreatorCommandLineOptions!.PreReleaseIdentifier.Should().BeEmpty();
+        releaseCreatorCommandLineOptions.IsPreRelease.Should().BeTrue();
     }
 }
