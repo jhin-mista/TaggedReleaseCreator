@@ -34,7 +34,7 @@ public class NextVersionCalculatorTest
     {
         // arrange
         const string RetrievedTag = "0.0.0";
-        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, "access token");
+        var input = new ReleaseCreatorOptions("branch name", SemanticReleaseType.Major, null);
         var returnedIncrementedVersion = new SemanticVersion(1, 1, 1, [], null, []);
         var returnedCurrentVersion = new SemanticVersion(0, 0, 0, [], null, []);
 
@@ -71,7 +71,7 @@ public class NextVersionCalculatorTest
     public void CalculateNextVersion_WhenNoTagExists_ShouldSetCurrentVersionAsZero()
     {
         // arrange
-        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, null, "access token");
+        var input = new ReleaseCreatorOptions("branch name", SemanticReleaseType.Major, null);
         var expectedCurrentVersion = new SemanticVersion(0, 0, 0, [], null, []);
 
         SemanticVersion? actualCurrentSemanticVersion = null;
@@ -90,13 +90,13 @@ public class NextVersionCalculatorTest
         _semanticVersionParserMock.Verify(x => x.Parse(It.IsAny<string>()), Times.Never);
     }
 
-    [TestCase(ReleaseType.Major, SemanticVersionCorePart.Major)]
-    [TestCase(ReleaseType.Minor, SemanticVersionCorePart.Minor)]
-    [TestCase(ReleaseType.Patch, SemanticVersionCorePart.Patch)]
-    public void CalculateNextVersion_ShouldMapReleaseTypeToExpectedSemanticVersionCorePart(ReleaseType releaseType, SemanticVersionCorePart expectedSemanticVersionCorePart)
+    [TestCase(SemanticReleaseType.Major, SemanticVersionCorePart.Major)]
+    [TestCase(SemanticReleaseType.Minor, SemanticVersionCorePart.Minor)]
+    [TestCase(SemanticReleaseType.Patch, SemanticVersionCorePart.Patch)]
+    public void CalculateNextVersion_ShouldMapReleaseTypeToExpectedSemanticVersionCorePart(SemanticReleaseType releaseType, SemanticVersionCorePart expectedSemanticVersionCorePart)
     {
         // arrange
-        var input = new ReleaseCreatorOptions("branch name", releaseType, null, "access token");
+        var input = new ReleaseCreatorOptions("branch name", releaseType, null);
 
         SemanticVersionIncrementDto? actualSemanticVersionIncrementDto = null;
         _semanticVersionIncrementorMock.Setup(x => x.Increment(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()))
@@ -120,8 +120,8 @@ public class NextVersionCalculatorTest
     public void CalculateNextVersion_WhenSuppliedWithInvalidReleaseType_ShouldThrowException()
     {
         // arrange
-        var invalidReleaseType = (ReleaseType)(-1);
-        var input = new ReleaseCreatorOptions("branch name", invalidReleaseType, null, "access token");
+        var invalidReleaseType = (SemanticReleaseType)(-1);
+        var input = new ReleaseCreatorOptions("branch name", invalidReleaseType, null);
 
         _tagRetrieverMock.Setup(x => x.GetLatestTag()).Returns("0.0.0");
 
@@ -132,7 +132,7 @@ public class NextVersionCalculatorTest
         var invocation = _sut.Invoking(x => x.CalculateNextVersion(input));
 
         // assert
-        invocation.Should().Throw<NotSupportedException>().WithMessage($"{nameof(ReleaseType)} {invalidReleaseType} cannot be mapped to a {nameof(SemanticVersionCorePart)}");
+        invocation.Should().Throw<NotSupportedException>().WithMessage($"{nameof(SemanticReleaseType)} {invalidReleaseType} cannot be mapped to a {nameof(SemanticVersionCorePart)}");
 
         _semanticVersionIncrementorMock.Verify(x => x.Increment(It.IsAny<SemanticVersion>(), It.IsAny<SemanticVersionIncrementDto>()), Times.Never);
     }

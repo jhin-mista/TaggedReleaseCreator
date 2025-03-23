@@ -1,9 +1,9 @@
-﻿namespace ReleaseCreator.Client.Enums;
+﻿namespace ReleaseCreator.CommandLine.Enums;
 
 /// <summary>
 /// Represents a semantic version core part.
 /// </summary>
-public enum ReleaseType
+public enum SemanticReleaseType
 {
     /// <summary>
     /// The major version.

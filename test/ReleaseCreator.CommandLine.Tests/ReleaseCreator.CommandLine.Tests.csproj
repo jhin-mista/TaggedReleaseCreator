@@ -1,6 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="TestRepository\**" />
+    <EmbeddedResource Remove="TestRepository\**" />
+    <None Remove="TestRepository\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="coverlet.collector">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -15,9 +21,8 @@
     </PackageReference>
     <PackageReference Include="NUnit3TestAdapter" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ReleaseCreator.Client\ReleaseCreator.Client.csproj" />
+    <ProjectReference Include="..\..\src\ReleaseCreator.CommandLine\ReleaseCreator.CommandLine.csproj" />
   </ItemGroup>
 
   <ItemGroup>

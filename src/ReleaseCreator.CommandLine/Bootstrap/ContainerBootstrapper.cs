@@ -5,7 +5,7 @@ using ReleaseCreator.Client.Extensions;
 using ReleaseCreator.Git.Extensions;
 using ReleaseCreator.SemanticVersionUtil.Extensions;
 
-namespace ReleaseCreator.Client.Bootstrap;
+namespace ReleaseCreator.CommandLine.Bootstrap;
 
 /// <summary>
 /// Represents the bootstrapping logic for the dependency injection container.

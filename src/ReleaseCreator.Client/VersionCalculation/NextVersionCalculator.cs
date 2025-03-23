@@ -20,7 +20,7 @@ internal class NextVersionCalculator(
     public SemanticVersion CalculateNextVersion(ReleaseCreatorOptions releaseCreatorOptions)
     {
         var currentSemanticVersion = GetCurrentSemanticVersion();
-        var coreVersionPartToUpdate = GetSemanticVersionCorePart(releaseCreatorOptions.VersionIncreasePart);
+        var coreVersionPartToUpdate = GetSemanticVersionCorePart(releaseCreatorOptions.SemanticReleaseType);
         var versionIncrementDto = new SemanticVersionIncrementDto(
             coreVersionPartToUpdate,
             releaseCreatorOptions.PreReleaseIdentifier);
@@ -37,14 +37,14 @@ internal class NextVersionCalculator(
             : _semanticVersionParser.Parse(currentTag);
     }
 
-    private static SemanticVersionCorePart GetSemanticVersionCorePart(ReleaseType releaseType)
+    private static SemanticVersionCorePart GetSemanticVersionCorePart(SemanticReleaseType releaseType)
     {
         return releaseType switch
         {
-            ReleaseType.Major => SemanticVersionCorePart.Major,
-            ReleaseType.Minor => SemanticVersionCorePart.Minor,
-            ReleaseType.Patch => SemanticVersionCorePart.Patch,
-            _ => throw new NotSupportedException($"{nameof(ReleaseType)} {releaseType} cannot be mapped to a {nameof(SemanticVersionCorePart)}")
+            SemanticReleaseType.Major => SemanticVersionCorePart.Major,
+            SemanticReleaseType.Minor => SemanticVersionCorePart.Minor,
+            SemanticReleaseType.Patch => SemanticVersionCorePart.Patch,
+            _ => throw new NotSupportedException($"{nameof(SemanticReleaseType)} {releaseType} cannot be mapped to a {nameof(SemanticVersionCorePart)}")
         };
     }
 }

@@ -1,14 +1,14 @@
-﻿using ReleaseCreator.Client.Enums;
+﻿using ReleaseCreator.CommandLine.Enums;
 using System.CommandLine;
 using System.CommandLine.Binding;
 using System.CommandLine.Parsing;
 
-namespace ReleaseCreator.Client.Types;
+namespace ReleaseCreator.CommandLine.Types;
 
-internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
+internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorCommandLineOptions>
 {
     internal Option<string> CommitShaOption { get; }
-    internal Option<ReleaseType> ReleaseTypeOption { get; }
+    internal Option<SemanticReleaseType> ReleaseTypeOption { get; }
     internal Option<string?> PreReleaseOption { get; }
     internal Option<string> AccessTokenOption { get; }
 
@@ -19,7 +19,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
             IsRequired = true,
         };
 
-        ReleaseTypeOption = new Option<ReleaseType>("--type", "The release type to create")
+        ReleaseTypeOption = new Option<SemanticReleaseType>("--type", "The release type to create")
         {
             IsRequired = true,
         };
@@ -44,7 +44,7 @@ internal class ReleaseCreatorOptionsBinder : BinderBase<ReleaseCreatorOptions>
     }
 
     /// <inheritdoc/>
-    protected override ReleaseCreatorOptions GetBoundValue(BindingContext bindingContext)
+    protected override ReleaseCreatorCommandLineOptions GetBoundValue(BindingContext bindingContext)
     {
         return new(
             bindingContext.ParseResult.GetValueForOption(CommitShaOption)!,

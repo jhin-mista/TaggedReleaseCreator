@@ -42,16 +42,16 @@ public class GitHubReleaseCreatorTest
     public async Task CreateReleaseAsync_WhenReleaseCanBeCreated_ShouldCallDependenciesAsExpected()
     {
         // arrange
-        var input = new ReleaseCreatorOptions("commit sha", ReleaseType.Major, string.Empty, "access token");
+        var input = new ReleaseCreatorOptions("commit sha", SemanticReleaseType.Major, string.Empty);
         long repositoryId = 123;
         var outputFilePath = "path/to/file";
         var nextVersion = new SemanticVersion(1, 1, 1, [], 1, []);
         const string ExpectedNextVersion = "1.1.1-1";
         var createdRelease = new Release();
 
-        _environmentServiceMock.Setup(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.RepositoryId))
+        _environmentServiceMock.Setup(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.RepositoryId))
             .Returns(repositoryId.ToString());
-        _environmentServiceMock.Setup(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.OutputFilePath))
+        _environmentServiceMock.Setup(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.OutputFilePath))
             .Returns(outputFilePath);
 
         _fileServiceMock.Setup(x => x.AppendLine(It.IsAny<string>(), It.IsAny<string>()));
@@ -70,8 +70,8 @@ public class GitHubReleaseCreatorTest
         // assert
         result.Should().Be(createdRelease);
 
-        _environmentServiceMock.Verify(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.OutputFilePath), Times.Once);
-        _environmentServiceMock.Verify(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.RepositoryId), Times.Once);
+        _environmentServiceMock.Verify(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.OutputFilePath), Times.Once);
+        _environmentServiceMock.Verify(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.RepositoryId), Times.Once);
         _environmentServiceMock.VerifyNoOtherCalls();
 
         _fileServiceMock.Verify(x => x.AppendLine(outputFilePath, $"{KnownConstants.GitHub.Action.NextVersionOutputVariableName}={ExpectedNextVersion}"), Times.Once);
@@ -81,7 +81,7 @@ public class GitHubReleaseCreatorTest
         _releasesClientMock.VerifyNoOtherCalls();
         usedNewRelease!.TagName.Should().Be(ExpectedNextVersion);
         usedNewRelease.Prerelease.Should().BeTrue();
-        usedNewRelease.TargetCommitish.Should().Be(input.CommitSha);
+        usedNewRelease.TargetCommitish.Should().Be(input.Commitish);
 
         _nextVersionCalculatorMock.Verify(x => x.CalculateNextVersion(input), Times.Once);
         _nextVersionCalculatorMock.VerifyNoOtherCalls();
@@ -92,7 +92,7 @@ public class GitHubReleaseCreatorTest
     {
         // arrange
         const string EnvironmentVariableValue = "not a long";
-        var input = new ReleaseCreatorOptions("branch name", ReleaseType.Major, string.Empty, "access token");
+        var input = new ReleaseCreatorOptions("branch name", SemanticReleaseType.Major, string.Empty);
         var nextVersion = new SemanticVersion(1, 1, 1, [], 1, []);
 
         _environmentServiceMock.Setup(x => x.GetRequiredEnvironmentVariable(It.IsAny<string>()))
@@ -106,7 +106,7 @@ public class GitHubReleaseCreatorTest
 
         // assert
         await invocation.Should().ThrowAsync<Exception>()
-            .WithMessage($"Expected environment variable '{KnownConstants.GitHub.EnvironmentVariables.RepositoryId}' to be of type '{typeof(long)}' but '{EnvironmentVariableValue}' cannot be parsed.");
+            .WithMessage($"Expected environment variable '{KnownConstants.GitHub.Action.EnvironmentVariables.RepositoryId}' to be of type '{typeof(long)}' but '{EnvironmentVariableValue}' cannot be parsed.");
 
         _releasesClientMock.VerifyNoOtherCalls();
     }

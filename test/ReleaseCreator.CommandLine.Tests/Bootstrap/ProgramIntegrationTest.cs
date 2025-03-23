@@ -1,10 +1,11 @@
 ﻿using FluentAssertions;
 using Moq;
 using Octokit;
-using ReleaseCreator.Client.Bootstrap;
+using ReleaseCreator.Client;
 using ReleaseCreator.Client.Extensions;
+using ReleaseCreator.CommandLine.Bootstrap;
 
-namespace ReleaseCreator.Client.Tests.Bootstrap;
+namespace ReleaseCreator.CommandLine.Tests.Bootstrap;
 
 [TestFixture]
 public class ProgramIntegrationTest
@@ -42,8 +43,8 @@ public class ProgramIntegrationTest
         const string ExpectedTagName = "v2.0.0";
         long repositoryId = -123456789;
         var tmpFilePath = Path.GetTempFileName();
-        Environment.SetEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.RepositoryId, repositoryId.ToString());
-        Environment.SetEnvironmentVariable(KnownConstants.GitHub.EnvironmentVariables.OutputFilePath, tmpFilePath);
+        Environment.SetEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.RepositoryId, repositoryId.ToString());
+        Environment.SetEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.OutputFilePath, tmpFilePath);
 
         var createdRelease = new Release();
         NewRelease? calculatedNewRelease = null;
