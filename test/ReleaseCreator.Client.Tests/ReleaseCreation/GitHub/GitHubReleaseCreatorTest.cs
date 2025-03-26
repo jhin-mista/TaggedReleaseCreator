@@ -47,7 +47,6 @@ public class GitHubReleaseCreatorTest
         var outputFilePath = "path/to/file";
         var nextVersion = new SemanticVersion(1, 1, 1, [], 1, []);
         const string ExpectedNextVersion = "1.1.1-1";
-        var createdRelease = new Release();
 
         _environmentServiceMock.Setup(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.RepositoryId))
             .Returns(repositoryId.ToString());
@@ -59,17 +58,15 @@ public class GitHubReleaseCreatorTest
         NewRelease? usedNewRelease = null;
         _releasesClientMock.Setup(x => x.Create(It.IsAny<long>(), It.IsAny<NewRelease>()))
             .Callback<long, NewRelease>((_, newRelease) => usedNewRelease = newRelease)
-            .ReturnsAsync(createdRelease);
+            .ReturnsAsync(new Release());
 
         _nextVersionCalculatorMock.Setup(x => x.CalculateNextVersion(It.IsAny<ReleaseCreatorOptions>()))
             .Returns(nextVersion);
 
         // act
-        var result = await _sut.CreateReleaseAsync(input);
+        await _sut.CreateReleaseAsync(input);
 
         // assert
-        result.Should().Be(createdRelease);
-
         _environmentServiceMock.Verify(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.OutputFilePath), Times.Once);
         _environmentServiceMock.Verify(x => x.GetRequiredEnvironmentVariable(KnownConstants.GitHub.Action.EnvironmentVariables.RepositoryId), Times.Once);
         _environmentServiceMock.VerifyNoOtherCalls();

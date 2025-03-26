@@ -31,9 +31,7 @@ internal class Application(ILogger<Application> logger, IReleaseCreator releaseC
             _logger.LogDebug("Input arguments: {arguments}", releaseCreatorCommandLineOptions);
 
             var releaseCreatorOptions = CreateReleaseCreatorOptions(releaseCreatorCommandLineOptions);
-            var createdRelease = await _releaseCreator.CreateReleaseAsync(releaseCreatorOptions);
-
-            _logger.LogInformation("Created release under the following URL: {releaseUrl}", createdRelease.HtmlUrl);
+            await _releaseCreator.CreateReleaseAsync(releaseCreatorOptions);
 
             Environment.ExitCode = 0;
         }
