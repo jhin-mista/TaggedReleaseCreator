@@ -1,5 +1,4 @@
-﻿using Octokit;
-using ReleaseCreator.Client.Types;
+﻿using ReleaseCreator.Client.Types;
 
 namespace ReleaseCreator.Client.ReleaseCreation;
 
@@ -12,5 +11,5 @@ public interface IReleaseCreator
     /// Creates a new release asynchronously based on the provided options.
     /// </summary>
     /// <param name="releaseCreatorOptions">Specifies the details and configuration for the new release.</param>
-    public Task<Release> CreateReleaseAsync(ReleaseCreatorOptions releaseCreatorOptions);
+    public Task CreateReleaseAsync(ReleaseCreatorOptions releaseCreatorOptions);
 }

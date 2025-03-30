@@ -19,7 +19,7 @@ internal class GitHubReleaseCreator(
     private readonly IFileService _fileService = fileService;
     private readonly ILogger<GitHubReleaseCreator> _logger = logger;
 
-    public async Task<Release> CreateReleaseAsync(ReleaseCreatorOptions releaseCreatorOptions)
+    public async Task CreateReleaseAsync(ReleaseCreatorOptions releaseCreatorOptions)
     {
         var nextVersion = _nextVersionCalculator.CalculateNextVersion(releaseCreatorOptions);
 
@@ -35,7 +35,9 @@ internal class GitHubReleaseCreator(
 
         SetNextVersionOutput(nextRelease.TagName);
 
-        return await _releasesClient.Create(repositoryId, nextRelease);
+        var createdRelease = await _releasesClient.Create(repositoryId, nextRelease);
+
+        _logger.LogInformation("Created release under the following URL: {releaseUrl}", createdRelease.HtmlUrl);
     }
 
     private void SetNextVersionOutput(string nextVersion)

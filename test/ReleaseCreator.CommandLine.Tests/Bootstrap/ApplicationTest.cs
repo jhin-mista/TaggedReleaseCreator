@@ -1,7 +1,6 @@
 ﻿using FluentAssertions;
 using Microsoft.Extensions.Logging;
 using Moq;
-using Octokit;
 using ReleaseCreator.Client.ReleaseCreation;
 using ReleaseCreator.Client.Types;
 using ReleaseCreator.CommandLine.Types;
@@ -36,8 +35,7 @@ public class ApplicationTest
 
         ReleaseCreatorOptions? actualReleaseCreatorOptions = null;
         _releaseCreatorMock.Setup(x => x.CreateReleaseAsync(It.IsAny<ReleaseCreatorOptions>()))
-            .Callback<ReleaseCreatorOptions>(x => actualReleaseCreatorOptions = x)
-            .ReturnsAsync(new Release());
+            .Callback<ReleaseCreatorOptions>(x => actualReleaseCreatorOptions = x);
 
         // act
         await _sut.RunAsync(releaseCreatorCommandLineOptions);
