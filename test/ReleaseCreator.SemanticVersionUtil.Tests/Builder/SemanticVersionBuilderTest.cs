@@ -94,6 +94,30 @@ public class SemanticVersionBuilderTest
         result.BuildMetadata.Should().BeEmpty();
     }
 
+    [TestCase()]
+    [TestCase("")]
+    [TestCase("alpha")]
+    [TestCase("alpha", "1")]
+    public void SetPreReleaseIdentifier_WhenCollection_ShouldOnlySetPreReleaseIdentifier(params string[] preReleaseIdentifier)
+    {
+        // act
+        _sut.SetPreReleaseIdentifier(preReleaseIdentifier);
+
+        // assert
+        var result = _sut.BuildSemanticVersion();
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(result.Major, Is.Default);
+            Assert.That(result.Minor, Is.Default);
+            Assert.That(result.Patch, Is.Default);
+
+            Assert.That(result.PreReleaseIdentifier, Is.EquivalentTo(preReleaseIdentifier));
+            Assert.That(result.PreReleaseNumber, Is.Null);
+            Assert.That(result.BuildMetadata, Is.Empty);
+        }
+    }
+
     [Test]
     public void SetPreReleaseIdentifier_ShouldOnlySetPreReleaseIdentifier()
     {

@@ -163,7 +163,7 @@ internal partial class SemanticVersionBuilder : ISemanticVersionBuilder
     {
         var match = PreReleaseIdentifierRegex().Match(preReleaseVersion);
 
-        if (!match.Success)
+        if (!string.IsNullOrWhiteSpace(preReleaseVersion) && !match.Success)
         {
             throw new FormatException($"'{preReleaseVersion}' is not a valid pre-release version");
         }

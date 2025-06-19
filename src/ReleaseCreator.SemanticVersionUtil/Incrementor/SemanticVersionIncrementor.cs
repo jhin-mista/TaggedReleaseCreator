@@ -9,26 +9,21 @@ internal class SemanticVersionIncrementor(ISemanticVersionIncrementDirector dire
     /// <inheritdoc/>
     public SemanticVersion Increment(SemanticVersion currentVersion, SemanticVersionIncrementDto semanticVersionIncrementDto)
     {
-        if (IsStableVersion(currentVersion) && semanticVersionIncrementDto.IsPreRelease)
+        if (currentVersion.IsStableVersion && semanticVersionIncrementDto.IsPreRelease)
         {
             return _director.IncrementStableToPreRelease(currentVersion, semanticVersionIncrementDto);
         }
 
-        if (!IsStableVersion(currentVersion) && semanticVersionIncrementDto.IsPreRelease)
+        else if (currentVersion.IsPreRelease && semanticVersionIncrementDto.IsPreRelease)
         {
             return _director.IncrementPreReleaseToPreRelease(currentVersion, semanticVersionIncrementDto);
         }
 
-        if (IsStableVersion(currentVersion) && !semanticVersionIncrementDto.IsPreRelease)
+        else if (currentVersion.IsStableVersion && semanticVersionIncrementDto.IsStableVersion)
         {
             return _director.IncrementStableToStable(currentVersion, semanticVersionIncrementDto);
         }
 
         return _director.IncrementPreReleaseToStable(currentVersion, semanticVersionIncrementDto);
-    }
-
-    private static bool IsStableVersion(SemanticVersion version)
-    {
-        return version.PreReleaseIdentifier == null || version.PreReleaseIdentifier.Count == 0;
     }
 }

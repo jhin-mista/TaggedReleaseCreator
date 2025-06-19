@@ -23,6 +23,16 @@ public record SemanticVersion(
     private static readonly char _preReleaseStartSign = '-';
     private static readonly char _buildMetadataStartSign = '+';
 
+    /// <summary>
+    /// Indicates if this <see cref="SemanticVersion"/> is a pre-release version.
+    /// </summary>
+    public bool IsPreRelease => PreReleaseIdentifier?.Count > 0 || PreReleaseNumber.HasValue;
+
+    /// <summary>
+    /// Indicates if this <see cref="SemanticVersion"/> is a stable version.
+    /// </summary>
+    public bool IsStableVersion => !IsPreRelease;
+
     /// <inheritdoc/>
     public override string ToString()
     {

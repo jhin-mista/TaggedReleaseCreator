@@ -12,7 +12,12 @@ public record SemanticVersionIncrementDto(
     string? PreReleaseIdentifier)
 {
     /// <summary>
-    /// The indicator if this increments to a pre-release.
+    /// Indicates if this increments to a pre-release.
     /// </summary>
     public bool IsPreRelease => PreReleaseIdentifier != null;
+
+    /// <summary>
+    /// Indicates if this increments to a stable version.
+    /// </summary>
+    public bool IsStableVersion => !IsPreRelease;
 }
