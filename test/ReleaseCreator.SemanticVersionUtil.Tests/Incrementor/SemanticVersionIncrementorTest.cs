@@ -18,11 +18,23 @@ public class SemanticVersionIncrementorTest
         _sut = new(_semanticVersionIncrementDirectorMock.Object);
     }
 
-    [Test]
-    public void Increment_WhenCalledForPreReleaseToPreReleaseIncrement_ShouldCallDirectorAsExpected()
+    public static IEnumerable<TestCaseData> PreReleaseSemanticVersions
+    {
+        get
+        {
+            yield return new(new string[] { "alpha" }, 1u);
+            yield return new(new string[] { "alpha" }, null);
+            yield return new(Array.Empty<string>(), 1u);
+            yield return new(new string[] { string.Empty }, 1u);
+            yield return new(new string[] { string.Empty }, null);
+        }
+    }
+
+    [TestCaseSource(nameof(PreReleaseSemanticVersions))]
+    public void Increment_WhenCalledForPreReleaseToPreReleaseIncrement_ShouldCallDirectorAsExpected(string[] preReleaseIdentifier, uint? preReleaseNumber)
     {
         //arrange
-        var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, []);
+        var currentVersion = new SemanticVersion(1, 1, 1, preReleaseIdentifier, preReleaseNumber, []);
         var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, string.Empty);
 
         _semanticVersionIncrementDirectorMock.Setup(x =>
@@ -37,11 +49,11 @@ public class SemanticVersionIncrementorTest
         _semanticVersionIncrementDirectorMock.VerifyNoOtherCalls();
     }
 
-    [Test]
-    public void Increment_WhenCalledForPreReleaseToStableIncrement_ShouldCallDirectorAsExpected()
+    [TestCaseSource(nameof(PreReleaseSemanticVersions))]
+    public void Increment_WhenCalledForPreReleaseToStableIncrement_ShouldCallDirectorAsExpected(string[] preReleaseIdentifier, uint? preReleaseNumber)
     {
         //arrange
-        var currentVersion = new SemanticVersion(1, 1, 1, new[] { "alpha" }, 1, []);
+        var currentVersion = new SemanticVersion(1, 1, 1, preReleaseIdentifier, preReleaseNumber, []);
         var incrementDto = new SemanticVersionIncrementDto(SemanticVersionCorePart.Major, null);
 
         _semanticVersionIncrementDirectorMock.Setup(x =>

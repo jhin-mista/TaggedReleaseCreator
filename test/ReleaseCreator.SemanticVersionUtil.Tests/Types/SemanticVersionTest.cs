@@ -57,4 +57,47 @@ public class SemanticVersionTest
         // assert
         actualResult.Should().Be(expectedResult);
     }
+
+    public static IEnumerable<TestCaseData> PreReleaseSemanticVersions
+    {
+        get
+        {
+            yield return new(new string[] { "alpha" }, 1u);
+            yield return new(new string[] { "alpha" }, null);
+            yield return new(Array.Empty<string>(), 1u);
+            yield return new(new string[] { string.Empty }, 1u);
+            yield return new(new string[] { string.Empty }, null);
+        }
+    }
+
+    [TestCaseSource(nameof(PreReleaseSemanticVersions))]
+    public void IsPreRelease_WhenVersionIsPreRelease_ShouldBeTrue(string[] preReleaseIdentifier, uint? preReleaseNumber)
+    {
+        // arrange
+        var semanticVersion = new SemanticVersion(1, 1, 1, preReleaseIdentifier, preReleaseNumber, []);
+
+        // act
+        var isPreRelease = semanticVersion.IsPreRelease;
+
+        // assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(isPreRelease, Is.True);
+            Assert.That(semanticVersion.IsStableVersion, Is.False);
+        }
+    }
+
+    [Test]
+    public void IsPreRelease_WhenVersionIsStable_ShouldBeFalse()
+    {
+        // arrange
+        var semanticVersion = new SemanticVersion(1, 1, 1, Array.Empty<string>(), null, []);
+
+        // assert
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(semanticVersion.IsPreRelease, Is.False);
+            Assert.That(semanticVersion.IsStableVersion, Is.True);
+        }
+    }
 }
